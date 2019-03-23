@@ -1,0 +1,100 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> New trainings</title>
+    <link href="/static/content/style.css" rel="stylesheet">
+</head>
+
+<body>
+<div id="header" class="header">
+    <p>Fitness club</p>
+</div>
+
+<div class="menu">
+    <div class="nav">
+        <ul class="topmenu">
+            <li><a href="">Профиль</a></li>
+            <li><a href="">Тренировки</a></li>
+            <li><a href="">Проресс</a></li>
+            <li><a href="">Уведомления</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="section-trainings">
+    <div class="sidebar">
+        <div class="block-of-data" id="box1" style="display: none;">
+            <img class="img-circle" src="../../static/content/avatar.png" alt="none">
+            <h1> Рейтинг </h1>
+            <h1> Тренер </h1>
+            <p> Иванов И.И. </p>
+            <h1> О занятиях </h1>
+            <p> Занятия проводятся в бассейне. Длина бассейна - 25 метров. Длительность занятия - 1 час.</p>
+            <button class="button button1"> Подробнее</button>
+            <button class="button button2"> Записаться</button>
+        </div>
+        <div class="block-of-data" id="box2" style="display: none;">
+            <img class="img-circle" src="../../static/content/avatar2.png" alt="none">
+            <h1> Рейтинг </h1>
+            <h1> Тренер </h1>
+            <p> Смирнова Е.М. </p>
+            <h1> О занятиях </h1>
+            <p> Занятия проводятся в оборудованном зале для йоги. Длительность занятия - 2 часа.</p>
+            <button class="button button1"> Подробнее</button>
+            <button class="button button2"> Записаться</button>
+        </div>
+        <div class="block-of-data" id="box3" style="display: none;">
+            <img class="img-circle" src="../../static/content/avatar3.png" alt="none">
+            <h1> Рейтинг </h1>
+            <h1> Тренер </h1>
+            <p> Дружнов К.Е. </p>
+            <h1> О занятиях </h1>
+            <p> Занятия проводятся в оборудованном тренажерном зале. Длительность занятия - 2 часа.</p>
+            <button class="button button1"> Подробнее</button>
+            <button class="button button2"> Записаться</button>
+        </div>
+    </div>
+    <div class="contentText">
+        <h2> Выберите одно из направлений </h2>
+        <div class="elements-gride" data-masonry='{ "itemSelector": ".element-item-newtrainings", "columnWidth": 200 }'>
+            <a href="#" onclick="openbox('box1'); return false">
+                <img class="element-item-newtrainings" src="../../static/content/бассейн.png" alt="none"
+                     title="Бассейн"/>
+            </a>
+            <a href="#" onclick="openbox('box2'); return false">
+                <img class="element-item-newtrainings" src="../../static/content/йога.png" alt="none" title="Йога"/>
+            </a>
+            <a href="#" onclick="openbox('box3'); return false">
+                <img class="element-item-newtrainings" src="../../static/content/тренажеры.png" alt="none"
+                     title="Тренажеры"/>
+            </a>
+            <a href=""><img class="element-item-newtrainings" src="/static/content/1.jpg" alt="none"/></a>
+            <a href=""><img class="element-item-newtrainings" src="/static/content/1.jpg" alt="none"/></a>
+            <a href=""><img class="element-item-newtrainings" src="/static/content/1.jpg" alt="none"/></a>
+            <a href=""><img class="element-item-newtrainings" src="/static/content/1.jpg" alt="none"/></a>
+            <a href=""><img class="element-item-newtrainings" src="/static/content/1.jpg" alt="none"/></a>
+            <a href=""><img class="element-item-newtrainings" src="/static/content/1.jpg" alt="none"/></a>
+            <a href=""><img class="element-item-newtrainings" src="/static/content/1.jpg" alt="none"/></a>
+            <a href=""><img class="element-item-newtrainings" src="/static/content/1.jpg" alt="none"/></a>
+        </div>
+        <script>
+            function openbox(id) {
+                var all = document.querySelectorAll(".block-of-data");
+                for (var i = 0; i < all.length; i++) {
+                    if (all[i].id === id) {
+                        all[i].style.display = (all[i].style.display === 'none') ? 'block' : 'none';
+                    } else {
+                        all[i].style.display = 'none';
+                    }
+                }
+            }
+        </script>
+    </div>
+</div>
+
+<div class="copyright">
+    &copy; 2019 My page. All rights reserved.
+</div>
+</body>
+
+</html>

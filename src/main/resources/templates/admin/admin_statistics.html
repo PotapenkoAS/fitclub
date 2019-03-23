@@ -1,0 +1,240 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Statistics</title>
+    <link href="/content/style.css" rel="stylesheet">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+</head>
+
+<body>
+<div id="header" class="header">
+    <p>Fitness club</p>
+</div>
+
+<div class="menu">
+    <div class="nav">
+        <ul class="topmenu">
+            <li><a href="">Профиль</a></li>
+            <li><a href="">Статистика фитнес-клуба</a></li>
+            <li><a href="">Тренеры</a></li>
+            <li><a href="">Клиенты</a></li>
+            <li><a href="">Уведомления</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <div class="sidebarProgress">
+        <br/><br/>
+        <div class="block-of-data" id="box1" style="display: none;">
+            <div id="container1" class="chart_wrap">
+                <script type="text/javascript">
+                    Highcharts.chart('container1', {
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: 'Посещаемость по дням'
+                        },
+                        xAxis: {
+                            type: 'category',
+                            data: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота']
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Процент посещаемости'
+                            }
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.1f}%'
+                                }
+                            }
+                        },
+
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                        },
+
+                        series: [{
+                            name: 'День',
+                            colorByPoint: true,
+                            data: [{
+                                name: 'Понедельник',
+                                y: 56.33
+                            }, {
+                                name: 'Вторник',
+                                y: 24.03
+                            }, {
+                                name: 'Среда',
+                                y: 10.38
+                            }, {
+                                name: 'Четверг',
+                                y: 4.77
+                            }, {
+                                name: 'Пятница',
+                                y: 0.91
+                            }, {
+                                name: 'Суббота',
+                                y: 0.2
+                            }]
+                        }]
+                    });
+                </script>
+            </div>
+        </div>
+
+        <div class="block-of-data" id="box2" style="display: none;">
+            <div id="container2" class="chart_wrap">
+                <script>
+                    Highcharts.chart('container2', {
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: 'Посещаемость по направлениям'
+                        },
+                        xAxis: {
+                            type: 'category',
+                            data: ['Йога', 'Качалка', 'Басик :3', 'Аэробика']
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Процент посещаемости'
+                            }
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.1f}%'
+                                }
+                            }
+                        },
+
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                        },
+
+                        series: [{
+                            name: 'Вид занятий',
+                            colorByPoint: true,
+                            data: [{
+                                name: 'Йога',
+                                y: 15
+                            }, {
+                                name: 'Качалка',
+                                y: 25
+                            }, {
+                                name: 'Басик :3',
+                                y: 50
+                            }, {
+                                name: 'Аэробика',
+                                y: 10
+                            }]
+                        }]
+                    });
+                </script>
+            </div>
+        </div>
+
+        <div class="block-of-data" id="box3" style="display: none;">
+            <div id="container3" class="chart_wrap">
+                <script>
+                    Highcharts.chart('container3', {
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: 'Посещаемость по времени суток'
+                        },
+                        xAxis: {
+                            type: 'category',
+                            data: ['Утро (10:00-12:00)', 'День (12:00-18:00)', 'Вечер (18:00-22:00)']
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Процент посещаемости'
+                            }
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.1f}%'
+                                }
+                            }
+                        },
+
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                        },
+
+                        series: [{
+                            name: 'Время суток',
+                            colorByPoint: true,
+                            data: [{
+                                name: 'Утро (10:00-12:00)',
+                                y: 15
+                            }, {
+                                name: 'День (12:00-18:00)',
+                                y: 25
+                            }, {
+                                name: 'Вечер (18:00-22:00)',
+                                y: 50
+                            }]
+                        }]
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <div class="contentTextProgress">
+        <h3>Выберите один из пунктов для отображения графика</h3>
+        <a href="#" onclick="openbox('box1'); return false">Посещаемость по дням</a><br/>
+        <a href="#" onclick="openbox('box2'); return false">Посещаемость по направлениям</a><br/>
+        <a href="#" onclick="openbox('box3'); return false">Посещаемость по времени суток</a><br/>
+
+        <script>
+            function openbox(id) {
+                var all = document.querySelectorAll(".block-of-data");
+                for (var i = 0; i < all.length; i++) {
+                    if (all[i].id === id) {
+                        all[i].style.display = (all[i].style.display === 'none') ? 'block' : 'none';
+                    } else {
+                        all[i].style.display = 'none';
+                    }
+                }
+            }
+        </script>
+
+    </div>
+</div>
+
+<div class="copyright">
+    &copy; 2019 My page. All rights reserved.
+</div>
+</body>
+
+</html>

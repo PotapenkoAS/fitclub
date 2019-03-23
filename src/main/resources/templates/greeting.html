@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<table border="1" cellpadding="3">
+    <caption><h2>List of users</h2></caption>
+    <tr>
+        <th>Login</th>
+        <th>Password</th>
+        <th>Role</th>
+    </tr>
+    <th:block th:each="user : ${list}">
+        <tr>
+            <td th:text="${user.getLogin()}">...</td>
+            <td th:text="${user.getPassword()}">...</td>
+            <td th:text="${user.getRole()}">...</td>
+        </tr>
+        <tr>
+
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

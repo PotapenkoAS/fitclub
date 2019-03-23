@@ -1,0 +1,105 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> My trainings </title>
+    <link href="/content/style.css" rel="stylesheet">
+</head>
+
+<body>
+<div id="header" class="header">
+    <p>Fitness club</p>
+</div>
+
+<div class="menu">
+    <div class="nav">
+        <ul class="topmenu">
+            <li><a href="">Профиль</a></li>
+            <li><a href="">Тренировки</a></li>
+            <li><a href="">Проресс</a></li>
+            <li><a href="">Уведомления</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="section-trainings">
+    <h1><span> Расписание </span></h1>
+    <table>
+        <tr>
+            <th>Day</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+        </tr>
+        <tr>
+            <td>8-8:30</td>
+            <td class="selected">Басик</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>9-10</td>
+            <td></td>
+            <td class="selected">Качалка</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>1-1:30</td>
+            <td></td>
+            <td></td>
+            <td class="selected">Йога</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>3:45-5</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="selected">Басик</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>6-6:30</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="selected">Бег</td>
+        </tr>
+    </table>
+
+    <br/>
+    <div class="contentTextTrainings">
+        <div>
+            <h2 style="float: left;"> Мои тренировки &nbsp;</h2>
+            <a href=""><img src="/content/кнопка_добавления.png" alt="none" title="Добавить новый вид тренировок"/></a>
+        </div>
+        <br/>
+        <div class="elements-gride" data-masonry='{ "itemSelector": ".element-item-trainings", "columnWidth": 200 }'>
+            <a href="user_progress.html"><img class="element-item-trainings" src="../../static/content/бассейн.png"
+                                              alt="none" title="Бассейн"/></a>
+            <a href=""><img class="element-item-trainings" src="/content/йога.png" alt="none" title="Йога"/></a>
+            <a href=""><img class="element-item-trainings" src="/content/тренажеры.png" alt="none" title="Тренажеры"/></a>
+            <a href=""><img class="element-item-trainings" src="/content/1.jpg" alt="none"/></a>
+            <a href=""><img class="element-item-trainings" src="/content/1.jpg" alt="none"/></a>
+            <a href=""><img class="element-item-trainings" src="/content/1.jpg" alt="none"/></a>
+            <a href=""><img class="element-item-trainings" src="/content/1.jpg" alt="none"/></a>
+            <a href=""><img class="element-item-trainings" src="/content/1.jpg" alt="none"/></a>
+            <a href=""><img class="element-item-trainings" src="/content/1.jpg" alt="none"/></a>
+        </div>
+    </div>
+</div>
+
+<div class="copyright">
+    &copy; 2019 My page. All rights reserved.
+</div>
+</body>
+
+</html>

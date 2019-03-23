@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+
+    <persistence-unit name="NewPersistenceUnit">
+        <class>ru.vlsu.fitclub.model.Activity</class>
+        <class>ru.vlsu.fitclub.model.Admin</class>
+        <class>ru.vlsu.fitclub.model.Client</class>
+        <class>ru.vlsu.fitclub.model.Group</class>
+        <class>ru.vlsu.fitclub.model.GroupClients</class>
+        <class>ru.vlsu.fitclub.model.Specialization</class>
+        <class>ru.vlsu.fitclub.model.Trainer</class>
+        <class>ru.vlsu.fitclub.model.TrainerSpecialization</class>
+        <class>ru.vlsu.fitclub.model.Training</class>
+        <class>ru.vlsu.fitclub.model.User</class>
+        <properties>
+            <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306"/>
+            <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306"/>
+            <property name="openjpa.ConnectionDriverName" value="com.mysql.jdbc.Driver"/>
+            <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306"/>
+            <property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+        </properties>
+    </persistence-unit>
+</persistence>
