@@ -28,9 +28,8 @@ public class MainController {
         return "greeting";
     }
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public String getHome() {
         return "home/home";
-
     }
 }

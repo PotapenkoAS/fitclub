@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import ru.vlsu.fitclub.model.Trainer;
 
 @Repository
-public interface TrainerRepository extends CrudRepository<Trainer,Long> {
+public interface TrainerRepository extends CrudRepository<Trainer,Integer> {
 }

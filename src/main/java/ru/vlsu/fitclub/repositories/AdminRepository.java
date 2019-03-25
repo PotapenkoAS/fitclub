@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import ru.vlsu.fitclub.model.Admin;
 
 @Repository
-public interface AdminRepository extends CrudRepository<Admin, Long> {
+public interface AdminRepository extends CrudRepository<Admin, Integer> {
 }

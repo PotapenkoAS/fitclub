@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import ru.vlsu.fitclub.model.Specialization;
 
 @Repository
-public interface SpecializationRepository extends CrudRepository<Specialization,Long> {
+public interface SpecializationRepository extends CrudRepository<Specialization,Integer> {
 }

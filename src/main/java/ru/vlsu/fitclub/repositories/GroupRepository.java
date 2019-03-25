@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import ru.vlsu.fitclub.model.Group;
 
 @Repository
-public interface GroupRepository extends CrudRepository<Group, Long> {
+public interface GroupRepository extends CrudRepository<Group, Integer> {
 }

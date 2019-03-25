@@ -1,11 +1,9 @@
-package ru.vlsu.fitclub.serice;
+package ru.vlsu.fitclub.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.vlsu.fitclub.model.User;
 import ru.vlsu.fitclub.repositories.UserRepository;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 @Service
@@ -20,13 +18,16 @@ public class RegistrationService {
     }
 
     public ArrayList<String> save(User user) {
-        ArrayList<String> errorList = userService.userValidation(user);
-        Iterable<User> list =ur.findAll();
-        if (errorList.size() == 0) {
-            user.setRole("Client");
+        ArrayList<String> errorList = userService.loginPasswordValidation(user.getLogin(),user.getPassword());
+        if(errorList.isEmpty()) {
+            if(ur.existsByLogin(user.getLogin())) {
+                errorList.add("Пользователь с таким именем уже существует");
+            }
+        }
+        if (errorList.isEmpty()) {
+            user.setRole("CLIENT");
             ur.save(user);
         }
         return errorList;
-
     }
 }

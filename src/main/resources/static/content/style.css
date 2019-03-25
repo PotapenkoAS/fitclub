@@ -131,6 +131,11 @@ p {
     display: inline-block;
 }
 
+.reg {
+    width: 30%; /* Ширина блока */
+    padding: 0 10px; /* Отступы внутри левого блока */
+    margin-left: 34%;
+}
 
 .timetable {
     width: 100%;
