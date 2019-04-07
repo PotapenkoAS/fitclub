@@ -17,6 +17,7 @@ public class Group {
 
     @Id
     @Column(name = "group_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getGroupId() {
         return groupId;
     }

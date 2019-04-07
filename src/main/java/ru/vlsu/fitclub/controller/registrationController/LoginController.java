@@ -1,15 +1,12 @@
 package ru.vlsu.fitclub.controller.registrationController;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ru.vlsu.fitclub.model.User;
 import ru.vlsu.fitclub.service.LoginService;
-
-import java.util.ArrayList;
 
 @Controller
 public class LoginController {
@@ -27,12 +24,10 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public ModelAndView postLogin(String username,String password) {
-        User user = new User(username,password,"CLIENT");
-        ArrayList<String> errorList = loginService.loginUser(user);
-        if (errorList.isEmpty()) {
-            return new ModelAndView("redirect:/home");
-        }
-        return new ModelAndView("login/login", "errorList", errorList);
+    public ModelAndView postLogin(@RequestParam(name = "error", required = false, defaultValue = "false") String error) {
+        if (error.equals("true")) {
+            return new ModelAndView("login/login", "errorList", "Неверное имя или пароль");
+        } else return new ModelAndView("home/home");
     }
 }
+

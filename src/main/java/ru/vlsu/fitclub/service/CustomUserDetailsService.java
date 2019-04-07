@@ -22,16 +22,18 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) {
         User user;
-        if((user = ur.findByLogin(username))!=null){
-            return org.springframework.security.core.userdetails.User
-                    .builder()
-                    .username(user.getLogin())
-                    .password(user.getPassword())
-                    .roles(user.getRole())
-                    .authorities(user.getRole())
-                    .build();
+        try {
+            if ((user = ur.findByLogin(username)) != null) {
+                return org.springframework.security.core.userdetails.User
+                        .builder()
+                        .username(user.getLogin())
+                        .password("{noop}" + user.getPassword())
+                        .roles(user.getRole())
+                        .build();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
         throw new UsernameNotFoundException(username);
     }
-
 }

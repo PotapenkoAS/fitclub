@@ -20,9 +20,7 @@ public class MainController {
 
     @GetMapping("/greetings")
     public String helloWorld(@RequestParam(name = "name", required = false, defaultValue = "Motherfucker") String name, Model model) {
-
         Iterable<User> list = users.findAll();
-
         model.addAttribute("name", name);
         model.addAttribute("list", list);
         return "greeting";

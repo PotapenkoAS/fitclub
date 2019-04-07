@@ -13,6 +13,7 @@ public class GroupClients {
 
     @Id
     @Column(name = "group_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getGroupId() {
         return groupId;
     }

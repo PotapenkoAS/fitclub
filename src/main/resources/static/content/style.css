@@ -77,41 +77,41 @@ p {
 
 .sidebar {
 / / margin-top: 10 px;
-    width: 25%; /* ������ ����� */
-    padding: 0 10px; /* ������� ������ ������ ����� */
-    float: left; /* ��������� ����� �� ������� ���� */
+    width: 25%;
+    padding: 0 10px;
+    float: left;
     margin-left: 6%;
 }
 
 .contentText {
-    margin-left: 40%; /* ������ ����� */
+    margin-left: 40%;
     margin-right: 6%;
-    padding: 10px; /* ������� ������ ������� ����� */
-    background: #fff; /* ���� ���� ������� ����� */
+    padding: 10px;
+    background: #fff;
     text-align: left;
 }
 
 .sidebarProgress {
 / / margin-top: 10 px;
-    width: 55%; /* ������ ����� */
-    padding: 0 10px; /* ������� ������ ������ ����� */
-    float: left; /* ��������� ����� �� ������� ���� */
+    width: 55%;
+    padding: 0 10px;
+    float: left;
     margin-left: 6%;
 }
 
 .contentTextProgress {
-    margin-left: 70%; /* ������ ����� */
+    margin-left: 70%;
     margin-right: 6%;
-    padding: 10px; /* ������� ������ ������� ����� */
-    background: #fff; /* ���� ���� ������� ����� */
+    padding: 10px;
+    background: #fff;
     text-align: left;
 }
 
 .contentTextTrainings {
-    margin-left: 9%; /* ������ ����� */
+    margin-left: 9%;
     margin-right: 9%;
-    padding: 10px; /* ������� ������ ������� ����� */
-    background: #fff; /* ���� ���� ������� ����� */
+    padding: 10px;
+    background: #fff;
 / / text-align: auto;
 }
 
@@ -132,8 +132,8 @@ p {
 }
 
 .reg {
-    width: 30%; /* Ширина блока */
-    padding: 0 10px; /* Отступы внутри левого блока */
+    width: 30%;
+    padding: 0 10px;
     margin-left: 34%;
 }
 
@@ -329,7 +329,6 @@ input, textarea {
 
 .topmenu > li {
     display: inline-block;
-    /*���� ������ block ������ inline-block, ���� ����� ��������������*/
     position: relative;
     margin-bottom: 1px;
 }
@@ -418,7 +417,6 @@ input, textarea {
     border-radius: 20px;
 }
 
-/* /������� ����� */
 h4 {
     text-align: center;
     margin: 0 0 50px

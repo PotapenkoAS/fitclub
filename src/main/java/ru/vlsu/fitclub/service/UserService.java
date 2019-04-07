@@ -10,12 +10,11 @@ import java.util.ArrayList;
 @Service
 public class UserService {
 
-    private UserRepository ur;
+
     private final Environment env;
 
     @Autowired
-    public UserService(UserRepository ur, Environment env) {
-        this.ur = ur;
+    public UserService(Environment env) {
         this.env = env;
     }
 

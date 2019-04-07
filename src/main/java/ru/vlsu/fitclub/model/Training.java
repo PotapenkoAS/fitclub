@@ -20,6 +20,7 @@ public class Training {
 
     @Id
     @Column(name = "training_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getTrainingId() {
         return trainingId;
     }

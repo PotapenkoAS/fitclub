@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Registration</title>
-    <link href="content/style.css" rel="stylesheet">
+    <title>Login</title>
+    <link href="content/style.css" type="text/css" rel="stylesheet">
+    <base href="/">
 </head>
 
 <body>
@@ -21,7 +22,7 @@
 <div class="section">
     <br/><br/>
     <h1> Войти </h1>
-    <form  method="post">
+    <form method="post">
         <div class="reg" align="center">
             <input name="username" placeholder='Your username' type="text">
             <input name="password" placeholder='Your password' type='password'>
@@ -30,6 +31,7 @@
             </div>
         </div>
     </form>
+    <p style="color: red" th:text="${error}"></p>
     <table>
         <tr th:each="message:${errorList}">
             <td th:text="${message}">.</td>

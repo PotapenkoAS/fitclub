@@ -15,17 +15,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/user/**").hasAnyRole("CLIENT","ROLE_CLIENT")
-                .antMatchers("/trainer").hasAnyRole("ADMIN","CLIENT","TRAINER")
+                .antMatchers("/user/**").hasRole("CLIENT")
+                .antMatchers("/trainer/**").hasAnyRole("ADMIN", "CLIENT", "TRAINER")
                 .antMatchers("/login").permitAll()
                 .antMatchers("/home").permitAll()
                 .antMatchers("/registration").permitAll()
+                .antMatchers("/content/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-
                 .formLogin()
                 .loginPage("/login")
-                .failureForwardUrl("/login")
+                .failureForwardUrl("/login?error=true")
                 .defaultSuccessUrl("/home", true);
     }
 }

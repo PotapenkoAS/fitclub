@@ -12,31 +12,7 @@ import java.util.ArrayList;
 @Service
 public class LoginService {
 
-    private UserService us;
-    private UserRepository ur;
-    private CustomUserDetailsService userDetailsService;
 
-    @Autowired
-    public LoginService(UserService us, UserRepository ur, CustomUserDetailsService userDetailsService) {
-        this.us = us;
-        this.ur = ur;
-        this.userDetailsService = userDetailsService;
-    }
 
-    public ArrayList<String> loginUser(User user) {
-        ArrayList<String> errorList = us.loginPasswordValidation(user.getLogin(), user.getPassword());
-        if (errorList.isEmpty()) {
-            if (!ur.existsByLoginAndPassword(user.getLogin(), user.getPassword())) {
-                errorList.add("Неверный логин или пароль");
-            } else {
-                UserDetails userDetails = userDetailsService.loadUserByUsername(user.getLogin());
-                System.out.println(userDetails.getUsername() + " --- " + userDetails.getPassword());
-                for (GrantedAuthority item : userDetails.getAuthorities()) {
-                    System.out.println("----" + item.toString());
-                }
-            }
-        }
-        return errorList;
 
-    }
 }

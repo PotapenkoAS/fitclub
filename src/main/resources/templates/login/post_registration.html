@@ -23,11 +23,16 @@
     <br/><br/>
     <h1> Регистрация </h1>
     <form method="post">
-        <div class="reg" align="center">
-            <input name="login" placeholder='Ваш логин' type="text">
-            <input name="password" placeholder='Пароль' type='password'>
+        <div class="reg" th:align="center">
+            <input name="username" type="text" readonly th:value="${user.getLogin()}">
+            <input name="username" type="password" readonly th:value="${user.getPassword()}">
+            <input name="surname" placeholder='Фамилия' type="text">
+            <input name="name" placeholder='Имя' type='text'>
+            <input name="patronymic" placeholder='Отчество' type='text'>
+            <input name="phone" placeholder='Номер телефона' type='text'>
+            <input name="email" placeholder='e-mail' type='email'>
             <div>
-                <button class="button button1">Продолжить</button>
+                <button class="button button1">Зарегистрироваться</button>
             </div>
         </div>
     </form>

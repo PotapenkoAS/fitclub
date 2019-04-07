@@ -13,6 +13,7 @@ public class TrainerSpecialization {
 
     @Id
     @Column(name = "trainer_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getTrainerId() {
         return trainerId;
     }
