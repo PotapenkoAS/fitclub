@@ -24,8 +24,8 @@
     <h1> Регистрация </h1>
     <form method="post">
         <div class="reg" th:align="center">
-            <input name="username" type="text" readonly th:value="${user.getLogin()}">
-            <input name="username" type="password" readonly th:value="${user.getPassword()}">
+            <input name="login" type="text" readonly th:value="${user.getLogin()}">
+            <input name="password" type="password" readonly th:value="${user.getPassword()}">
             <input name="surname" placeholder='Фамилия' type="text">
             <input name="name" placeholder='Имя' type='text'>
             <input name="patronymic" placeholder='Отчество' type='text'>
