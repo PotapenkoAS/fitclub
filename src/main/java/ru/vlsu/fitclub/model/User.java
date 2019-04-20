@@ -1,13 +1,20 @@
 package ru.vlsu.fitclub.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 public class User {
+
     private int userId;
+    @NotNull
+    @Size(min = 6, max = 50)
     private String login;
+    @NotNull
+    @Size(min = 6, max = 50)
     private String password;
     private String role;
     private Collection<Admin> adminsByUserId;
@@ -34,8 +41,7 @@ public class User {
         this.userId = userId;
     }
 
-    @Basic
-    @Column(name = "login")
+    @Basic @Column(name = "login")
     public String getLogin() {
         return login;
     }
@@ -97,7 +103,7 @@ public class User {
     public void setClientsByUserId(Collection<Client> clientsByUserId) {
         this.clientsByUserId = clientsByUserId;
     }
-
+//TODO one to one
     @OneToMany(mappedBy = "userByUserId")
     public Collection<Trainer> getTrainersByUserId() {
         return trainersByUserId;

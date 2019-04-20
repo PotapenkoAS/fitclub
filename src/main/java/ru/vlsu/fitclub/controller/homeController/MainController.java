@@ -26,6 +26,11 @@ public class MainController {
         return "greeting";
     }
 
+    @GetMapping("/")
+    public String root() {
+        return "redirect:home";
+    }
+
     @GetMapping("/home")
     public String getHome() {
         return "home/home";

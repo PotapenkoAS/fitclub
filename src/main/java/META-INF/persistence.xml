@@ -22,6 +22,7 @@
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
             <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306"/>
             <property name="openjpa.ConnectionDriverName" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.dialect" value="mysql"/>
         </properties>
     </persistence-unit>
 </persistence>

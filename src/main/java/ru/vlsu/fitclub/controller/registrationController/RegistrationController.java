@@ -2,13 +2,9 @@ package ru.vlsu.fitclub.controller.registrationController;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,6 +15,7 @@ import ru.vlsu.fitclub.service.LoginService;
 import ru.vlsu.fitclub.service.RegistrationService;
 import ru.vlsu.fitclub.service.UserService;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 
 @Controller
@@ -44,8 +41,8 @@ public class RegistrationController {
 
 
     @PostMapping("/registration")
-    public String postRegistrationPage(User user, RedirectAttributes redirectAttributes, Model model) {
-        ArrayList<String> errorList = userService.loginPasswordValidation(user.getLogin(), user.getPassword());
+    public String postRegistrationPage(@Valid User user, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+        /*ArrayList<String> errorList = userService.loginPasswordValidation(user.getLogin(), user.getPassword());
         String tmp = userService.userExistsValidation(user.getLogin());
         if (tmp != null) {
             errorList.add(tmp);
@@ -54,8 +51,12 @@ public class RegistrationController {
             redirectAttributes.addFlashAttribute("user", user);
             return "redirect:/post_registration";
         }
-        model.addAttribute("errorList", errorList);
-        return "login/registration";
+        model.addAttribute("errorList", errorList); */
+        if(bindingResult.hasErrors()) {
+            return "login/registration";
+        }
+        redirectAttributes.addFlashAttribute("user", user);
+        return "redirect:/post_registration";
     }
 
     @GetMapping("/post_registration")

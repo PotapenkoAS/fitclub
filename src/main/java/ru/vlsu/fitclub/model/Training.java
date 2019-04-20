@@ -9,7 +9,7 @@ public class Training {
     private int trainingId;
     private Integer trainerId;
     private Integer clientId;
-    private Byte isRegular;
+    private boolean isRegular;
     private String weekDay;
     private Time timeBeginning;
     private Time timeEnding;
@@ -51,11 +51,11 @@ public class Training {
 
     @Basic
     @Column(name = "is_regular")
-    public Byte getIsRegular() {
+    public boolean getIsRegular() {
         return isRegular;
     }
 
-    public void setIsRegular(Byte isRegular) {
+    public void setIsRegular(boolean isRegular) {
         this.isRegular = isRegular;
     }
 
