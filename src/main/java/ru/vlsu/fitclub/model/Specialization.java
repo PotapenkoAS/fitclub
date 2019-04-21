@@ -12,7 +12,7 @@ public class Specialization {
     private Collection<TrainerSpecialization> trainerSpecializationsBySpecializationId;
 
     @Id
-    @Column(name = "specialization_id")
+    @Column(name = "specialization_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getSpecializationId() {
         return specializationId;
@@ -33,7 +33,7 @@ public class Specialization {
     }
 
     @Basic
-    @Column(name = "description")
+    @Column(name = "description", length = -1)
     public String getDescription() {
         return description;
     }

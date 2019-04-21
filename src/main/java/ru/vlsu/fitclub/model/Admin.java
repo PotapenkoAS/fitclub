@@ -13,7 +13,7 @@ public class Admin {
     private User userByUserId;
 
     @Id
-    @Column(name = "admin_id")
+    @Column(name = "admin_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getAdminId() {
         return adminId;
@@ -80,7 +80,7 @@ public class Admin {
         return Objects.hash(adminId, surname, patronymic, name, userId);
     }
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable=false, updatable=false)
     public User getUserByUserId() {
         return userByUserId;

@@ -18,7 +18,7 @@ public class Client {
     private Collection<Training> trainingsByClientId;
 
     @Id
-    @Column(name = "client_id")
+    @Column(name = "client_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getClientId() {
         return clientId;
@@ -69,7 +69,7 @@ public class Client {
     }
 
     @Basic
-    @Column(name = "phone")
+    @Column(name = "phone", length = 20)
     public String getPhone() {
         return phone;
     }
@@ -107,7 +107,7 @@ public class Client {
         return Objects.hash(clientId, name, patronymic, surname, email, phone, userId);
     }
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable=false, updatable=false)
     public User getUserByUserId() {
         return userByUserId;

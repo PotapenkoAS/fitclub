@@ -16,7 +16,7 @@ public class Group {
     private Collection<GroupClients> groupClientsByGroupId;
 
     @Id
-    @Column(name = "group_id")
+    @Column(name = "group_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getGroupId() {
         return groupId;
@@ -37,7 +37,7 @@ public class Group {
     }
 
     @Basic
-    @Column(name = "group_description")
+    @Column(name = "group_description", length = -1)
     public String getGroupDescription() {
         return groupDescription;
     }

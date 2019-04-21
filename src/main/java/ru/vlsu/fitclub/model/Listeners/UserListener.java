@@ -5,7 +5,7 @@ import ru.vlsu.fitclub.model.User;
 import javax.persistence.EntityListeners;
 import javax.persistence.PrePersist;
 
-@EntityListeners(User.class)
+//@EntityListeners(User.class)
 public class UserListener {
 
     @PrePersist

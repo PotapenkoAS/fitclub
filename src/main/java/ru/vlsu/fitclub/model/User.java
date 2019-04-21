@@ -3,7 +3,6 @@ package ru.vlsu.fitclub.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -17,9 +16,9 @@ public class User {
     @Size(min = 6, max = 50)
     private String password;
     private String role;
-    private Collection<Admin> adminsByUserId;
-    private Collection<Client> clientsByUserId;
-    private Collection<Trainer> trainersByUserId;
+    private Admin adminByUserId;
+    private Client clientByUserId;
+    private Trainer trainerByUserId;
 
     public User(String login, String password, String role) {
         this.login = login;
@@ -31,7 +30,7 @@ public class User {
     }
 
     @Id
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getUserId() {
         return userId;
@@ -41,7 +40,8 @@ public class User {
         this.userId = userId;
     }
 
-    @Basic @Column(name = "login")
+    @Basic
+    @Column(name = "login", nullable = false)
     public String getLogin() {
         return login;
     }
@@ -51,7 +51,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     public String getPassword() {
         return password;
     }
@@ -61,7 +61,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "role")
+    @Column(name = "role", length = 20)
     public String getRole() {
         return role;
     }
@@ -86,30 +86,30 @@ public class User {
         return Objects.hash(userId, login, password, role);
     }
 
-    @OneToMany(mappedBy = "userByUserId")
-    public Collection<Admin> getAdminsByUserId() {
-        return adminsByUserId;
+    @OneToOne(mappedBy = "userByUserId")
+    public Admin getAdminByUserId() {
+        return adminByUserId;
     }
 
-    public void setAdminsByUserId(Collection<Admin> adminsByUserId) {
-        this.adminsByUserId = adminsByUserId;
+    public void setAdminByUserId(Admin adminByUserId) {
+        this.adminByUserId = adminByUserId;
     }
 
-    @OneToMany(mappedBy = "userByUserId")
-    public Collection<Client> getClientsByUserId() {
-        return clientsByUserId;
+    @OneToOne(mappedBy = "userByUserId")
+    public Client getClientByUserId() {
+        return clientByUserId;
     }
 
-    public void setClientsByUserId(Collection<Client> clientsByUserId) {
-        this.clientsByUserId = clientsByUserId;
-    }
-//TODO one to one
-    @OneToMany(mappedBy = "userByUserId")
-    public Collection<Trainer> getTrainersByUserId() {
-        return trainersByUserId;
+    public void setClientByUserId(Client clientByUserId) {
+        this.clientByUserId = clientByUserId;
     }
 
-    public void setTrainersByUserId(Collection<Trainer> trainersByUserId) {
-        this.trainersByUserId = trainersByUserId;
+    @OneToOne(mappedBy = "userByUserId")
+    public Trainer getTrainerByUserId() {
+        return trainerByUserId;
+    }
+
+    public void setTrainerByUserId(Trainer trainerByUserId) {
+        this.trainerByUserId = trainerByUserId;
     }
 }

@@ -19,7 +19,7 @@ public class Activity {
     private Collection<Training> trainingsByActivityId;
 
     @Id
-    @Column(name = "activity_id")
+    @Column(name = "activity_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getActivityId() {
         return activityId;
@@ -90,7 +90,7 @@ public class Activity {
     }
 
     @Basic
-    @Column(name = "description")
+    @Column(name = "description", length = -1)
     public String getDescription() {
         return description;
     }
@@ -136,4 +136,5 @@ public class Activity {
     public void setTrainingsByActivityId(Collection<Training> trainingsByActivityId) {
         this.trainingsByActivityId = trainingsByActivityId;
     }
+
 }

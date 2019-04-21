@@ -11,6 +11,7 @@ public class GroupClients {
     private Group groupByGroupId;
     private Client clientByClientId;
 
+    @Basic
     @Id
     @Column(name = "group_id")
     @GeneratedValue(strategy = GenerationType.AUTO)

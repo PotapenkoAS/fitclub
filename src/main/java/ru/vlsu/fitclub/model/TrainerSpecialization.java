@@ -11,6 +11,7 @@ public class TrainerSpecialization {
     private Trainer trainerByTrainerId;
     private Specialization specializationBySpecializationId;
 
+    @Basic
     @Id
     @Column(name = "trainer_id")
     @GeneratedValue(strategy = GenerationType.AUTO)

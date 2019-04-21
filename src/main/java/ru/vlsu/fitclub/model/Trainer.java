@@ -19,7 +19,7 @@ public class Trainer {
     private Collection<Training> trainingsByTrainerId;
 
     @Id
-    @Column(name = "trainer_id")
+    @Column(name = "trainer_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getTrainerId() {
         return trainerId;
@@ -70,7 +70,7 @@ public class Trainer {
     }
 
     @Basic
-    @Column(name = "phone")
+    @Column(name = "phone", length = 20)
     public String getPhone() {
         return phone;
     }
@@ -117,7 +117,7 @@ public class Trainer {
         this.groupsByTrainerId = groupsByTrainerId;
     }
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id",insertable=false, updatable=false)
     public User getUserByUserId() {
         return userByUserId;

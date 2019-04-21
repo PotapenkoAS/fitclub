@@ -9,7 +9,6 @@ public class Training {
     private int trainingId;
     private Integer trainerId;
     private Integer clientId;
-    private boolean isRegular;
     private String weekDay;
     private Time timeBeginning;
     private Time timeEnding;
@@ -17,9 +16,11 @@ public class Training {
     private Trainer trainerByTrainerId;
     private Client clientByClientId;
     private Activity activityByActivityId;
+    private Integer regularity;
+    private Byte isPaid;
 
     @Id
-    @Column(name = "training_id")
+    @Column(name = "training_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getTrainingId() {
         return trainingId;
@@ -50,17 +51,7 @@ public class Training {
     }
 
     @Basic
-    @Column(name = "is_regular")
-    public boolean getIsRegular() {
-        return isRegular;
-    }
-
-    public void setIsRegular(boolean isRegular) {
-        this.isRegular = isRegular;
-    }
-
-    @Basic
-    @Column(name = "week_day")
+    @Column(name = "week_day", length = 20)
     public String getWeekDay() {
         return weekDay;
     }
@@ -107,7 +98,6 @@ public class Training {
         return trainingId == training.trainingId &&
                 Objects.equals(trainerId, training.trainerId) &&
                 Objects.equals(clientId, training.clientId) &&
-                Objects.equals(isRegular, training.isRegular) &&
                 Objects.equals(weekDay, training.weekDay) &&
                 Objects.equals(timeBeginning, training.timeBeginning) &&
                 Objects.equals(timeEnding, training.timeEnding) &&
@@ -116,11 +106,11 @@ public class Training {
 
     @Override
     public int hashCode() {
-        return Objects.hash(trainingId, trainerId, clientId, isRegular, weekDay, timeBeginning, timeEnding, activityId);
+        return Objects.hash(trainingId, trainerId, clientId, weekDay, timeBeginning, timeEnding, activityId, regularity);
     }
 
     @ManyToOne
-    @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id", insertable=false, updatable=false)
+    @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id", insertable = false, updatable = false)
     public Trainer getTrainerByTrainerId() {
         return trainerByTrainerId;
     }
@@ -130,7 +120,7 @@ public class Training {
     }
 
     @ManyToOne
-    @JoinColumn(name = "client_id", referencedColumnName = "client_id", insertable=false, updatable=false)
+    @JoinColumn(name = "client_id", referencedColumnName = "client_id", insertable = false, updatable = false)
     public Client getClientByClientId() {
         return clientByClientId;
     }
@@ -140,12 +130,32 @@ public class Training {
     }
 
     @ManyToOne
-    @JoinColumn(name = "activity_id", referencedColumnName = "activity_id", insertable=false, updatable=false)
+    @JoinColumn(name = "activity_id", referencedColumnName = "activity_id", insertable = false, updatable = false)
     public Activity getActivityByActivityId() {
         return activityByActivityId;
     }
 
     public void setActivityByActivityId(Activity activityByActivityId) {
         this.activityByActivityId = activityByActivityId;
+    }
+
+    @Basic
+    @Column(name = "regularity")
+    public Integer getRegularity() {
+        return regularity;
+    }
+
+    public void setRegularity(Integer regularity) {
+        this.regularity = regularity;
+    }
+
+    @Basic
+    @Column(name = "is_paid")
+    public Byte getIsPaid() {
+        return isPaid;
+    }
+
+    public void setIsPaid(Byte isPaid) {
+        this.isPaid = isPaid;
     }
 }
