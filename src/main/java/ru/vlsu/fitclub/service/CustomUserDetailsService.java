@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.vlsu.fitclub.model.User;
-import ru.vlsu.fitclub.repositories.UserRepository;
+import ru.vlsu.fitclub.repository.UserRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

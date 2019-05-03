@@ -1,20 +1,19 @@
 package ru.vlsu.fitclub.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
-//TODO fix this!!!!!!. Add primary key, or refactor by adding this entity to "group"
+
 @Entity
 @Table(name = "group_date", schema = "fitness_club")
 public class GroupDate {
+    private Integer id;
     private Integer groupId;
     private Integer regularity;
     private Timestamp timeBeginning;
     private Timestamp timeEnding;
 
+    @Id
     @Basic
     @Column(name = "group_id")
     private Integer getGroupId() {
@@ -25,6 +24,7 @@ public class GroupDate {
         this.groupId = groupId;
     }
 
+    @Id
     @Basic
     @Column(name = "regularity")
     public Integer getRegularity() {
@@ -35,6 +35,7 @@ public class GroupDate {
         this.regularity = regularity;
     }
 
+    @Id
     @Basic
     @Column(name = "time_beginning")
     public Timestamp getTimeBeginning() {
@@ -45,6 +46,7 @@ public class GroupDate {
         this.timeBeginning = timeBeginning;
     }
 
+    @Id
     @Basic
     @Column(name = "time_ending")
     public Timestamp getTimeEnding() {
@@ -53,6 +55,16 @@ public class GroupDate {
 
     public void setTimeEnding(Timestamp timeEnding) {
         this.timeEnding = timeEnding;
+    }
+
+    @Id
+    @Column(name = "id", nullable = false)
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
@@ -70,4 +82,6 @@ public class GroupDate {
     public int hashCode() {
         return Objects.hash(groupId, regularity, timeBeginning, timeEnding);
     }
+
+
 }

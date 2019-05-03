@@ -11,9 +11,5 @@ public class UserController {
         return "user/user_site";
     }
 
-    @GetMapping("/register")
-    public String getRegister() {
-        return "Register";
-    }
 
 }

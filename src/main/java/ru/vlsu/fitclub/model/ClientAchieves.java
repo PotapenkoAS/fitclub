@@ -10,10 +10,12 @@ import java.util.Objects;
 @IdClass(ClientAcvievesKey.class)
 @Table(name = "client_achieves", schema = "fitness_club")
 public class ClientAchieves {
+
     private Integer clientId;
     private Integer achievementId;
     private Integer done;
     private Date date;
+    private double value;
 
     @Id
     @Column(name = "client_id")
@@ -30,8 +32,6 @@ public class ClientAchieves {
     public Integer getAchievementId() {
         return achievementId;
     }
-
-
 
     public void setAchievementId(Integer achievementId) {
         this.achievementId = achievementId;
@@ -71,5 +71,15 @@ public class ClientAchieves {
     @Override
     public int hashCode() {
         return Objects.hash(clientId, achievementId, done, date);
+    }
+
+    @Basic
+    @Column(name = "value", nullable = false, precision = 3)
+    public double getValue() {
+        return value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
     }
 }

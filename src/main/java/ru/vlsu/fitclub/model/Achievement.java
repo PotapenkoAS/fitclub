@@ -13,10 +13,8 @@ public class Achievement {
     private Integer activityId;
     private String description;
     private byte[] image;
-    private Integer weight;
-    private Integer speed;
-    private Integer distance;
-    private Integer count;
+    private String type;
+    private double value;
 
     @Id
     @Column(name = "achievement_id", nullable = false)
@@ -59,43 +57,23 @@ public class Achievement {
     }
 
     @Basic
-    @Column(name = "weight")
-    public Integer getWeight() {
-        return weight;
+    @Column(name = "type", nullable = false)
+    public String getType() {
+        return type;
     }
 
-    public void setWeight(Integer weight) {
-        this.weight = weight;
-    }
-
-    @Basic
-    @Column(name = "speed")
-    public Integer getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(Integer speed) {
-        this.speed = speed;
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Basic
-    @Column(name = "distance")
-    public Integer getDistance() {
-        return distance;
+    @Column(name = "value", nullable = false, precision = 3)
+    public double getValue() {
+        return value;
     }
 
-    public void setDistance(Integer distance) {
-        this.distance = distance;
-    }
-
-    @Basic
-    @Column(name = "count")
-    public Integer getCount() {
-        return count;
-    }
-
-    public void setCount(Integer count) {
-        this.count = count;
+    public void setValue(double value) {
+        this.value = value;
     }
 
     @Override
@@ -107,15 +85,13 @@ public class Achievement {
                 Objects.equals(activityId, that.activityId) &&
                 Objects.equals(description, that.description) &&
                 Arrays.equals(image, that.image) &&
-                Objects.equals(weight, that.weight) &&
-                Objects.equals(speed, that.speed) &&
-                Objects.equals(distance, that.distance) &&
-                Objects.equals(count, that.count);
+                Objects.equals(type, that.type) &&
+                Objects.equals(value, that.value);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(achievementId, activityId, description, weight, speed, distance, count);
+        int result = Objects.hash(achievementId, activityId, description, type, value);
         result = 31 * result + Arrays.hashCode(image);
         return result;
     }

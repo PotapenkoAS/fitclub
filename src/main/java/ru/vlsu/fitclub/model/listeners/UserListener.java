@@ -1,8 +1,5 @@
-package ru.vlsu.fitclub.model.Listeners;
+package ru.vlsu.fitclub.model.listeners;
 
-import ru.vlsu.fitclub.model.User;
-
-import javax.persistence.EntityListeners;
 import javax.persistence.PrePersist;
 
 //@EntityListeners(User.class)

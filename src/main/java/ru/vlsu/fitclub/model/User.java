@@ -10,10 +10,10 @@ public class User {
 
     private int userId;
     @NotNull
-    @Size(min = 6, max = 50)
+    @Size(min = 6, max = 50,message = "Длина от 6 до 50 символов")
     private String login;
     @NotNull
-    @Size(min = 6, max = 50)
+    @Size(min = 6, max = 50,message = "Длина от 6 до 50 символов")
     private String password;
     private String role;
     private Admin adminByUserId;

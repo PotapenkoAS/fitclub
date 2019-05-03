@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.vlsu.fitclub.model.User;
-import ru.vlsu.fitclub.repositories.UserRepository;
+import ru.vlsu.fitclub.repository.UserRepository;
 
 @Controller
 public class MainController {

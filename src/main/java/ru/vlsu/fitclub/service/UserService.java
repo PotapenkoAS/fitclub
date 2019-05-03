@@ -3,7 +3,7 @@ package ru.vlsu.fitclub.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
-import ru.vlsu.fitclub.repositories.UserRepository;
+import ru.vlsu.fitclub.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
@@ -20,7 +20,7 @@ public class UserService {
         this.ur = ur;
     }
 
-    public ArrayList<String> loginPasswordValidation(String login, String password) {
+    ArrayList<String> loginPasswordValidation(String login, String password) {
         int loginMinLength = env.getProperty("security.login.min.length", Integer.class, 6);
         int passMinLength = env.getProperty("security.password.min.length", Integer.class, 6);
 
@@ -51,7 +51,7 @@ public class UserService {
         Pattern pat = Pattern.compile(emailRegex);
         if (email == null)
             return null;
-        if(!pat.matcher(email).matches()){
+        if (!pat.matcher(email).matches()) {
             return "Некорректный email";
         }
         return null;

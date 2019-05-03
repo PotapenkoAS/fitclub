@@ -33,25 +33,13 @@ public class RegistrationController {
     }
 
     @GetMapping("/registration")
-    public String getRegistrationPage(Model model) {
-        model.addAttribute("User", null);
-        model.addAttribute("ValidationError", null);
+    public String getRegistrationPage(User user) {
         return "login/registration";
     }
 
 
     @PostMapping("/registration")
-    public String postRegistrationPage(@Valid User user, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
-        /*ArrayList<String> errorList = userService.loginPasswordValidation(user.getLogin(), user.getPassword());
-        String tmp = userService.userExistsValidation(user.getLogin());
-        if (tmp != null) {
-            errorList.add(tmp);
-        }
-        if (errorList.isEmpty()) {
-            redirectAttributes.addFlashAttribute("user", user);
-            return "redirect:/post_registration";
-        }
-        model.addAttribute("errorList", errorList); */
+    public String postRegistrationPage(@Valid User user, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if(bindingResult.hasErrors()) {
             return "login/registration";
         }

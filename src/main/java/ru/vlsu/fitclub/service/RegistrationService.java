@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.vlsu.fitclub.model.Client;
 import ru.vlsu.fitclub.model.User;
-import ru.vlsu.fitclub.repositories.ClientRepository;
-import ru.vlsu.fitclub.repositories.UserRepository;
+import ru.vlsu.fitclub.repository.ClientRepository;
+import ru.vlsu.fitclub.repository.UserRepository;
 
 import java.util.ArrayList;
 
