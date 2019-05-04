@@ -13,14 +13,13 @@ public class Trainer {
     private String email;
     private String phone;
     private Integer userId;
-    private Collection<Group> groupsByTrainerId;
+    private Collection<GroupTraining> groupTrainingsByTrainerId;
     private User userByUserId;
     private Collection<TrainerSpecialization> trainerSpecializationsByTrainerId;
     private Collection<Training> trainingsByTrainerId;
 
     @Id
     @Column(name = "trainer_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getTrainerId() {
         return trainerId;
     }
@@ -109,12 +108,12 @@ public class Trainer {
     }
 
     @OneToMany(mappedBy = "trainerByTrainerId")
-    public Collection<Group> getGroupsByTrainerId() {
-        return groupsByTrainerId;
+    public Collection<GroupTraining> getGroupTrainingsByTrainerId() {
+        return groupTrainingsByTrainerId;
     }
 
-    public void setGroupsByTrainerId(Collection<Group> groupsByTrainerId) {
-        this.groupsByTrainerId = groupsByTrainerId;
+    public void setGroupTrainingsByTrainerId(Collection<GroupTraining> groupTrainingsByTrainerId) {
+        this.groupTrainingsByTrainerId = groupTrainingsByTrainerId;
     }
 
     @OneToOne

@@ -10,12 +10,11 @@ import java.util.Objects;
 @IdClass(ClientAcvievesKey.class)
 @Table(name = "client_achieves", schema = "fitness_club")
 public class ClientAchieves {
-
     private Integer clientId;
     private Integer achievementId;
+    private double value;
     private Integer done;
     private Date date;
-    private double value;
     private Client clientByClientId;
     private Achievement achievementByAchievementId;
 
@@ -39,6 +38,16 @@ public class ClientAchieves {
 
     public void setAchievementId(Integer achievementId) {
         this.achievementId = achievementId;
+    }
+
+    @Basic
+    @Column(name = "value", nullable = false, precision = 3)
+    public double getValue() {
+        return value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
     }
 
     @Basic
@@ -66,7 +75,8 @@ public class ClientAchieves {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ClientAchieves that = (ClientAchieves) o;
-        return Objects.equals(clientId, that.clientId) &&
+        return Double.compare(that.value, value) == 0 &&
+                Objects.equals(clientId, that.clientId) &&
                 Objects.equals(achievementId, that.achievementId) &&
                 Objects.equals(done, that.done) &&
                 Objects.equals(date, that.date);
@@ -74,17 +84,7 @@ public class ClientAchieves {
 
     @Override
     public int hashCode() {
-        return Objects.hash(clientId, achievementId, done, date);
-    }
-
-    @Basic
-    @Column(name = "value", nullable = false, precision = 3)
-    public double getValue() {
-        return value;
-    }
-
-    public void setValue(double value) {
-        this.value = value;
+        return Objects.hash(clientId, achievementId, value, done, date);
     }
 
     @ManyToOne

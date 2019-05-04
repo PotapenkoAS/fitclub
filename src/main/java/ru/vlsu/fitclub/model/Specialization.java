@@ -13,7 +13,6 @@ public class Specialization {
 
     @Id
     @Column(name = "specialization_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getSpecializationId() {
         return specializationId;
     }

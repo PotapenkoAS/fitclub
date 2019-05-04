@@ -1,6 +1,8 @@
 package ru.vlsu.fitclub.model;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -12,18 +14,19 @@ public class Client {
     private String surname;
     private String email;
     private String phone;
+    private Integer userId;
     private Integer weight;
     private Integer height;
     private byte[] avatar;
-    private Integer userId;
+    private Date birthDate;
     private User userByUserId;
-    private Collection<GroupClients> groupClientsByClientId;
-    private Collection<Training> trainingsByClientId;
     private Collection<ClientAchieves> clientAchievesByClientId;
+    private Collection<GroupClients> groupClientsByClientId;
+    private Collection<Subscription> subscriptionsByClientId;
+    private Collection<Training> trainingsByClientId;
 
     @Id
     @Column(name = "client_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getClientId() {
         return clientId;
     }
@@ -83,6 +86,16 @@ public class Client {
     }
 
     @Basic
+    @Column(name = "user_id")
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    @Basic
     @Column(name = "weight")
     public Integer getWeight() {
         return weight;
@@ -103,16 +116,6 @@ public class Client {
     }
 
     @Basic
-    @Column(name = "user_id")
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    @Basic
     @Column(name = "avatar")
     public byte[] getAvatar() {
         return avatar;
@@ -120,6 +123,16 @@ public class Client {
 
     public void setAvatar(byte[] avatar) {
         this.avatar = avatar;
+    }
+
+    @Basic
+    @Column(name = "birth_date")
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     @Override
@@ -133,12 +146,18 @@ public class Client {
                 Objects.equals(surname, client.surname) &&
                 Objects.equals(email, client.email) &&
                 Objects.equals(phone, client.phone) &&
-                Objects.equals(userId, client.userId);
+                Objects.equals(userId, client.userId) &&
+                Objects.equals(weight, client.weight) &&
+                Objects.equals(height, client.height) &&
+                Arrays.equals(avatar, client.avatar) &&
+                Objects.equals(birthDate, client.birthDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(clientId, name, patronymic, surname, email, phone, userId);
+        int result = Objects.hash(clientId, name, patronymic, surname, email, phone, userId, weight, height, birthDate);
+        result = 31 * result + Arrays.hashCode(avatar);
+        return result;
     }
 
     @OneToOne
@@ -152,12 +171,30 @@ public class Client {
     }
 
     @OneToMany(mappedBy = "clientByClientId")
+    public Collection<ClientAchieves> getClientAchievesByClientId() {
+        return clientAchievesByClientId;
+    }
+
+    public void setClientAchievesByClientId(Collection<ClientAchieves> clientAchievesByClientId) {
+        this.clientAchievesByClientId = clientAchievesByClientId;
+    }
+
+    @OneToMany(mappedBy = "clientByClientId")
     public Collection<GroupClients> getGroupClientsByClientId() {
         return groupClientsByClientId;
     }
 
     public void setGroupClientsByClientId(Collection<GroupClients> groupClientsByClientId) {
         this.groupClientsByClientId = groupClientsByClientId;
+    }
+
+    @OneToMany(mappedBy = "clientByClientId")
+    public Collection<Subscription> getSubscriptionsByClientId() {
+        return subscriptionsByClientId;
+    }
+
+    public void setSubscriptionsByClientId(Collection<Subscription> subscriptionsByClientId) {
+        this.subscriptionsByClientId = subscriptionsByClientId;
     }
 
     @OneToMany(mappedBy = "clientByClientId")
@@ -168,15 +205,4 @@ public class Client {
     public void setTrainingsByClientId(Collection<Training> trainingsByClientId) {
         this.trainingsByClientId = trainingsByClientId;
     }
-
-    @OneToMany(mappedBy = "clientByClientId")
-    public Collection<ClientAchieves> getClientAchievesByClientId() {
-        return clientAchievesByClientId;
-    }
-
-    public void setClientAchievesByClientId(Collection<ClientAchieves> clientAchievesByClientId) {
-        this.clientAchievesByClientId = clientAchievesByClientId;
-    }
-
-
 }

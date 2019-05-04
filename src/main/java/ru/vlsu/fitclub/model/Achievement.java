@@ -10,8 +10,8 @@ public class Achievement {
     private int achievementId;
     private Integer activityId;
     private String description;
-    private byte[] image;
     private double value;
+    private byte[] image;
     private Activity activityByActivityId;
     private Collection<ClientAchieves> clientAchievesByAchievementId;
 
@@ -46,16 +46,6 @@ public class Achievement {
     }
 
     @Basic
-    @Column(name = "image")
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
-
-    @Basic
     @Column(name = "value", nullable = false, precision = 3)
     public double getValue() {
         return value;
@@ -65,16 +55,26 @@ public class Achievement {
         this.value = value;
     }
 
+    @Basic
+    @Column(name = "image")
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Achievement that = (Achievement) o;
         return achievementId == that.achievementId &&
+                Double.compare(that.value, value) == 0 &&
                 Objects.equals(activityId, that.activityId) &&
                 Objects.equals(description, that.description) &&
-                Arrays.equals(image, that.image) &&
-                Objects.equals(value, that.value);
+                Arrays.equals(image, that.image);
     }
 
     @Override

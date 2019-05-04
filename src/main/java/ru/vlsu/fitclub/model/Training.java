@@ -1,7 +1,7 @@
 package ru.vlsu.fitclub.model;
 
 import javax.persistence.*;
-import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -10,20 +10,19 @@ public class Training {
     private int trainingId;
     private Integer trainerId;
     private Integer clientId;
+    private Integer regularity;
     private String weekDay;
-    private Time timeBeginning;
-    private Time timeEnding;
+    private Timestamp timeBegin;
+    private Timestamp timeEnd;
     private Integer activityId;
+    private Byte isPaid;
+    private Collection<SubscriptionTrainDate> subscriptionTrainDatesByTrainingId;
     private Trainer trainerByTrainerId;
     private Client clientByClientId;
     private Activity activityByActivityId;
-    private Integer regularity;
-    private Byte isPaid;
-    private Collection<SubscriptionTrainDate> subscriptionTrainDatesByTrainingId;
 
     @Id
     @Column(name = "training_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getTrainingId() {
         return trainingId;
     }
@@ -53,6 +52,16 @@ public class Training {
     }
 
     @Basic
+    @Column(name = "regularity")
+    public Integer getRegularity() {
+        return regularity;
+    }
+
+    public void setRegularity(Integer regularity) {
+        this.regularity = regularity;
+    }
+
+    @Basic
     @Column(name = "week_day", length = 20)
     public String getWeekDay() {
         return weekDay;
@@ -63,23 +72,23 @@ public class Training {
     }
 
     @Basic
-    @Column(name = "time_beginning")
-    public Time getTimeBeginning() {
-        return timeBeginning;
+    @Column(name = "time_begin")
+    public Timestamp getTimeBegin() {
+        return timeBegin;
     }
 
-    public void setTimeBeginning(Time timeBeginning) {
-        this.timeBeginning = timeBeginning;
+    public void setTimeBegin(Timestamp timeBegin) {
+        this.timeBegin = timeBegin;
     }
 
     @Basic
-    @Column(name = "time_ending")
-    public Time getTimeEnding() {
-        return timeEnding;
+    @Column(name = "time_end")
+    public Timestamp getTimeEnd() {
+        return timeEnd;
     }
 
-    public void setTimeEnding(Time timeEnding) {
-        this.timeEnding = timeEnding;
+    public void setTimeEnd(Timestamp timeEnd) {
+        this.timeEnd = timeEnd;
     }
 
     @Basic
@@ -92,6 +101,16 @@ public class Training {
         this.activityId = activityId;
     }
 
+    @Basic
+    @Column(name = "is_paid")
+    public Byte getIsPaid() {
+        return isPaid;
+    }
+
+    public void setIsPaid(Byte isPaid) {
+        this.isPaid = isPaid;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -100,15 +119,26 @@ public class Training {
         return trainingId == training.trainingId &&
                 Objects.equals(trainerId, training.trainerId) &&
                 Objects.equals(clientId, training.clientId) &&
+                Objects.equals(regularity, training.regularity) &&
                 Objects.equals(weekDay, training.weekDay) &&
-                Objects.equals(timeBeginning, training.timeBeginning) &&
-                Objects.equals(timeEnding, training.timeEnding) &&
-                Objects.equals(activityId, training.activityId);
+                Objects.equals(timeBegin, training.timeBegin) &&
+                Objects.equals(timeEnd, training.timeEnd) &&
+                Objects.equals(activityId, training.activityId) &&
+                Objects.equals(isPaid, training.isPaid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(trainingId, trainerId, clientId, weekDay, timeBeginning, timeEnding, activityId, regularity);
+        return Objects.hash(trainingId, trainerId, clientId, regularity, weekDay, timeBegin, timeEnd, activityId, isPaid);
+    }
+
+    @OneToMany(mappedBy = "trainingByTrainingId")
+    public Collection<SubscriptionTrainDate> getSubscriptionTrainDatesByTrainingId() {
+        return subscriptionTrainDatesByTrainingId;
+    }
+
+    public void setSubscriptionTrainDatesByTrainingId(Collection<SubscriptionTrainDate> subscriptionTrainDatesByTrainingId) {
+        this.subscriptionTrainDatesByTrainingId = subscriptionTrainDatesByTrainingId;
     }
 
     @ManyToOne
@@ -139,34 +169,5 @@ public class Training {
 
     public void setActivityByActivityId(Activity activityByActivityId) {
         this.activityByActivityId = activityByActivityId;
-    }
-
-    @Basic
-    @Column(name = "regularity")
-    public Integer getRegularity() {
-        return regularity;
-    }
-
-    public void setRegularity(Integer regularity) {
-        this.regularity = regularity;
-    }
-
-    @Basic
-    @Column(name = "is_paid")
-    public Byte getIsPaid() {
-        return isPaid;
-    }
-
-    public void setIsPaid(Byte isPaid) {
-        this.isPaid = isPaid;
-    }
-
-    @OneToMany(mappedBy = "trainingByTrainingId")
-    public Collection<SubscriptionTrainDate> getSubscriptionTrainDatesByTrainingId() {
-        return subscriptionTrainDatesByTrainingId;
-    }
-
-    public void setSubscriptionTrainDatesByTrainingId(Collection<SubscriptionTrainDate> subscriptionTrainDatesByTrainingId) {
-        this.subscriptionTrainDatesByTrainingId = subscriptionTrainDatesByTrainingId;
     }
 }

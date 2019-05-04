@@ -1,37 +1,20 @@
 package ru.vlsu.fitclub.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
 public class User {
-
     private int userId;
-    @NotNull
-    @Size(min = 6, max = 50, message = "Длина от 6 до 50 символов")
     private String login;
-    @NotNull
-    @Size(min = 6, max = 50, message = "Длина от 6 до 50 символов")
     private String password;
     private String role;
     private Admin adminByUserId;
     private Client clientByUserId;
     private Trainer trainerByUserId;
 
-    public User(String login, String password, String role) {
-        this.login = login;
-        this.password = password;
-        this.role = role;
-    }
-
-    public User() {
-    }
-
     @Id
     @Column(name = "user_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getUserId() {
         return userId;
     }
@@ -41,7 +24,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "login", nullable = false, unique = true)
+    @Column(name = "login", nullable = false)
     public String getLogin() {
         return login;
     }
@@ -91,8 +74,8 @@ public class User {
         return adminByUserId;
     }
 
-    public void setAdminByUserId(Admin adminByUserId) {
-        this.adminByUserId = adminByUserId;
+    public void setAdminByUserId(Admin adminsByUserId) {
+        this.adminByUserId = adminsByUserId;
     }
 
     @OneToOne(mappedBy = "userByUserId")
@@ -100,8 +83,8 @@ public class User {
         return clientByUserId;
     }
 
-    public void setClientByUserId(Client clientByUserId) {
-        this.clientByUserId = clientByUserId;
+    public void setClientByUserId(Client clientsByUserId) {
+        this.clientByUserId = clientsByUserId;
     }
 
     @OneToOne(mappedBy = "userByUserId")
@@ -109,8 +92,16 @@ public class User {
         return trainerByUserId;
     }
 
-    public void setTrainerByUserId(Trainer trainerByUserId) {
-        this.trainerByUserId = trainerByUserId;
+    public void setTrainerByUserId(Trainer trainersByUserId) {
+        this.trainerByUserId = trainersByUserId;
     }
 
+
+    public User(String login, String password, String role) {
+        this.login = login;
+        this.password = password;
+        this.role = role;
+    }
+
+    public User(){ }
 }

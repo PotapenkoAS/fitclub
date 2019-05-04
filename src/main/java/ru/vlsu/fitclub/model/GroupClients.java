@@ -11,7 +11,7 @@ import java.util.Objects;
 public class GroupClients {
     private Integer groupId;
     private Integer clientId;
-    private Group groupByGroupId;
+    private GroupTraining groupTrainingByGroupId;
     private Client clientByClientId;
 
     @Basic
@@ -52,12 +52,12 @@ public class GroupClients {
 
     @ManyToOne
     @JoinColumn(name = "group_id", referencedColumnName = "group_id", insertable = false, updatable = false)
-    public Group getGroupByGroupId() {
-        return groupByGroupId;
+    public GroupTraining getGroupTrainingByGroupId() {
+        return groupTrainingByGroupId;
     }
 
-    public void setGroupByGroupId(Group groupByGroupId) {
-        this.groupByGroupId = groupByGroupId;
+    public void setGroupTrainingByGroupId(GroupTraining groupTrainingByGroupId) {
+        this.groupTrainingByGroupId = groupTrainingByGroupId;
     }
 
     @ManyToOne

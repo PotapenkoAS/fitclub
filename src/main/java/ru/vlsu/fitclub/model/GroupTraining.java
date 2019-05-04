@@ -1,24 +1,27 @@
 package ru.vlsu.fitclub.model;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-public class Group {
+@Table(name = "group_training", schema = "fitness_club")
+public class GroupTraining {
     private int groupId;
     private String groupName;
     private String groupDescription;
     private Integer trainerId;
     private Integer activityId;
+    private Timestamp timeBegin;
+    private Timestamp timeEnd;
+    private Integer regularity;
+    private Collection<GroupClients> groupClientsByGroupId;
     private Trainer trainerByTrainerId;
     private Activity activityByActivityId;
-    private Collection<GroupClients> groupClientsByGroupId;
-    private Collection<GroupDate> groupDatesByGroupId;
 
     @Id
     @Column(name = "group_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getGroupId() {
         return groupId;
     }
@@ -67,21 +70,63 @@ public class Group {
         this.activityId = activityId;
     }
 
+    @Basic
+    @Column(name = "time_begin")
+    public Timestamp getTimeBegin() {
+        return timeBegin;
+    }
+
+    public void setTimeBegin(Timestamp timeBegin) {
+        this.timeBegin = timeBegin;
+    }
+
+    @Basic
+    @Column(name = "time_end")
+    public Timestamp getTimeEnd() {
+        return timeEnd;
+    }
+
+    public void setTimeEnd(Timestamp timeEnd) {
+        this.timeEnd = timeEnd;
+    }
+
+    @Basic
+    @Column(name = "regularity")
+    public Integer getRegularity() {
+        return regularity;
+    }
+
+    public void setRegularity(Integer regularity) {
+        this.regularity = regularity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Group group = (Group) o;
-        return groupId == group.groupId &&
-                Objects.equals(groupName, group.groupName) &&
-                Objects.equals(groupDescription, group.groupDescription) &&
-                Objects.equals(trainerId, group.trainerId) &&
-                Objects.equals(activityId, group.activityId);
+        GroupTraining that = (GroupTraining) o;
+        return groupId == that.groupId &&
+                Objects.equals(groupName, that.groupName) &&
+                Objects.equals(groupDescription, that.groupDescription) &&
+                Objects.equals(trainerId, that.trainerId) &&
+                Objects.equals(activityId, that.activityId) &&
+                Objects.equals(timeBegin, that.timeBegin) &&
+                Objects.equals(timeEnd, that.timeEnd) &&
+                Objects.equals(regularity, that.regularity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(groupId, groupName, groupDescription, trainerId, activityId);
+        return Objects.hash(groupId, groupName, groupDescription, trainerId, activityId, timeBegin, timeEnd, regularity);
+    }
+
+    @OneToMany(mappedBy = "groupTrainingByGroupId")
+    public Collection<GroupClients> getGroupClientsByGroupId() {
+        return groupClientsByGroupId;
+    }
+
+    public void setGroupClientsByGroupId(Collection<GroupClients> groupClientsByGroupId) {
+        this.groupClientsByGroupId = groupClientsByGroupId;
     }
 
     @ManyToOne
@@ -102,23 +147,5 @@ public class Group {
 
     public void setActivityByActivityId(Activity activityByActivityId) {
         this.activityByActivityId = activityByActivityId;
-    }
-
-    @OneToMany(mappedBy = "groupByGroupId")
-    public Collection<GroupClients> getGroupClientsByGroupId() {
-        return groupClientsByGroupId;
-    }
-
-    public void setGroupClientsByGroupId(Collection<GroupClients> groupClientsByGroupId) {
-        this.groupClientsByGroupId = groupClientsByGroupId;
-    }
-
-    @OneToMany(mappedBy = "groupByGroupId")
-    public Collection<GroupDate> getGroupDatesByGroupId() {
-        return groupDatesByGroupId;
-    }
-
-    public void setGroupDatesByGroupId(Collection<GroupDate> groupDatesByGroupId) {
-        this.groupDatesByGroupId = groupDatesByGroupId;
     }
 }

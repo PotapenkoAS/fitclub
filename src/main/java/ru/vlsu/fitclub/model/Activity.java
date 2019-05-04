@@ -6,7 +6,6 @@ import java.util.Objects;
 
 @Entity
 public class Activity {
-
     private int activityId;
     private String name;
     private Integer priceForTrain;
@@ -15,13 +14,12 @@ public class Activity {
     private Integer priceForYear;
     private Byte isGroup;
     private String description;
-    private Collection<Group> groupsByActivityId;
-    private Collection<Training> trainingsByActivityId;
     private Collection<Achievement> achievementsByActivityId;
+    private Collection<GroupTraining> groupTrainingsByActivityId;
+    private Collection<Training> trainingsByActivityId;
 
     @Id
     @Column(name = "activity_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getActivityId() {
         return activityId;
     }
@@ -121,12 +119,21 @@ public class Activity {
     }
 
     @OneToMany(mappedBy = "activityByActivityId")
-    public Collection<Group> getGroupsByActivityId() {
-        return groupsByActivityId;
+    public Collection<Achievement> getAchievementsByActivityId() {
+        return achievementsByActivityId;
     }
 
-    public void setGroupsByActivityId(Collection<Group> groupsByActivityId) {
-        this.groupsByActivityId = groupsByActivityId;
+    public void setAchievementsByActivityId(Collection<Achievement> achievementsByActivityId) {
+        this.achievementsByActivityId = achievementsByActivityId;
+    }
+
+    @OneToMany(mappedBy = "activityByActivityId")
+    public Collection<GroupTraining> getGroupTrainingsByActivityId() {
+        return groupTrainingsByActivityId;
+    }
+
+    public void setGroupTrainingsByActivityId(Collection<GroupTraining> groupTrainingsByActivityId) {
+        this.groupTrainingsByActivityId = groupTrainingsByActivityId;
     }
 
     @OneToMany(mappedBy = "activityByActivityId")
@@ -136,14 +143,5 @@ public class Activity {
 
     public void setTrainingsByActivityId(Collection<Training> trainingsByActivityId) {
         this.trainingsByActivityId = trainingsByActivityId;
-    }
-
-    @OneToMany(mappedBy = "activityByActivityId")
-    public Collection<Achievement> getAchievementsByActivityId() {
-        return achievementsByActivityId;
-    }
-
-    public void setAchievementsByActivityId(Collection<Achievement> achievementsByActivityId) {
-        this.achievementsByActivityId = achievementsByActivityId;
     }
 }
