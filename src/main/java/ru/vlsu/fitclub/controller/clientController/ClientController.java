@@ -7,8 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import ru.vlsu.fitclub.model.Client;
 import ru.vlsu.fitclub.service.ClientService;
 import ru.vlsu.fitclub.service.UserService;
+
+import java.util.Base64;
 
 @Controller
 public class ClientController {
@@ -26,7 +29,7 @@ public class ClientController {
     public String getClient() {
         Object user;
         if ((user = SecurityContextHolder.getContext().getAuthentication().getPrincipal()) instanceof UserDetails) {
-            int id = userService.getUserByLogin(((UserDetails)user).getUsername()).getUserId();
+            int id = userService.getUserByLogin(((UserDetails) user).getUsername()).getUserId();
             return "redirect:/client/" + id;
         }
         return "home/home";
@@ -34,9 +37,12 @@ public class ClientController {
 
     @GetMapping("/client/{id}")
     public String getClientId(@PathVariable int id, Model model) {
-        model.addAttribute("client", clientService.getClientByUserId(id));
+        Client client = clientService.getClientByUserId(id);
+        String avatar = Base64.getEncoder().encodeToString(client.getAvatar());
+        model.addAttribute("avatar", avatar);
+        model.addAttribute("client", client);
+        model.addAttribute("imageList", clientService.getClientAchievementsImages(client));
         return "client/client_site";
     }
-
 
 }

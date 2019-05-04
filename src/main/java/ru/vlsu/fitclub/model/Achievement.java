@@ -11,7 +11,6 @@ public class Achievement {
     private Integer activityId;
     private String description;
     private byte[] image;
-    private String type;
     private double value;
     private Activity activityByActivityId;
     private Collection<ClientAchieves> clientAchievesByAchievementId;
@@ -57,16 +56,6 @@ public class Achievement {
     }
 
     @Basic
-    @Column(name = "type", nullable = false)
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    @Basic
     @Column(name = "value", nullable = false, precision = 3)
     public double getValue() {
         return value;
@@ -85,19 +74,18 @@ public class Achievement {
                 Objects.equals(activityId, that.activityId) &&
                 Objects.equals(description, that.description) &&
                 Arrays.equals(image, that.image) &&
-                Objects.equals(type, that.type) &&
                 Objects.equals(value, that.value);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(achievementId, activityId, description, type, value);
+        int result = Objects.hash(achievementId, activityId, description, value);
         result = 31 * result + Arrays.hashCode(image);
         return result;
     }
 
     @ManyToOne
-    @JoinColumn(name = "activity_id", referencedColumnName = "activity_id")
+    @JoinColumn(name = "activity_id", referencedColumnName = "activity_id", insertable = false, updatable = false)
     public Activity getActivityByActivityId() {
         return activityByActivityId;
     }

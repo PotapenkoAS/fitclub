@@ -88,7 +88,7 @@ public class ClientAchieves {
     }
 
     @ManyToOne
-    @JoinColumn(name = "client_id", referencedColumnName = "client_id")
+    @JoinColumn(name = "client_id", referencedColumnName = "client_id", insertable = false, updatable = false)
     public Client getClientByClientId() {
         return clientByClientId;
     }
@@ -98,7 +98,7 @@ public class ClientAchieves {
     }
 
     @ManyToOne
-    @JoinColumn(name = "achievement_id", referencedColumnName = "achievement_id")
+    @JoinColumn(name = "achievement_id", referencedColumnName = "achievement_id", insertable = false, updatable = false)
     public Achievement getAchievementByAchievementId() {
         return achievementByAchievementId;
     }

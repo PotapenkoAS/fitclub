@@ -7,4 +7,5 @@ import ru.vlsu.fitclub.model.Client;
 @Repository
 public interface ClientRepository extends CrudRepository<Client, Integer> {
     Client findClientByUserId(int id);
+
 }

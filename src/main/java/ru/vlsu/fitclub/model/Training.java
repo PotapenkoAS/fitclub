@@ -112,7 +112,7 @@ public class Training {
     }
 
     @ManyToOne
-    @JoinColumns({@JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id", insertable = false, updatable = false), @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id")})
+    @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id", insertable = false, updatable = false)
     public Trainer getTrainerByTrainerId() {
         return trainerByTrainerId;
     }
@@ -122,7 +122,7 @@ public class Training {
     }
 
     @ManyToOne
-    @JoinColumns({@JoinColumn(name = "client_id", referencedColumnName = "client_id", insertable = false, updatable = false), @JoinColumn(name = "client_id", referencedColumnName = "client_id")})
+    @JoinColumn(name = "client_id", referencedColumnName = "client_id", insertable = false, updatable = false)
     public Client getClientByClientId() {
         return clientByClientId;
     }
@@ -132,7 +132,7 @@ public class Training {
     }
 
     @ManyToOne
-    @JoinColumns({@JoinColumn(name = "activity_id", referencedColumnName = "activity_id", insertable = false, updatable = false), @JoinColumn(name = "activity_id", referencedColumnName = "activity_id")})
+    @JoinColumn(name = "activity_id", referencedColumnName = "activity_id", insertable = false, updatable = false)
     public Activity getActivityByActivityId() {
         return activityByActivityId;
     }

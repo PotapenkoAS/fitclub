@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 import ru.vlsu.fitclub.model.Client;
 import ru.vlsu.fitclub.repository.ClientRepository;
 
+import java.util.ArrayList;
+import java.util.Base64;
+
 @Service
 public class ClientService {
 
@@ -19,5 +22,14 @@ public class ClientService {
         return cr.findClientByUserId(id);
     }
 
+    public ArrayList<String> getClientAchievementsImages(Client client){
+        ArrayList<byte[]> imageList = new ArrayList<>();
+        client.getClientAchievesByClientId().forEach(i->imageList.add(i.getAchievementByAchievementId().getImage()));
+        ArrayList<String> stringImageList= new ArrayList<>();
+        for(byte [] img: imageList){
+            stringImageList.add(Base64.getEncoder().encodeToString(img));
+        }
+        return stringImageList;
+    }
 
 }

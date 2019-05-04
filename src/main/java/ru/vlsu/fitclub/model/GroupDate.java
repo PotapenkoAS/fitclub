@@ -81,7 +81,7 @@ public class GroupDate {
     }
 
     @ManyToOne
-    @JoinColumn(name = "group_id", referencedColumnName = "group_id")
+    @JoinColumn(name = "group_id", referencedColumnName = "group_id", insertable = false, updatable = false)
     public Group getGroupByGroupId() {
         return groupByGroupId;
     }

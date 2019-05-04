@@ -14,6 +14,7 @@ public class Client {
     private String phone;
     private Integer weight;
     private Integer height;
+    private byte[] avatar;
     private Integer userId;
     private User userByUserId;
     private Collection<GroupClients> groupClientsByClientId;
@@ -111,6 +112,16 @@ public class Client {
         this.userId = userId;
     }
 
+    @Basic
+    @Column(name = "avatar")
+    public byte[] getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -129,7 +140,6 @@ public class Client {
     public int hashCode() {
         return Objects.hash(clientId, name, patronymic, surname, email, phone, userId);
     }
-
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
@@ -167,4 +177,6 @@ public class Client {
     public void setClientAchievesByClientId(Collection<ClientAchieves> clientAchievesByClientId) {
         this.clientAchievesByClientId = clientAchievesByClientId;
     }
+
+
 }

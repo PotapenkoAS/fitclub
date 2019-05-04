@@ -58,7 +58,7 @@ public class SubscriptionTrainDate {
     }
 
     @ManyToOne
-    @JoinColumn(name = "subscription_id", referencedColumnName = "subscription_id")
+    @JoinColumn(name = "subscription_id", referencedColumnName = "subscription_id", insertable = false, updatable = false)
     public Subscription getSubscriptionBySubscriptionId() {
         return subscriptionBySubscriptionId;
     }
@@ -68,7 +68,7 @@ public class SubscriptionTrainDate {
     }
 
     @ManyToOne
-    @JoinColumn(name = "training_id", referencedColumnName = "training_id")
+    @JoinColumn(name = "training_id", referencedColumnName = "training_id", insertable = false, updatable = false)
     public Training getTrainingByTrainingId() {
         return trainingByTrainingId;
     }

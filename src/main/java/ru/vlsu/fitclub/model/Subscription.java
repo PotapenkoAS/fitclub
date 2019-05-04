@@ -82,7 +82,7 @@ public class Subscription {
     }
 
     @ManyToOne
-    @JoinColumn(name = "admin_id", referencedColumnName = "admin_id")
+    @JoinColumn(name = "admin_id", referencedColumnName = "admin_id", insertable = false, updatable = false)
     public Admin getAdminByAdminId() {
         return adminByAdminId;
     }

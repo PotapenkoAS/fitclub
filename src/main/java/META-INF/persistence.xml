@@ -21,8 +21,6 @@
         <class>ru.vlsu.fitclub.model.Subscription</class>
         <class>ru.vlsu.fitclub.model.SubscriptionTrainDate</class>
         <properties>
-            <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306"/>
-            <property name="toplink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
             <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306"/>

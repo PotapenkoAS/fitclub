@@ -24,29 +24,22 @@
 
 <div class="section">
     <div class="sidebar">
-        <img class="img-circle" src="/content/avatar.png" alt="none">
-        <h1> User </h1>
-        <h1> E-mail </h1>
+        <img class="img-circle" th:src="*{'data:image/png;base64,'+avatar}" alt="none">
+        <h1 th:text="${client.getSurname()} + ' ' + ${client.getName()}"></h1>
+        <h1 th:text="${client.getEmail()}"></h1>
     </div>
     <div class="contentText">
         <h2>Мои данные</h2>
         <h2> Рост </h2>
-        <p> 170см </p>
+        <p th:text="${client.getHeight()}"> см </p>
         <h2> Вес </h2>
-        <p> 80кг </p>
+        <p th:text="${client.getWeight()}"> кг </p>
         <h2> Достижения </h2>
 
         <div class="elements-gride" data-masonry='{ "itemSelector": ".element-item", "columnWidth": 200 }'>
-            <img class="element-item" src="/content/1.png" alt="none"/>
-            <img class="element-item" src="/content/1.png" alt="none"/>
-            <img class="element-item" src="/content/1.png" alt="none"/>
-            <img class="element-item" src="/content/1.png" alt="none"/>
-            <img class="element-item" src="/content/1.png" alt="none"/>
-            <img class="element-item" src="/content/1.png" alt="none"/>
-            <img class="element-item" src="/content/1.png" alt="none"/>
-            <img class="element-item" src="/content/1.png" alt="none"/>
-            <img class="element-item" src="/content/1.png" alt="none"/>
-
+            <tr th:each="image: ${imageList}">
+                <td><img th:src="*{'data:image/png;base64,'+image}" alt=""/></td>
+            </tr>
         </div>
 
     </div>
