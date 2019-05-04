@@ -14,6 +14,15 @@ public class GroupDate {
     private Timestamp timeEnding;
 
     @Id
+    @Column(name = "id", nullable = false)
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Basic
     @Column(name = "group_id")
     private Integer getGroupId() {
@@ -24,7 +33,6 @@ public class GroupDate {
         this.groupId = groupId;
     }
 
-    @Id
     @Basic
     @Column(name = "regularity")
     public Integer getRegularity() {
@@ -35,7 +43,6 @@ public class GroupDate {
         this.regularity = regularity;
     }
 
-    @Id
     @Basic
     @Column(name = "time_beginning")
     public Timestamp getTimeBeginning() {
@@ -46,7 +53,6 @@ public class GroupDate {
         this.timeBeginning = timeBeginning;
     }
 
-    @Id
     @Basic
     @Column(name = "time_ending")
     public Timestamp getTimeEnding() {
@@ -55,16 +61,6 @@ public class GroupDate {
 
     public void setTimeEnding(Timestamp timeEnding) {
         this.timeEnding = timeEnding;
-    }
-
-    @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Override
