@@ -12,6 +12,7 @@ public class GroupDate {
     private Integer regularity;
     private Timestamp timeBeginning;
     private Timestamp timeEnding;
+    private Group groupByGroupId;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -25,7 +26,7 @@ public class GroupDate {
 
     @Basic
     @Column(name = "group_id")
-    private Integer getGroupId() {
+    public Integer getGroupId() {
         return groupId;
     }
 
@@ -79,5 +80,13 @@ public class GroupDate {
         return Objects.hash(groupId, regularity, timeBeginning, timeEnding);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "group_id", referencedColumnName = "group_id")
+    public Group getGroupByGroupId() {
+        return groupByGroupId;
+    }
 
+    public void setGroupByGroupId(Group groupByGroupId) {
+        this.groupByGroupId = groupByGroupId;
+    }
 }

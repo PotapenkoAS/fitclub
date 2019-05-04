@@ -10,10 +10,10 @@ public class User {
 
     private int userId;
     @NotNull
-    @Size(min = 6, max = 50,message = "Длина от 6 до 50 символов")
+    @Size(min = 6, max = 50, message = "Длина от 6 до 50 символов")
     private String login;
     @NotNull
-    @Size(min = 6, max = 50,message = "Длина от 6 до 50 символов")
+    @Size(min = 6, max = 50, message = "Длина от 6 до 50 символов")
     private String password;
     private String role;
     private Admin adminByUserId;
@@ -41,7 +41,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "login", nullable = false)
+    @Column(name = "login", nullable = false, unique = true)
     public String getLogin() {
         return login;
     }
@@ -112,4 +112,5 @@ public class User {
     public void setTrainerByUserId(Trainer trainerByUserId) {
         this.trainerByUserId = trainerByUserId;
     }
+
 }

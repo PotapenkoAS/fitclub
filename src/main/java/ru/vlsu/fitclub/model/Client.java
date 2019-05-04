@@ -12,10 +12,13 @@ public class Client {
     private String surname;
     private String email;
     private String phone;
+    private Integer weight;
+    private Integer height;
     private Integer userId;
     private User userByUserId;
     private Collection<GroupClients> groupClientsByClientId;
     private Collection<Training> trainingsByClientId;
+    private Collection<ClientAchieves> clientAchievesByClientId;
 
     @Id
     @Column(name = "client_id", nullable = false)
@@ -79,6 +82,26 @@ public class Client {
     }
 
     @Basic
+    @Column(name = "weight")
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+    @Basic
+    @Column(name = "height")
+    public Integer getHeight() {
+        return height;
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
+    }
+
+    @Basic
     @Column(name = "user_id")
     public Integer getUserId() {
         return userId;
@@ -107,8 +130,9 @@ public class Client {
         return Objects.hash(clientId, name, patronymic, surname, email, phone, userId);
     }
 
+
     @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable=false, updatable=false)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
     public User getUserByUserId() {
         return userByUserId;
     }
@@ -133,5 +157,14 @@ public class Client {
 
     public void setTrainingsByClientId(Collection<Training> trainingsByClientId) {
         this.trainingsByClientId = trainingsByClientId;
+    }
+
+    @OneToMany(mappedBy = "clientByClientId")
+    public Collection<ClientAchieves> getClientAchievesByClientId() {
+        return clientAchievesByClientId;
+    }
+
+    public void setClientAchievesByClientId(Collection<ClientAchieves> clientAchievesByClientId) {
+        this.clientAchievesByClientId = clientAchievesByClientId;
     }
 }

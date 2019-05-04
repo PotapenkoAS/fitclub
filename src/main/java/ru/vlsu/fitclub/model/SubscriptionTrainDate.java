@@ -9,6 +9,8 @@ public class SubscriptionTrainDate {
     private int subscriptionTrainDateId;
     private Integer subscriptionId;
     private Integer trainingId;
+    private Subscription subscriptionBySubscriptionId;
+    private Training trainingByTrainingId;
 
     @Id
     @Column(name = "subscription_train_date_id", nullable = false)
@@ -53,5 +55,25 @@ public class SubscriptionTrainDate {
     @Override
     public int hashCode() {
         return Objects.hash(subscriptionTrainDateId, subscriptionId, trainingId);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "subscription_id", referencedColumnName = "subscription_id")
+    public Subscription getSubscriptionBySubscriptionId() {
+        return subscriptionBySubscriptionId;
+    }
+
+    public void setSubscriptionBySubscriptionId(Subscription subscriptionBySubscriptionId) {
+        this.subscriptionBySubscriptionId = subscriptionBySubscriptionId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "training_id", referencedColumnName = "training_id")
+    public Training getTrainingByTrainingId() {
+        return trainingByTrainingId;
+    }
+
+    public void setTrainingByTrainingId(Training trainingByTrainingId) {
+        this.trainingByTrainingId = trainingByTrainingId;
     }
 }

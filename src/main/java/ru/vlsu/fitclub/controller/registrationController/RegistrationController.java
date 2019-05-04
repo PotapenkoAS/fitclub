@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.vlsu.fitclub.model.Client;
 import ru.vlsu.fitclub.model.User;
@@ -22,25 +21,31 @@ import java.util.ArrayList;
 public class RegistrationController {
 
     private RegistrationService regService;
-    private UserService userService;
     private LoginService loginService;
+    private UserService userService;
 
     @Autowired
-    public RegistrationController(RegistrationService regService, UserService userService, LoginService loginService) {
+    public RegistrationController(RegistrationService regService, LoginService loginService, UserService userService) {
         this.regService = regService;
-        this.userService = userService;
         this.loginService = loginService;
+        this.userService = userService;
     }
 
     @GetMapping("/registration")
-    public String getRegistrationPage(User user) {
+    public String getRegistrationPage(Model model) {
+        model.addAttribute("user", new User());
         return "login/registration";
     }
 
 
     @PostMapping("/registration")
-    public String postRegistrationPage(@Valid User user, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-        if(bindingResult.hasErrors()) {
+    public String postRegistrationPage(@Valid User user, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "login/registration";
+        }
+        String error;
+        if ((error = userService.userExistsByLoginValidation(user.getLogin())) != null) {
+            model.addAttribute("error", error);
             return "login/registration";
         }
         redirectAttributes.addFlashAttribute("user", user);
@@ -48,8 +53,9 @@ public class RegistrationController {
     }
 
     @GetMapping("/post_registration")
-    public ModelAndView getPostRegistrationPage(User user) {
-        return new ModelAndView("login/post_registration", "user", user);
+    public String getPostRegistrationPage(User user, Model model) {
+        model.addAttribute("user", user);
+        return "login/post_registration";
     }
 
     @PostMapping("/post_registration")
@@ -61,6 +67,7 @@ public class RegistrationController {
             return "redirect:/home";
         }
         model.addAttribute("errorList", errorList);
+        model.addAttribute("user", new User(login, password, "CLIENT"));
         return "login/post_registration";
     }
 }

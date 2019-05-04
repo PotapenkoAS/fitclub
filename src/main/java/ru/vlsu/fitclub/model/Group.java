@@ -14,6 +14,7 @@ public class Group {
     private Trainer trainerByTrainerId;
     private Activity activityByActivityId;
     private Collection<GroupClients> groupClientsByGroupId;
+    private Collection<GroupDate> groupDatesByGroupId;
 
     @Id
     @Column(name = "group_id", nullable = false)
@@ -84,7 +85,7 @@ public class Group {
     }
 
     @ManyToOne
-    @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id", insertable=false, updatable=false)
+    @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id", insertable = false, updatable = false)
     public Trainer getTrainerByTrainerId() {
         return trainerByTrainerId;
     }
@@ -94,7 +95,7 @@ public class Group {
     }
 
     @ManyToOne
-    @JoinColumn(name = "activity_id", referencedColumnName = "activity_id", insertable=false, updatable=false)
+    @JoinColumn(name = "activity_id", referencedColumnName = "activity_id", insertable = false, updatable = false)
     public Activity getActivityByActivityId() {
         return activityByActivityId;
     }
@@ -110,5 +111,14 @@ public class Group {
 
     public void setGroupClientsByGroupId(Collection<GroupClients> groupClientsByGroupId) {
         this.groupClientsByGroupId = groupClientsByGroupId;
+    }
+
+    @OneToMany(mappedBy = "groupByGroupId")
+    public Collection<GroupDate> getGroupDatesByGroupId() {
+        return groupDatesByGroupId;
+    }
+
+    public void setGroupDatesByGroupId(Collection<GroupDate> groupDatesByGroupId) {
+        this.groupDatesByGroupId = groupDatesByGroupId;
     }
 }

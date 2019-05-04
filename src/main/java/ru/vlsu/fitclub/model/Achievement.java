@@ -1,10 +1,8 @@
 package ru.vlsu.fitclub.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +13,8 @@ public class Achievement {
     private byte[] image;
     private String type;
     private double value;
+    private Activity activityByActivityId;
+    private Collection<ClientAchieves> clientAchievesByAchievementId;
 
     @Id
     @Column(name = "achievement_id", nullable = false)
@@ -94,5 +94,24 @@ public class Achievement {
         int result = Objects.hash(achievementId, activityId, description, type, value);
         result = 31 * result + Arrays.hashCode(image);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "activity_id", referencedColumnName = "activity_id")
+    public Activity getActivityByActivityId() {
+        return activityByActivityId;
+    }
+
+    public void setActivityByActivityId(Activity activityByActivityId) {
+        this.activityByActivityId = activityByActivityId;
+    }
+
+    @OneToMany(mappedBy = "achievementByAchievementId")
+    public Collection<ClientAchieves> getClientAchievesByAchievementId() {
+        return clientAchievesByAchievementId;
+    }
+
+    public void setClientAchievesByAchievementId(Collection<ClientAchieves> clientAchievesByAchievementId) {
+        this.clientAchievesByAchievementId = clientAchievesByAchievementId;
     }
 }

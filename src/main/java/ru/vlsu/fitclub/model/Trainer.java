@@ -118,7 +118,7 @@ public class Trainer {
     }
 
     @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id",insertable=false, updatable=false)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
     public User getUserByUserId() {
         return userByUserId;
     }

@@ -16,7 +16,10 @@ public class ClientAchieves {
     private Integer done;
     private Date date;
     private double value;
+    private Client clientByClientId;
+    private Achievement achievementByAchievementId;
 
+    @Basic
     @Id
     @Column(name = "client_id")
     public Integer getClientId() {
@@ -27,6 +30,7 @@ public class ClientAchieves {
         this.clientId = clientId;
     }
 
+    @Basic
     @Id
     @Column(name = "achievement_id")
     public Integer getAchievementId() {
@@ -81,5 +85,25 @@ public class ClientAchieves {
 
     public void setValue(double value) {
         this.value = value;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "client_id", referencedColumnName = "client_id")
+    public Client getClientByClientId() {
+        return clientByClientId;
+    }
+
+    public void setClientByClientId(Client clientByClientId) {
+        this.clientByClientId = clientByClientId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "achievement_id", referencedColumnName = "achievement_id")
+    public Achievement getAchievementByAchievementId() {
+        return achievementByAchievementId;
+    }
+
+    public void setAchievementByAchievementId(Achievement achievementByAchievementId) {
+        this.achievementByAchievementId = achievementByAchievementId;
     }
 }

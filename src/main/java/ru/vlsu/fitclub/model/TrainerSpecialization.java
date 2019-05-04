@@ -1,9 +1,12 @@
 package ru.vlsu.fitclub.model;
 
+import ru.vlsu.fitclub.model.stuff.TrainerSpecializationKey;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@IdClass(TrainerSpecializationKey.class)
 @Table(name = "trainer_specialization", schema = "fitness_club")
 public class TrainerSpecialization {
     private Integer trainerId;
@@ -14,7 +17,6 @@ public class TrainerSpecialization {
     @Basic
     @Id
     @Column(name = "trainer_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getTrainerId() {
         return trainerId;
     }
@@ -24,6 +26,7 @@ public class TrainerSpecialization {
     }
 
     @Basic
+    @Id
     @Column(name = "specialization_id")
     public Integer getSpecializationId() {
         return specializationId;

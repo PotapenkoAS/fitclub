@@ -1,8 +1,8 @@
 package ru.vlsu.fitclub.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
+import ru.vlsu.fitclub.model.User;
 import ru.vlsu.fitclub.repository.UserRepository;
 
 import java.util.ArrayList;
@@ -11,18 +11,20 @@ import java.util.regex.Pattern;
 @Service
 public class UserService {
 
-    private final Environment env;
     private UserRepository ur;
 
     @Autowired
-    public UserService(Environment env, UserRepository ur) {
-        this.env = env;
+    public UserService(UserRepository ur) {
         this.ur = ur;
     }
 
+    public User getUserByLogin(String login){
+        return ur.findByLogin(login);
+    }
+
     ArrayList<String> loginPasswordValidation(String login, String password) {
-        int loginMinLength = env.getProperty("security.login.min.length", Integer.class, 6);
-        int passMinLength = env.getProperty("security.password.min.length", Integer.class, 6);
+        int loginMinLength = 6;
+        int passMinLength = 6;
 
         ArrayList<String> errorList = new ArrayList<>();
         if (login.length() < loginMinLength) {
@@ -34,7 +36,7 @@ public class UserService {
         return errorList;
     }
 
-    public String userExistsValidation(String login) {
+    public String userExistsByLoginValidation(String login) {
         if (ur.existsByLogin(login)) {
             return "Пользователь с таким именем уже существует";
         }

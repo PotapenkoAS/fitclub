@@ -1,9 +1,7 @@
 package ru.vlsu.fitclub.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -13,6 +11,8 @@ public class Subscription {
     private Integer numberOfTrains;
     private Integer price;
     private Integer adminId;
+    private Admin adminByAdminId;
+    private Collection<SubscriptionTrainDate> subscriptionTrainDatesBySubscriptionId;
 
     @Id
     @Column(name = "subscription_id", nullable = false)
@@ -79,5 +79,24 @@ public class Subscription {
     @Override
     public int hashCode() {
         return Objects.hash(subscriptionId, activityId, numberOfTrains, price, adminId);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "admin_id", referencedColumnName = "admin_id")
+    public Admin getAdminByAdminId() {
+        return adminByAdminId;
+    }
+
+    public void setAdminByAdminId(Admin adminByAdminId) {
+        this.adminByAdminId = adminByAdminId;
+    }
+
+    @OneToMany(mappedBy = "subscriptionBySubscriptionId")
+    public Collection<SubscriptionTrainDate> getSubscriptionTrainDatesBySubscriptionId() {
+        return subscriptionTrainDatesBySubscriptionId;
+    }
+
+    public void setSubscriptionTrainDatesBySubscriptionId(Collection<SubscriptionTrainDate> subscriptionTrainDatesBySubscriptionId) {
+        this.subscriptionTrainDatesBySubscriptionId = subscriptionTrainDatesBySubscriptionId;
     }
 }

@@ -1,9 +1,12 @@
 package ru.vlsu.fitclub.model;
 
+import ru.vlsu.fitclub.model.stuff.GroupClientsKey;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@IdClass(GroupClientsKey.class)
 @Table(name = "group_clients", schema = "fitness_club")
 public class GroupClients {
     private Integer groupId;
@@ -14,7 +17,6 @@ public class GroupClients {
     @Basic
     @Id
     @Column(name = "group_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getGroupId() {
         return groupId;
     }
@@ -24,6 +26,7 @@ public class GroupClients {
     }
 
     @Basic
+    @Id
     @Column(name = "client_id")
     public Integer getClientId() {
         return clientId;
@@ -48,7 +51,7 @@ public class GroupClients {
     }
 
     @ManyToOne
-    @JoinColumn(name = "group_id", referencedColumnName = "group_id", insertable=false, updatable=false)
+    @JoinColumn(name = "group_id", referencedColumnName = "group_id", insertable = false, updatable = false)
     public Group getGroupByGroupId() {
         return groupByGroupId;
     }
@@ -58,7 +61,7 @@ public class GroupClients {
     }
 
     @ManyToOne
-    @JoinColumn(name = "client_id", referencedColumnName = "client_id", insertable=false, updatable=false)
+    @JoinColumn(name = "client_id", referencedColumnName = "client_id", insertable = false, updatable = false)
     public Client getClientByClientId() {
         return clientByClientId;
     }

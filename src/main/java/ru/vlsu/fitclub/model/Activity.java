@@ -17,6 +17,7 @@ public class Activity {
     private String description;
     private Collection<Group> groupsByActivityId;
     private Collection<Training> trainingsByActivityId;
+    private Collection<Achievement> achievementsByActivityId;
 
     @Id
     @Column(name = "activity_id", nullable = false)
@@ -137,4 +138,12 @@ public class Activity {
         this.trainingsByActivityId = trainingsByActivityId;
     }
 
+    @OneToMany(mappedBy = "activityByActivityId")
+    public Collection<Achievement> getAchievementsByActivityId() {
+        return achievementsByActivityId;
+    }
+
+    public void setAchievementsByActivityId(Collection<Achievement> achievementsByActivityId) {
+        this.achievementsByActivityId = achievementsByActivityId;
+    }
 }

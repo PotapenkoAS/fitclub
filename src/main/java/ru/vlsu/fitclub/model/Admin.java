@@ -1,6 +1,7 @@
 package ru.vlsu.fitclub.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -11,6 +12,7 @@ public class Admin {
     private String name;
     private Integer userId;
     private User userByUserId;
+    private Collection<Subscription> subscriptionsByAdminId;
 
     @Id
     @Column(name = "admin_id", nullable = false)
@@ -81,12 +83,21 @@ public class Admin {
     }
 
     @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable=false, updatable=false)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
     public User getUserByUserId() {
         return userByUserId;
     }
 
     public void setUserByUserId(User userByUserId) {
         this.userByUserId = userByUserId;
+    }
+
+    @OneToMany(mappedBy = "adminByAdminId")
+    public Collection<Subscription> getSubscriptionsByAdminId() {
+        return subscriptionsByAdminId;
+    }
+
+    public void setSubscriptionsByAdminId(Collection<Subscription> subscriptionsByAdminId) {
+        this.subscriptionsByAdminId = subscriptionsByAdminId;
     }
 }

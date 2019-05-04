@@ -2,6 +2,7 @@ package ru.vlsu.fitclub.model;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -18,6 +19,7 @@ public class Training {
     private Activity activityByActivityId;
     private Integer regularity;
     private Byte isPaid;
+    private Collection<SubscriptionTrainDate> subscriptionTrainDatesByTrainingId;
 
     @Id
     @Column(name = "training_id", nullable = false)
@@ -110,7 +112,7 @@ public class Training {
     }
 
     @ManyToOne
-    @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id", insertable = false, updatable = false)
+    @JoinColumns({@JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id", insertable = false, updatable = false), @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id")})
     public Trainer getTrainerByTrainerId() {
         return trainerByTrainerId;
     }
@@ -120,7 +122,7 @@ public class Training {
     }
 
     @ManyToOne
-    @JoinColumn(name = "client_id", referencedColumnName = "client_id", insertable = false, updatable = false)
+    @JoinColumns({@JoinColumn(name = "client_id", referencedColumnName = "client_id", insertable = false, updatable = false), @JoinColumn(name = "client_id", referencedColumnName = "client_id")})
     public Client getClientByClientId() {
         return clientByClientId;
     }
@@ -130,7 +132,7 @@ public class Training {
     }
 
     @ManyToOne
-    @JoinColumn(name = "activity_id", referencedColumnName = "activity_id", insertable = false, updatable = false)
+    @JoinColumns({@JoinColumn(name = "activity_id", referencedColumnName = "activity_id", insertable = false, updatable = false), @JoinColumn(name = "activity_id", referencedColumnName = "activity_id")})
     public Activity getActivityByActivityId() {
         return activityByActivityId;
     }
@@ -157,5 +159,14 @@ public class Training {
 
     public void setIsPaid(Byte isPaid) {
         this.isPaid = isPaid;
+    }
+
+    @OneToMany(mappedBy = "trainingByTrainingId")
+    public Collection<SubscriptionTrainDate> getSubscriptionTrainDatesByTrainingId() {
+        return subscriptionTrainDatesByTrainingId;
+    }
+
+    public void setSubscriptionTrainDatesByTrainingId(Collection<SubscriptionTrainDate> subscriptionTrainDatesByTrainingId) {
+        this.subscriptionTrainDatesByTrainingId = subscriptionTrainDatesByTrainingId;
     }
 }

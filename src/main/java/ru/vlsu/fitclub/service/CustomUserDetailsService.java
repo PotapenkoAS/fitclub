@@ -2,12 +2,16 @@ package ru.vlsu.fitclub.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.vlsu.fitclub.model.User;
 import ru.vlsu.fitclub.repository.UserRepository;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -37,3 +41,4 @@ public class CustomUserDetailsService implements UserDetailsService {
         throw new UsernameNotFoundException(username);
     }
 }
+
