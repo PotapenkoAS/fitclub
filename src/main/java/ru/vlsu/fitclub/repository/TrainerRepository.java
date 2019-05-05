@@ -9,4 +9,5 @@ import java.util.ArrayList;
 @Repository
 public interface TrainerRepository extends CrudRepository<Trainer,Integer> {
     ArrayList<Trainer> findAll();
+
 }

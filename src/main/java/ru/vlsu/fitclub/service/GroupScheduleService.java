@@ -14,10 +14,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 @Service

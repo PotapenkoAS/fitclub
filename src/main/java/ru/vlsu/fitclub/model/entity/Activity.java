@@ -17,6 +17,8 @@ public class Activity {
     private Collection<Achievement> achievementsByActivityId;
     private Collection<GroupTraining> groupTrainingsByActivityId;
     private Collection<Training> trainingsByActivityId;
+    private byte[] image;
+    private Collection<ActivitySpecialization> activitySpecializationsByActivityId;
 
     @Id
     @Column(name = "activity_id", nullable = false)
@@ -143,5 +145,24 @@ public class Activity {
 
     public void setTrainingsByActivityId(Collection<Training> trainingsByActivityId) {
         this.trainingsByActivityId = trainingsByActivityId;
+    }
+
+    @Basic
+    @Column(name = "image", nullable = true)
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    @OneToMany(mappedBy = "activityByActivityId")
+    public Collection<ActivitySpecialization> getActivitySpecializationsByActivityId() {
+        return activitySpecializationsByActivityId;
+    }
+
+    public void setActivitySpecializationsByActivityId(Collection<ActivitySpecialization> activitySpecializationsByActivityId) {
+        this.activitySpecializationsByActivityId = activitySpecializationsByActivityId;
     }
 }

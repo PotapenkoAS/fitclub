@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import ru.vlsu.fitclub.model.GroupSchedule;
 import ru.vlsu.fitclub.model.entity.Activity;
 import ru.vlsu.fitclub.model.entity.Trainer;
@@ -30,22 +29,21 @@ public class GroupScheduleController {
     public String postGroupSchedule(Model model, String dateBegin, String dateEnd, String timeBegin, String timeEnd, Integer trainerId, Integer activityId) {
         GregorianCalendar cal = new GregorianCalendar();
         if (dateBegin == null || dateBegin.equals("")) {
-            dateBegin = cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH)+1) + "-" + cal.get(Calendar.DAY_OF_MONTH);
+            dateBegin = validateDate(cal);
         }
         if (dateEnd == null || dateEnd.equals("")) {
             cal.add(Calendar.DAY_OF_MONTH, 14);
-            dateEnd = cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH)+1) + "-" + cal.get(Calendar.DAY_OF_MONTH);
+            dateEnd = validateDate(cal);
             cal.add(Calendar.DAY_OF_MONTH, -14);
-
         }
         if (timeBegin == null || timeBegin.equals("")) {
             timeBegin = "00:00:00";
-        } else {
+        } else if(timeBegin.length()<6){
             timeBegin += ":00";
         }
         if (timeEnd == null || timeEnd.equals("")) {
-            timeEnd = "23:59:59";
-        } else {
+            timeEnd = "23:59:00";
+        } else if(timeEnd.length()<6){
             timeEnd += ":00";
         }
         if (trainerId == null) {
@@ -60,17 +58,30 @@ public class GroupScheduleController {
                 , Time.valueOf(timeEnd)
                 , trainerId
                 , activityId);
-        model.addAttribute("list", list);
         ArrayList<Trainer> trainerList = scheduleService.getTrainerList();
         ArrayList<Activity> activityList = scheduleService.getActivityList();
+        model.addAttribute("list", list);
         model.addAttribute("trainerList", trainerList);
         model.addAttribute("activityList", activityList);
-        model.addAttribute("dateBegin",dateBegin);
-        model.addAttribute("dateEnd",dateEnd);
-        model.addAttribute("timeBegin",timeBegin);
-        model.addAttribute("timeEnd",timeEnd);
-        model.addAttribute("trainerId",trainerId);
-        model.addAttribute("activityId",activityId);
+        model.addAttribute("dateBegin", dateBegin);
+        model.addAttribute("dateEnd", dateEnd);
+        model.addAttribute("timeBegin", timeBegin);
+        model.addAttribute("timeEnd", timeEnd);
+        model.addAttribute("trainerId", trainerId);
+        model.addAttribute("activityId", activityId);
         return "training/training_group_schedule";
+    }
+
+
+    private String validateDate(Calendar cal) {
+
+        String date = cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.DAY_OF_MONTH);
+        if (cal.get(Calendar.MONTH) + 1 < 10) {
+            date = date.substring(0, 5) + "0" + date.substring(5);
+        }
+        if (cal.get(Calendar.DAY_OF_MONTH) < 10) {
+            date = date.substring(0, 8) + "0" + date.substring(8);
+        }
+        return date;
     }
 }

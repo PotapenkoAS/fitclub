@@ -10,6 +10,7 @@ public class Specialization {
     private String name;
     private String description;
     private Collection<TrainerSpecialization> trainerSpecializationsBySpecializationId;
+    private Collection<ActivitySpecialization> activitySpecializationsBySpecializationId;
 
     @Id
     @Column(name = "specialization_id", nullable = false)
@@ -63,5 +64,14 @@ public class Specialization {
 
     public void setTrainerSpecializationsBySpecializationId(Collection<TrainerSpecialization> trainerSpecializationsBySpecializationId) {
         this.trainerSpecializationsBySpecializationId = trainerSpecializationsBySpecializationId;
+    }
+
+    @OneToMany(mappedBy = "specializationBySpecializationId")
+    public Collection<ActivitySpecialization> getActivitySpecializationsBySpecializationId() {
+        return activitySpecializationsBySpecializationId;
+    }
+
+    public void setActivitySpecializationsBySpecializationId(Collection<ActivitySpecialization> activitySpecializationsBySpecializationId) {
+        this.activitySpecializationsBySpecializationId = activitySpecializationsBySpecializationId;
     }
 }

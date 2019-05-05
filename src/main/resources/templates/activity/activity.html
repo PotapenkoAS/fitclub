@@ -24,23 +24,18 @@
 
 <div class="section-trainings">
     <div class="sidebar">
-        <img class="img-circle" src="/content/avatar.png" alt="none">
-        <h1> Рейтинг </h1>
-        <h1> User </h1>
-        <h1> E-mail </h1>
-        <h1> Стаж </h1>
+        <img class="img-circle" th:src="*{'data:image/jpg;base64,'+image}" alt="none">
     </div>
     <div class="contentText">
         <h2> Вид занятий </h2>
-        <p> ------------------------------ </p>
+        <p th:text="${activity.getName()}"></p>
         <h2> Тренер </h2>
-        <p> ------------------------------ </p>
-        <h2> Краткая характеристика </h2>
-        <p> ------------------------------------------------------------------------- </p>
+        <a th:each="item :${trainers}" th:href="@{'/trainer/' + ${item.getTrainerId()}}"
+           th:text="|${item.getSurname()} ${item.getName()}|"></a>
         <h2> О занятиях </h2>
-        <p> ------------------------------------------------------------------------------------------------ </p>
+        <p th:text="${activity.getDescription()}"></p>
         <h2> Стоимость </h2>
-        <p> ------------------------------ </p>
+        <p th:text="|За занятие: ${activity.getPriceForTrain()} За неделю: ${activity.getPriceForWeek()} За месяц: ${activity.getPriceForMonth()} За год: ${activity.getPriceForYear()}|"></p>
         <br/>
         <button class="button button3"> Назад</button>
         <button class="button button2"> Записаться</button>

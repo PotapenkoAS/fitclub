@@ -9,4 +9,5 @@ import java.util.ArrayList;
 @Repository
 public interface ActivityRepository extends CrudRepository<Activity, Integer> {
     ArrayList<Activity> findAll();
+    Activity findByActivityId(int id);
 }
