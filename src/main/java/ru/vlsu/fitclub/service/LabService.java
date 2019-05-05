@@ -1,7 +1,7 @@
 package ru.vlsu.fitclub.service;
 
 import org.springframework.stereotype.Service;
-import ru.vlsu.fitclub.model.User;
+import ru.vlsu.fitclub.model.entity.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

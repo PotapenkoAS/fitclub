@@ -1,7 +1,8 @@
-package ru.vlsu.fitclub.model;
+package ru.vlsu.fitclub.model.entity;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -13,12 +14,13 @@ public class GroupTraining {
     private String groupDescription;
     private Integer trainerId;
     private Integer activityId;
-    private Timestamp timeBegin;
-    private Timestamp timeEnd;
+    private Time timeBegin;
+    private Time timeEnd;
     private Integer regularity;
     private Collection<GroupClients> groupClientsByGroupId;
     private Trainer trainerByTrainerId;
     private Activity activityByActivityId;
+    private Date date;
 
     @Id
     @Column(name = "group_id", nullable = false)
@@ -72,21 +74,21 @@ public class GroupTraining {
 
     @Basic
     @Column(name = "time_begin")
-    public Timestamp getTimeBegin() {
+    public Time getTimeBegin() {
         return timeBegin;
     }
 
-    public void setTimeBegin(Timestamp timeBegin) {
+    public void setTimeBegin(Time timeBegin) {
         this.timeBegin = timeBegin;
     }
 
     @Basic
     @Column(name = "time_end")
-    public Timestamp getTimeEnd() {
+    public Time getTimeEnd() {
         return timeEnd;
     }
 
-    public void setTimeEnd(Timestamp timeEnd) {
+    public void setTimeEnd(Time timeEnd) {
         this.timeEnd = timeEnd;
     }
 
@@ -98,6 +100,16 @@ public class GroupTraining {
 
     public void setRegularity(Integer regularity) {
         this.regularity = regularity;
+    }
+
+    @Basic
+    @Column(name = "date")
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     @Override
@@ -148,4 +160,6 @@ public class GroupTraining {
     public void setActivityByActivityId(Activity activityByActivityId) {
         this.activityByActivityId = activityByActivityId;
     }
+
+
 }

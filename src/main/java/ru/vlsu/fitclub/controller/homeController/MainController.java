@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.vlsu.fitclub.model.User;
+import ru.vlsu.fitclub.model.entity.User;
 import ru.vlsu.fitclub.repository.UserRepository;
 
 @Controller

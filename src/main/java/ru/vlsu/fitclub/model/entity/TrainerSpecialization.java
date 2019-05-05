@@ -1,4 +1,4 @@
-package ru.vlsu.fitclub.model;
+package ru.vlsu.fitclub.model.entity;
 
 import ru.vlsu.fitclub.model.stuff.TrainerSpecializationKey;
 

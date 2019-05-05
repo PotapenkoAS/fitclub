@@ -5,25 +5,25 @@
              version="2.2">
 
     <persistence-unit name="NewPersistenceUnit">
-        <class>ru.vlsu.fitclub.model.Activity</class>
-        <class>ru.vlsu.fitclub.model.Admin</class>
-        <class>ru.vlsu.fitclub.model.Client</class>
-        <class>ru.vlsu.fitclub.model.GroupClients</class>
-        <class>ru.vlsu.fitclub.model.Specialization</class>
-        <class>ru.vlsu.fitclub.model.Trainer</class>
-        <class>ru.vlsu.fitclub.model.TrainerSpecialization</class>
-        <class>ru.vlsu.fitclub.model.Training</class>
-        <class>ru.vlsu.fitclub.model.User</class>
-        <class>ru.vlsu.fitclub.model.Achievement</class>
-        <class>ru.vlsu.fitclub.model.ClientAchieves</class>
-        <class>ru.vlsu.fitclub.model.Subscription</class>
-        <class>ru.vlsu.fitclub.model.SubscriptionTrainDate</class>
-        <class>ru.vlsu.fitclub.model.GroupTraining</class>
+        <class>ru.vlsu.fitclub.model.entity.Activity</class>
+        <class>ru.vlsu.fitclub.model.entity.Admin</class>
+        <class>ru.vlsu.fitclub.model.entity.Client</class>
+        <class>ru.vlsu.fitclub.model.entity.GroupClients</class>
+        <class>ru.vlsu.fitclub.model.entity.Specialization</class>
+        <class>ru.vlsu.fitclub.model.entity.Trainer</class>
+        <class>ru.vlsu.fitclub.model.entity.TrainerSpecialization</class>
+        <class>ru.vlsu.fitclub.model.entity.Training</class>
+        <class>ru.vlsu.fitclub.model.entity.User</class>
+        <class>ru.vlsu.fitclub.model.entity.Achievement</class>
+        <class>ru.vlsu.fitclub.model.entity.ClientAchieves</class>
+        <class>ru.vlsu.fitclub.model.entity.Subscription</class>
+        <class>ru.vlsu.fitclub.model.entity.SubscriptionTrainDate</class>
+        <class>ru.vlsu.fitclub.model.entity.GroupTraining</class>
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/fitness_club"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306"/>
-            <property name="openjpa.ConnectionDriverName" value="com.mysql.jdbc.Driver"/>
+            <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306/fitness_club?serverTimezone=UTC"/>
+            <property name="openjpa.ConnectionDriverName" value="com.mysql.cj.jdbc.Driver"/>
             <property name="hibernate.dialect" value="mysql"/>
         </properties>
     </persistence-unit>

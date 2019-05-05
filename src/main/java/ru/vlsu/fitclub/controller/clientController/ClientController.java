@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import ru.vlsu.fitclub.model.Client;
+import ru.vlsu.fitclub.model.entity.Client;
 import ru.vlsu.fitclub.service.ClientService;
 import ru.vlsu.fitclub.service.UserService;
 

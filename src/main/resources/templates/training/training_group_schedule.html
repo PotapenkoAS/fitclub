@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="get">
+    <table>
+        <tr>
+            <td>Тренер</td>
+            <td>
+                <select name="trainerId">
+                    <option value="0">Все</option>
+                    <option th:each="item : ${trainerList}"
+                            th:value="${item.getTrainerId()}"
+                            th:utext="${item.getSurname()} + ' ' + ${item.getName()}"
+                            th:selected="${item.getTrainerId() == trainerId}"/>
+                </select>
+            </td>
+            <td>Тренировка</td>
+            <td>
+                <select name="activityId">
+                    <option value="0">Все</option>
+                    <option th:each="item : ${activityList}"
+                            th:value="${item.getActivityId()}"
+                            th:utext="${item.getName()}"
+                            th:selected="${item.getActivityId() == activityId}"/>
+                </select>
+            </td>
+            <td>Дата с</td>
+            <td><input name="dateBegin" type="date" th:value="${dateBegin}"/></td>
+            <td>Дата по</td>
+            <td><input name="dateEnd" type="date" th:value="${dateEnd}"/></td>
+            <td>Время с</td>
+            <td><input name="timeBegin" type="time" th:value="${timeBegin}"/></td>
+            <td>Время по</td>
+            <td><input name="timeEnd" type="time" th:value="${timeEnd}"/></td>
+        </tr>
+        <tr>
+            <td><input name="submit" type="submit" value="Поиск"/></td>
+        </tr>
+    </table>
+</form>
+<table>
+    <tr>
+        <td>Дата</td>
+        <td>Тренировка</td>
+        <td>Вермя начала</td>
+        <td>Время окончания</td>
+        <td>Тренер</td>
+    </tr>
+    <tr th:each="item : ${list}">
+        <td th:text="${item.getDate()}"></td>
+        <td><a th:href="@{'/activity/' + ${item.getActivityId()}}" th:text="${item.getActivityName()}"></a></td>
+        <td th:text="${item.getTimeBegin().toGMTString().substring(10,19)}"></td>
+        <td th:text="${item.getTimeEnd().toGMTString().substring(10,19)}"></td>
+        <td><a th:href="@{'/trainer/' + ${item.getTrainerId()}}" th:text="${item.getTrainerName()}"></a></td>
+    </tr>
+</table>
+</body>
+</html>

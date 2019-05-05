@@ -2,7 +2,7 @@ package ru.vlsu.fitclub.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.vlsu.fitclub.model.User;
+import ru.vlsu.fitclub.model.entity.User;
 import ru.vlsu.fitclub.repository.UserRepository;
 
 import java.util.ArrayList;

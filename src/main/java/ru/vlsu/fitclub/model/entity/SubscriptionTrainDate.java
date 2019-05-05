@@ -1,4 +1,4 @@
-package ru.vlsu.fitclub.model;
+package ru.vlsu.fitclub.model.entity;
 
 import javax.persistence.*;
 import java.util.Objects;

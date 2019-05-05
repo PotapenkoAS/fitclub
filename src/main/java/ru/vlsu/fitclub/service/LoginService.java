@@ -6,7 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import ru.vlsu.fitclub.model.User;
+import ru.vlsu.fitclub.model.entity.User;
 
 import java.util.ArrayList;
 
