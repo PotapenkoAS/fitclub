@@ -14,7 +14,6 @@ public class Client {
     private String surname;
     private String email;
     private String phone;
-    private Integer userId;
     private Integer weight;
     private Integer height;
     private byte[] avatar;
@@ -86,16 +85,6 @@ public class Client {
     }
 
     @Basic
-    @Column(name = "user_id")
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    @Basic
     @Column(name = "weight")
     public Integer getWeight() {
         return weight;
@@ -146,7 +135,6 @@ public class Client {
                 Objects.equals(surname, client.surname) &&
                 Objects.equals(email, client.email) &&
                 Objects.equals(phone, client.phone) &&
-                Objects.equals(userId, client.userId) &&
                 Objects.equals(weight, client.weight) &&
                 Objects.equals(height, client.height) &&
                 Arrays.equals(avatar, client.avatar) &&
@@ -155,7 +143,7 @@ public class Client {
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(clientId, name, patronymic, surname, email, phone, userId, weight, height, birthDate);
+        int result = Objects.hash(clientId, name, patronymic, surname, email, phone, weight, height, birthDate);
         result = 31 * result + Arrays.hashCode(avatar);
         return result;
     }

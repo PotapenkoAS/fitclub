@@ -10,7 +10,6 @@ public class Admin {
     private String surname;
     private String patronymic;
     private String name;
-    private Integer userId;
     private User userByUserId;
     private Collection<Subscription> subscriptionsByAdminId;
 
@@ -54,16 +53,6 @@ public class Admin {
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "user_id")
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -72,13 +61,12 @@ public class Admin {
         return adminId == admin.adminId &&
                 Objects.equals(surname, admin.surname) &&
                 Objects.equals(patronymic, admin.patronymic) &&
-                Objects.equals(name, admin.name) &&
-                Objects.equals(userId, admin.userId);
+                Objects.equals(name, admin.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(adminId, surname, patronymic, name, userId);
+        return Objects.hash(adminId, surname, patronymic, name);
     }
 
     @OneToOne

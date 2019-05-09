@@ -8,13 +8,10 @@ import java.util.Objects;
 @Entity
 public class Training {
     private int trainingId;
-    private Integer trainerId;
-    private Integer clientId;
     private Integer regularity;
     private String weekDay;
     private Timestamp timeBegin;
     private Timestamp timeEnd;
-    private Integer activityId;
     private Byte isPaid;
     private Collection<SubscriptionTrainDate> subscriptionTrainDatesByTrainingId;
     private Trainer trainerByTrainerId;
@@ -29,26 +26,6 @@ public class Training {
 
     public void setTrainingId(int trainingId) {
         this.trainingId = trainingId;
-    }
-
-    @Basic
-    @Column(name = "trainer_id")
-    public Integer getTrainerId() {
-        return trainerId;
-    }
-
-    public void setTrainerId(Integer trainerId) {
-        this.trainerId = trainerId;
-    }
-
-    @Basic
-    @Column(name = "client_id")
-    public Integer getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(Integer clientId) {
-        this.clientId = clientId;
     }
 
     @Basic
@@ -92,16 +69,6 @@ public class Training {
     }
 
     @Basic
-    @Column(name = "activity_id")
-    public Integer getActivityId() {
-        return activityId;
-    }
-
-    public void setActivityId(Integer activityId) {
-        this.activityId = activityId;
-    }
-
-    @Basic
     @Column(name = "is_paid")
     public Byte getIsPaid() {
         return isPaid;
@@ -117,19 +84,16 @@ public class Training {
         if (o == null || getClass() != o.getClass()) return false;
         Training training = (Training) o;
         return trainingId == training.trainingId &&
-                Objects.equals(trainerId, training.trainerId) &&
-                Objects.equals(clientId, training.clientId) &&
                 Objects.equals(regularity, training.regularity) &&
                 Objects.equals(weekDay, training.weekDay) &&
                 Objects.equals(timeBegin, training.timeBegin) &&
                 Objects.equals(timeEnd, training.timeEnd) &&
-                Objects.equals(activityId, training.activityId) &&
                 Objects.equals(isPaid, training.isPaid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(trainingId, trainerId, clientId, regularity, weekDay, timeBegin, timeEnd, activityId, isPaid);
+        return Objects.hash(trainingId, regularity, weekDay, timeBegin, timeEnd, isPaid);
     }
 
     @OneToMany(mappedBy = "trainingByTrainingId")

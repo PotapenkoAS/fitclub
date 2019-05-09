@@ -14,7 +14,4 @@ public interface GroupTrainingRepository extends CrudRepository<GroupTraining,In
     @Query(value = "select * from fitness_club.group_training;",nativeQuery = true)
     Collection<GroupTraining> findAll();
 
-    @Query(value = "select * from fitness_club.group_training where date_begin >= ?1 and date_end <= ?2",nativeQuery = true)
-    Collection<GroupTraining> findAllByTimeBeginAndTimeEnd(Timestamp timeBegin, Timestamp timeEnd);
-
 }

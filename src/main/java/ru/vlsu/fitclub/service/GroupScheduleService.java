@@ -33,10 +33,8 @@ public class GroupScheduleService {
         this.activityRepository = activityRepository;
     }
 
-    public ArrayList<GroupSchedule> getGroupSchedule(Date dateBegin, Date dateEnd, Time timeBegin, Time timeEnd, int trainerId, int activityId) {
-        StringBuilder queryBuilder = new StringBuilder("select gt,t,a from GroupTraining gt");
-        queryBuilder.append(" inner join Trainer t on t.trainerId = gt.trainerId");
-        queryBuilder.append(" inner join Activity a on a.activityId = gt.activityId");
+    public List<GroupTraining> getGroupSchedule(Date dateBegin, Date dateEnd, Time timeBegin, Time timeEnd, int trainerId, int activityId) {
+        StringBuilder queryBuilder = new StringBuilder("select gt from GroupTraining gt");
         queryBuilder.append(" where gt.date >= '").append(dateBegin.toString()).append("'")
                 .append(" and gt.date <= '").append(dateEnd.toString()).append("'");
         if (trainerId != 0) {
@@ -51,44 +49,11 @@ public class GroupScheduleService {
         if (timeEnd != null) {
             queryBuilder.append(" and gt.timeEnd <= '").append(timeEnd.toString()).append("'");
         }
+
+
         Query query = em.createQuery(queryBuilder.toString());
-        List queryResults = query.setMaxResults(50).getResultList();
 
-        List<ResultObject> result = extractResult(queryResults);
-
-        ArrayList<GroupSchedule> results = new ArrayList<>();
-        for (ResultObject item : result) {
-            results.add(new GroupSchedule(item.getGroupTraining().getDate()
-                    , item.getGroupTraining().getTimeBegin()
-                    , item.getGroupTraining().getTimeEnd()
-                    , item.getTrainer().getSurname() + " " + item.getTrainer().getName()
-                    , item.getTrainer().getTrainerId()
-                    , item.getActivity().getName()
-                    , item.getActivity().getActivityId()));
-        }
-        return results;
-    }
-
-    private List<ResultObject> extractResult(List list) {
-
-        List<ResultObject> results = new ArrayList<>();
-
-        if (list == null || list.size() == 0) {
-            return results;
-        }
-
-        for (Object entry : list) {
-
-            Object[] arr = (Object[]) entry;
-
-            ResultObject resultObject = new ResultObject();
-            resultObject.setGroupTraining((GroupTraining) arr[0]); //todo refactor to JPA mapping
-            resultObject.setTrainer((Trainer) arr[1]);
-            resultObject.setActivity((Activity) arr[2]);
-            results.add(resultObject);
-        }
-
-        return results;
+        return (List<GroupTraining>) query.setMaxResults(50).getResultList();
     }
 
     public ArrayList<Trainer> getTrainerList() {
@@ -100,32 +65,3 @@ public class GroupScheduleService {
     }
 }
 
-class ResultObject {
-    private GroupTraining groupTraining;
-    private Activity activity;
-    private Trainer trainer;
-
-    GroupTraining getGroupTraining() {
-        return groupTraining;
-    }
-
-    void setGroupTraining(GroupTraining groupTraining) {
-        this.groupTraining = groupTraining;
-    }
-
-    Activity getActivity() {
-        return activity;
-    }
-
-    void setActivity(Activity activity) {
-        this.activity = activity;
-    }
-
-    public Trainer getTrainer() {
-        return trainer;
-    }
-
-    public void setTrainer(Trainer trainer) {
-        this.trainer = trainer;
-    }
-}

@@ -37,7 +37,6 @@ public class RegistrationController {
         return "login/registration";
     }
 
-
     @PostMapping("/registration")
     public String postRegistrationPage(@Valid User user, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasErrors()) {

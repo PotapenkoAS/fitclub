@@ -13,8 +13,6 @@ public class Subscription {
     private Date dateFrom;
     private Date dateTo;
     private Integer price;
-    private int adminId;
-    private int clientId;
     private Admin adminByAdminId;
     private Client clientByClientId;
     private Collection<SubscriptionTrainDate> subscriptionTrainDatesBySubscriptionId;
@@ -79,34 +77,12 @@ public class Subscription {
         this.price = price;
     }
 
-    @Basic
-    @Column(name = "admin_id", nullable = false)
-    public int getAdminId() {
-        return adminId;
-    }
-
-    public void setAdminId(int adminId) {
-        this.adminId = adminId;
-    }
-
-    @Basic
-    @Column(name = "client_id", nullable = false)
-    public int getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Subscription that = (Subscription) o;
         return subscriptionId == that.subscriptionId &&
-                adminId == that.adminId &&
-                clientId == that.clientId &&
                 Objects.equals(activityId, that.activityId) &&
                 Objects.equals(numberOfTrains, that.numberOfTrains) &&
                 Objects.equals(dateFrom, that.dateFrom) &&
@@ -116,7 +92,7 @@ public class Subscription {
 
     @Override
     public int hashCode() {
-        return Objects.hash(subscriptionId, activityId, numberOfTrains, dateFrom, dateTo, price, adminId, clientId);
+        return Objects.hash(subscriptionId, activityId, numberOfTrains, dateFrom, dateTo, price);
     }
 
     @ManyToOne

@@ -12,8 +12,6 @@ public class GroupTraining {
     private int groupId;
     private String groupName;
     private String groupDescription;
-    private Integer trainerId;
-    private Integer activityId;
     private Time timeBegin;
     private Time timeEnd;
     private Integer regularity;
@@ -50,26 +48,6 @@ public class GroupTraining {
 
     public void setGroupDescription(String groupDescription) {
         this.groupDescription = groupDescription;
-    }
-
-    @Basic
-    @Column(name = "trainer_id")
-    public Integer getTrainerId() {
-        return trainerId;
-    }
-
-    public void setTrainerId(Integer trainerId) {
-        this.trainerId = trainerId;
-    }
-
-    @Basic
-    @Column(name = "activity_id")
-    public Integer getActivityId() {
-        return activityId;
-    }
-
-    public void setActivityId(Integer activityId) {
-        this.activityId = activityId;
     }
 
     @Basic
@@ -120,8 +98,6 @@ public class GroupTraining {
         return groupId == that.groupId &&
                 Objects.equals(groupName, that.groupName) &&
                 Objects.equals(groupDescription, that.groupDescription) &&
-                Objects.equals(trainerId, that.trainerId) &&
-                Objects.equals(activityId, that.activityId) &&
                 Objects.equals(timeBegin, that.timeBegin) &&
                 Objects.equals(timeEnd, that.timeEnd) &&
                 Objects.equals(regularity, that.regularity);
@@ -129,7 +105,7 @@ public class GroupTraining {
 
     @Override
     public int hashCode() {
-        return Objects.hash(groupId, groupName, groupDescription, trainerId, activityId, timeBegin, timeEnd, regularity);
+        return Objects.hash(groupId, groupName, groupDescription, timeBegin, timeEnd, regularity);
     }
 
     @OneToMany(mappedBy = "groupTrainingByGroupId")

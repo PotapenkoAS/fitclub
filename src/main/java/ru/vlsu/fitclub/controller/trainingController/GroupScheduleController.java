@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.vlsu.fitclub.model.GroupSchedule;
 import ru.vlsu.fitclub.model.entity.Activity;
+import ru.vlsu.fitclub.model.entity.GroupTraining;
 import ru.vlsu.fitclub.model.entity.Trainer;
 import ru.vlsu.fitclub.service.GroupScheduleService;
 
@@ -14,6 +15,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 @Controller
 public class GroupScheduleController {
@@ -52,7 +54,7 @@ public class GroupScheduleController {
         if (activityId == null) {
             activityId = 0;
         }
-        ArrayList<GroupSchedule> list = scheduleService.getGroupSchedule(Date.valueOf(dateBegin)
+        List<GroupTraining> list = scheduleService.getGroupSchedule(Date.valueOf(dateBegin)
                 , Date.valueOf(dateEnd)
                 , Time.valueOf(timeBegin)
                 , Time.valueOf(timeEnd)

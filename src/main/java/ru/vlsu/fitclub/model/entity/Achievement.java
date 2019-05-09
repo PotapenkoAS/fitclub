@@ -8,7 +8,6 @@ import java.util.Objects;
 @Entity
 public class Achievement {
     private int achievementId;
-    private Integer activityId;
     private String description;
     private double value;
     private byte[] image;
@@ -23,16 +22,6 @@ public class Achievement {
 
     public void setAchievementId(int achievementId) {
         this.achievementId = achievementId;
-    }
-
-    @Basic
-    @Column(name = "activity_id")
-    public Integer getActivityId() {
-        return activityId;
-    }
-
-    public void setActivityId(Integer activityId) {
-        this.activityId = activityId;
     }
 
     @Basic
@@ -72,14 +61,13 @@ public class Achievement {
         Achievement that = (Achievement) o;
         return achievementId == that.achievementId &&
                 Double.compare(that.value, value) == 0 &&
-                Objects.equals(activityId, that.activityId) &&
                 Objects.equals(description, that.description) &&
                 Arrays.equals(image, that.image);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(achievementId, activityId, description, value);
+        int result = Objects.hash(achievementId, description, value);
         result = 31 * result + Arrays.hashCode(image);
         return result;
     }

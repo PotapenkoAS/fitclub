@@ -38,7 +38,9 @@
         <p th:text="|За занятие: ${activity.getPriceForTrain()} За неделю: ${activity.getPriceForWeek()} За месяц: ${activity.getPriceForMonth()} За год: ${activity.getPriceForYear()}|"></p>
         <br/>
         <button class="button button3"> Назад</button>
-        <button class="button button2"> Записаться</button>
+        <form method="get" th:href="@{'/new_sub?activityId=' + ${activity.getActivityId()}}">
+            <input type="submit" class="button button2" th:text="Записаться"/>
+        </form>
     </div>
     <br/>
     <br/>

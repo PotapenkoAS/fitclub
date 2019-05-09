@@ -12,7 +12,6 @@ public class Trainer {
     private String patronymic;
     private String email;
     private String phone;
-    private Integer userId;
     private Collection<GroupTraining> groupTrainingsByTrainerId;
     private User userByUserId;
     private Collection<TrainerSpecialization> trainerSpecializationsByTrainerId;
@@ -78,16 +77,6 @@ public class Trainer {
         this.phone = phone;
     }
 
-    @Basic
-    @Column(name = "user_id")
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -98,13 +87,12 @@ public class Trainer {
                 Objects.equals(name, trainer.name) &&
                 Objects.equals(patronymic, trainer.patronymic) &&
                 Objects.equals(email, trainer.email) &&
-                Objects.equals(phone, trainer.phone) &&
-                Objects.equals(userId, trainer.userId);
+                Objects.equals(phone, trainer.phone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(trainerId, surname, name, patronymic, email, phone, userId);
+        return Objects.hash(trainerId, surname, name, patronymic, email, phone);
     }
 
     @OneToMany(mappedBy = "trainerByTrainerId")

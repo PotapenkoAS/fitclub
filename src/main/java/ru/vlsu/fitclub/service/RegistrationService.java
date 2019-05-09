@@ -36,7 +36,7 @@ public class RegistrationService {
         } else {
             return errorList;
         }
-        client.setUserId(user.getUserId());
+        client.setUserByUserId(user);
         cr.save(client);
         return errorList;
     }
