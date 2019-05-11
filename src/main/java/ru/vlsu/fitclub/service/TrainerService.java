@@ -35,4 +35,8 @@ public class TrainerService {
         }
         return result;
     }
+
+    public ArrayList<Trainer> getTrainerList() {
+        return trainerRepository.findAll();
+    }
 }

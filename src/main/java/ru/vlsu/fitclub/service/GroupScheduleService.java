@@ -50,18 +50,11 @@ public class GroupScheduleService {
             queryBuilder.append(" and gt.timeEnd <= '").append(timeEnd.toString()).append("'");
         }
 
-
         Query query = em.createQuery(queryBuilder.toString());
 
         return (List<GroupTraining>) query.setMaxResults(50).getResultList();
     }
 
-    public ArrayList<Trainer> getTrainerList() {
-        return trainerRepository.findAll();
-    }
 
-    public ArrayList<Activity> getActivityList() {
-        return activityRepository.findAll();
-    }
 }
 

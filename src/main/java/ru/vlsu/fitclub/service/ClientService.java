@@ -35,7 +35,7 @@ public class ClientService {
         return stringImageList;
     }
 
-    public Collection<Subscription> getClientSubs(int userId) {
+    public Collection<Subscription> getClientSubsByUserId(int userId) {
         return ur.findByUserId(userId).getClientByUserId().getSubscriptionsByClientId();
 
     }

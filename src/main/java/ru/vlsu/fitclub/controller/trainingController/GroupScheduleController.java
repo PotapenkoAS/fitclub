@@ -4,11 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import ru.vlsu.fitclub.model.GroupSchedule;
 import ru.vlsu.fitclub.model.entity.Activity;
 import ru.vlsu.fitclub.model.entity.GroupTraining;
 import ru.vlsu.fitclub.model.entity.Trainer;
+import ru.vlsu.fitclub.service.ActivityService;
 import ru.vlsu.fitclub.service.GroupScheduleService;
+import ru.vlsu.fitclub.service.TrainerService;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -21,10 +22,16 @@ import java.util.List;
 public class GroupScheduleController {
 
     private GroupScheduleService scheduleService;
+    private ActivityService activityService;
+    private TrainerService trainerService;
+
+
 
     @Autowired
-    public GroupScheduleController(GroupScheduleService scheduleService) {
+    public GroupScheduleController(GroupScheduleService scheduleService, ActivityService activityService, TrainerService trainerService) {
         this.scheduleService = scheduleService;
+        this.activityService = activityService;
+        this.trainerService = trainerService;
     }
 
     @GetMapping("/group_training")
@@ -60,8 +67,8 @@ public class GroupScheduleController {
                 , Time.valueOf(timeEnd)
                 , trainerId
                 , activityId);
-        ArrayList<Trainer> trainerList = scheduleService.getTrainerList();
-        ArrayList<Activity> activityList = scheduleService.getActivityList();
+        ArrayList<Trainer> trainerList = trainerService.getTrainerList();
+        ArrayList<Activity> activityList = activityService.getActivityList();
         model.addAttribute("list", list);
         model.addAttribute("trainerList", trainerList);
         model.addAttribute("activityList", activityList);
