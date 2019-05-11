@@ -1,14 +1,22 @@
 function change(value) {
-    var count = document.getElementById("count");
-    var date = document.getElementById("date");
+    var count = document.getElementById("countDiv");
+    var date = document.getElementById("dateDiv");
+    var i = 0;
+    var inputs;
     if (value === 1) {
         date.style.display = "inline";
         count.style.display = "none";
-        count.value = 0;
+        inputs = document.getElementsByClassName("countInput");
+        for (i = 0; i < inputs.length; i++) {
+            inputs[i].value = "0";
+        }
     } else {
         date.style.display = "none";
         count.style.display = "inline";
-        date.value = null;
+        inputs = document.getElementsByClassName("dateInput");
+        for (i = 0; i < inputs.length; i++) {
+            inputs[i].value = "0";
+        }
     }
 }
 

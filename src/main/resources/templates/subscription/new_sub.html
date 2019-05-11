@@ -48,8 +48,14 @@
             Период
         </label>
         <br/>
-        <input type="date" name="date" id="date" placeholder="Дата окончания">
-        <input type="number" name="count" id="count" placeholder="Количество занятий" style="display: none">
+        <div id="dateDiv" style="display: none">
+            <input type="number" name="year" id="year" class="dateInput" placeholder="Год">
+            <input type="number" name="month" id="month" class="dateInput" placeholder="Месяц">
+            <input type="number" name="week" id="week" class="dateInput" placeholder="Неделя">
+        </div>
+        <div id="countDiv" style="display: inline">
+            <input type="number" name="count" id="count" class="countInput" placeholder="Количество занятий" >
+        </div>
     </form>
 </div>
 </body>
