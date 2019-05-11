@@ -1,4 +1,4 @@
-package ru.vlsu.fitclub.model;
+package ru.vlsu.fitclub.model.restObject;
 
 public class SelectArray {
 

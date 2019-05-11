@@ -8,7 +8,6 @@ import java.util.Objects;
 @Entity
 public class Subscription {
     private int subscriptionId;
-    private Integer activityId;
     private Integer numberOfTrains;
     private Date dateFrom;
     private Date dateTo;
@@ -16,6 +15,9 @@ public class Subscription {
     private Admin adminByAdminId;
     private Client clientByClientId;
     private Collection<SubscriptionTrainDate> subscriptionTrainDatesBySubscriptionId;
+    private Activity activityByActivityId;
+    private Trainer trainerByTrainerId;
+    private boolean isActive;
 
     @Id
     @Column(name = "subscription_id", nullable = false)
@@ -25,16 +27,6 @@ public class Subscription {
 
     public void setSubscriptionId(int subscriptionId) {
         this.subscriptionId = subscriptionId;
-    }
-
-    @Basic
-    @Column(name = "activity_id")
-    public Integer getActivityId() {
-        return activityId;
-    }
-
-    public void setActivityId(Integer activityId) {
-        this.activityId = activityId;
     }
 
     @Basic
@@ -83,7 +75,6 @@ public class Subscription {
         if (o == null || getClass() != o.getClass()) return false;
         Subscription that = (Subscription) o;
         return subscriptionId == that.subscriptionId &&
-                Objects.equals(activityId, that.activityId) &&
                 Objects.equals(numberOfTrains, that.numberOfTrains) &&
                 Objects.equals(dateFrom, that.dateFrom) &&
                 Objects.equals(dateTo, that.dateTo) &&
@@ -92,7 +83,7 @@ public class Subscription {
 
     @Override
     public int hashCode() {
-        return Objects.hash(subscriptionId, activityId, numberOfTrains, dateFrom, dateTo, price);
+        return Objects.hash(subscriptionId, numberOfTrains, dateFrom, dateTo, price);
     }
 
     @ManyToOne
@@ -122,5 +113,35 @@ public class Subscription {
 
     public void setSubscriptionTrainDatesBySubscriptionId(Collection<SubscriptionTrainDate> subscriptionTrainDatesBySubscriptionId) {
         this.subscriptionTrainDatesBySubscriptionId = subscriptionTrainDatesBySubscriptionId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "activity_id", referencedColumnName = "activity_id")
+    public Activity getActivityByActivityId() {
+        return activityByActivityId;
+    }
+
+    public void setActivityByActivityId(Activity activityByActivityId) {
+        this.activityByActivityId = activityByActivityId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id")
+    public Trainer getTrainerByTrainerId() {
+        return trainerByTrainerId;
+    }
+
+    public void setTrainerByTrainerId(Trainer trainerByTrainerId) {
+        this.trainerByTrainerId = trainerByTrainerId;
+    }
+
+    @Basic
+    @Column(name = "is_active")
+    public boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 }

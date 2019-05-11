@@ -16,6 +16,7 @@ public class Trainer {
     private User userByUserId;
     private Collection<TrainerSpecialization> trainerSpecializationsByTrainerId;
     private Collection<Training> trainingsByTrainerId;
+    private Collection<Subscription> subscriptionsByTrainerId;
 
     @Id
     @Column(name = "trainer_id", nullable = false)
@@ -130,5 +131,14 @@ public class Trainer {
 
     public void setTrainingsByTrainerId(Collection<Training> trainingsByTrainerId) {
         this.trainingsByTrainerId = trainingsByTrainerId;
+    }
+
+    @OneToMany(mappedBy = "trainerByTrainerId")
+    public Collection<Subscription> getSubscriptionsByTrainerId() {
+        return subscriptionsByTrainerId;
+    }
+
+    public void setSubscriptionsByTrainerId(Collection<Subscription> subscriptionsByTrainerId) {
+        this.subscriptionsByTrainerId = subscriptionsByTrainerId;
     }
 }

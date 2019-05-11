@@ -1,4 +1,4 @@
-package ru.vlsu.fitclub.model.listeners;
+package ru.vlsu.fitclub.model.listener;
 
 import javax.persistence.PrePersist;
 

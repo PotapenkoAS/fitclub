@@ -1,7 +1,9 @@
 package ru.vlsu.fitclub.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import ru.vlsu.fitclub.model.CustomUserDetails;
 import ru.vlsu.fitclub.model.entity.User;
 import ru.vlsu.fitclub.repository.UserRepository;
 
@@ -34,6 +36,11 @@ public class UserService {
             errorList.add("Пароль слишком короткий");
         }
         return errorList;
+    }
+
+    public int getCurrentUserId(){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return ((CustomUserDetails) principal).getUserId();
     }
 
     public String userExistsByLoginValidation(String login) {

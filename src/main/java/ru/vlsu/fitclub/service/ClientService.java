@@ -4,22 +4,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.vlsu.fitclub.model.entity.Client;
 import ru.vlsu.fitclub.model.entity.Subscription;
-import ru.vlsu.fitclub.repository.ClientRepository;
 import ru.vlsu.fitclub.repository.UserRepository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class ClientService {
 
     private UserRepository ur;
+    private EntityManager em;
+
 
     @Autowired
-    public ClientService(UserRepository ur) {
+    public ClientService(UserRepository ur, EntityManager em) {
         this.ur = ur;
+        this.em = em;
     }
+
 
     public Client getClientByUserId(int id) {
         return ur.findByUserId(id).getClientByUserId();
@@ -37,6 +43,15 @@ public class ClientService {
 
     public Collection<Subscription> getClientSubsByUserId(int userId) {
         return ur.findByUserId(userId).getClientByUserId().getSubscriptionsByClientId();
+    }
 
+    public List<Subscription> getClientSubsByActivityAndUserId(int activityId, int userId) {
+        Client client = ur.findByUserId(userId).getClientByUserId();
+        Query query = em.createNativeQuery("select * from Subscription " +
+                "where activity_id = :activityId " +
+                "and client_id = :clientId ");
+        query.setParameter("activityId", activityId);
+        query.setParameter("clientId", client.getClientId());
+        return (List<Subscription>) query.getResultList();
     }
 }

@@ -6,7 +6,7 @@
     <base href="/">
 </head>
 
-<body>
+<body onload="refresh()">
 <div id="header" class="header">
     <p>Fitness club</p>
 </div>
@@ -23,9 +23,12 @@
 </div>
 <script type="text/javascript" src="scripts/jquery.js"></script>
 <script type="text/javascript" src="scripts/new_sub.js"></script>
+<script type="text/javascript">
+
+</script>
 <div class="contentText">
     <form>
-        <select name="activityId" id="activities" onchange="refreshSelect()">
+        <select name="activityId" id="activities" onchange="refresh()">
             <option th:each="item : ${activityList}"
                     th:value="${item.getActivityId()}"
                     th:utext="${item.getName()}"
@@ -33,9 +36,6 @@
         </select>
         <br/>
         <select name="trainerId" id="trainers">
-            <option th:each="item : ${trainerList}"
-                    th:value="${item.getTrainerId()}"
-                    th:utext="${item.getSurname()} + ' ' + ${item.getName()}"/>
         </select>
         <br/>
         <label>
@@ -49,13 +49,16 @@
         </label>
         <br/>
         <div id="dateDiv" style="display: none">
-            <input type="number" name="year" id="year" class="dateInput" placeholder="Год">
-            <input type="number" name="month" id="month" class="dateInput" placeholder="Месяц">
-            <input type="number" name="week" id="week" class="dateInput" placeholder="Неделя">
+            <input type="number" name="year" id="year" class="dateInput" value=null placeholder="Год" onchange="recount()">
+            <input type="number" name="month" id="month" class="dateInput" value=null placeholder="Месяц" onchange="recount()">
+            <input type="number" name="week" id="week" class="dateInput" value=null placeholder="Неделя" onchange="recount()">
         </div>
         <div id="countDiv" style="display: inline">
-            <input type="number" name="count" id="count" class="countInput" placeholder="Количество занятий" >
+            <input type="number" name="count" id="count" class="countInput" placeholder="Количество занятий"
+                   onchange="recount()">
         </div>
     </form>
+    <p id="price"></p>
+    <p id="totalPrice"></p>
 </div>
 </body>

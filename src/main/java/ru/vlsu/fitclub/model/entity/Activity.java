@@ -19,6 +19,7 @@ public class Activity {
     private Collection<Training> trainingsByActivityId;
     private byte[] image;
     private Collection<ActivitySpecialization> activitySpecializationsByActivityId;
+    private Collection<Subscription> subscriptionsByActivityId;
 
     @Id
     @Column(name = "activity_id", nullable = false)
@@ -148,7 +149,7 @@ public class Activity {
     }
 
     @Basic
-    @Column(name = "image", nullable = true)
+    @Column(name = "image")
     public byte[] getImage() {
         return image;
     }
@@ -164,5 +165,14 @@ public class Activity {
 
     public void setActivitySpecializationsByActivityId(Collection<ActivitySpecialization> activitySpecializationsByActivityId) {
         this.activitySpecializationsByActivityId = activitySpecializationsByActivityId;
+    }
+
+    @OneToMany(mappedBy = "activityByActivityId")
+    public Collection<Subscription> getSubscriptionsByActivityId() {
+        return subscriptionsByActivityId;
+    }
+
+    public void setSubscriptionsByActivityId(Collection<Subscription> subscriptionsByActivityId) {
+        this.subscriptionsByActivityId = subscriptionsByActivityId;
     }
 }
