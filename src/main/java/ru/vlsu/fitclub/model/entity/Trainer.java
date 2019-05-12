@@ -17,6 +17,7 @@ public class Trainer {
     private Collection<TrainerSpecialization> trainerSpecializationsByTrainerId;
     private Collection<Training> trainingsByTrainerId;
     private Collection<Subscription> subscriptionsByTrainerId;
+    private Integer userId;
 
     @Id
     @Column(name = "trainer_id", nullable = false)
@@ -140,5 +141,15 @@ public class Trainer {
 
     public void setSubscriptionsByTrainerId(Collection<Subscription> subscriptionsByTrainerId) {
         this.subscriptionsByTrainerId = subscriptionsByTrainerId;
+    }
+
+    @Basic
+    @Column(name = "user_id")
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

@@ -7,6 +7,7 @@ import ru.vlsu.fitclub.model.entity.Subscription;
 import ru.vlsu.fitclub.repository.UserRepository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -17,13 +18,13 @@ import java.util.List;
 public class ClientService {
 
     private UserRepository ur;
+    @PersistenceContext
     private EntityManager em;
 
 
     @Autowired
-    public ClientService(UserRepository ur, EntityManager em) {
+    public ClientService(UserRepository ur) {
         this.ur = ur;
-        this.em = em;
     }
 
 

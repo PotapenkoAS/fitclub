@@ -23,6 +23,7 @@ public class Client {
     private Collection<GroupClients> groupClientsByClientId;
     private Collection<Subscription> subscriptionsByClientId;
     private Collection<Training> trainingsByClientId;
+    private Integer userId;
 
     @Id
     @Column(name = "client_id", nullable = false)
@@ -192,5 +193,15 @@ public class Client {
 
     public void setTrainingsByClientId(Collection<Training> trainingsByClientId) {
         this.trainingsByClientId = trainingsByClientId;
+    }
+
+    @Basic
+    @Column(name = "user_id")
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

@@ -19,6 +19,8 @@ public class GroupTraining {
     private Trainer trainerByTrainerId;
     private Activity activityByActivityId;
     private Date date;
+    private Integer trainerId;
+    private Integer activityId;
 
     @Id
     @Column(name = "group_id", nullable = false)
@@ -137,5 +139,23 @@ public class GroupTraining {
         this.activityByActivityId = activityByActivityId;
     }
 
+    @Basic
+    @Column(name = "trainer_id")
+    public Integer getTrainerId() {
+        return trainerId;
+    }
 
+    public void setTrainerId(Integer trainerId) {
+        this.trainerId = trainerId;
+    }
+
+    @Basic
+    @Column(name = "activity_id")
+    public Integer getActivityId() {
+        return activityId;
+    }
+
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
+    }
 }

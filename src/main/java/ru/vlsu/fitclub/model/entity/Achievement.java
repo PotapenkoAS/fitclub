@@ -13,6 +13,7 @@ public class Achievement {
     private byte[] image;
     private Activity activityByActivityId;
     private Collection<ClientAchieves> clientAchievesByAchievementId;
+    private Integer activityId;
 
     @Id
     @Column(name = "achievement_id", nullable = false)
@@ -89,5 +90,15 @@ public class Achievement {
 
     public void setClientAchievesByAchievementId(Collection<ClientAchieves> clientAchievesByAchievementId) {
         this.clientAchievesByAchievementId = clientAchievesByAchievementId;
+    }
+
+    @Basic
+    @Column(name = "activity_id")
+    public Integer getActivityId() {
+        return activityId;
+    }
+
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 }

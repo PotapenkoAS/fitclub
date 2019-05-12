@@ -17,6 +17,9 @@ public class Training {
     private Trainer trainerByTrainerId;
     private Client clientByClientId;
     private Activity activityByActivityId;
+    private Integer trainerId;
+    private Integer clientId;
+    private Integer activityId;
 
     @Id
     @Column(name = "training_id", nullable = false)
@@ -133,5 +136,35 @@ public class Training {
 
     public void setActivityByActivityId(Activity activityByActivityId) {
         this.activityByActivityId = activityByActivityId;
+    }
+
+    @Basic
+    @Column(name = "trainer_id")
+    public Integer getTrainerId() {
+        return trainerId;
+    }
+
+    public void setTrainerId(Integer trainerId) {
+        this.trainerId = trainerId;
+    }
+
+    @Basic
+    @Column(name = "client_id")
+    public Integer getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
+    }
+
+    @Basic
+    @Column(name = "activity_id")
+    public Integer getActivityId() {
+        return activityId;
+    }
+
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
     }
 }

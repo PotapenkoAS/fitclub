@@ -23,12 +23,9 @@
 </div>
 <script type="text/javascript" src="scripts/jquery.js"></script>
 <script type="text/javascript" src="scripts/new_sub.js"></script>
-<script type="text/javascript">
-
-</script>
 <div class="contentText">
-    <form>
-        <select name="activityId" id="activities" onchange="refresh()">
+    <form method="post" >
+        <select name="activityId" id="activities" onchange="refresh()" required>
             <option th:each="item : ${activityList}"
                     th:value="${item.getActivityId()}"
                     th:utext="${item.getName()}"
@@ -49,14 +46,22 @@
         </label>
         <br/>
         <div id="dateDiv" style="display: none">
-            <input type="number" name="year" id="year" class="dateInput" value=null placeholder="Год" onchange="recount()">
-            <input type="number" name="month" id="month" class="dateInput" value=null placeholder="Месяц" onchange="recount()">
-            <input type="number" name="week" id="week" class="dateInput" value=null placeholder="Неделя" onchange="recount()">
+            <input type="text" name="year" id="year" class="dateInput"
+                   placeholder="Год" onchange="recount()">
+            <input type="text" name="month" id="month" class="dateInput"
+                   placeholder="Месяц" onchange="recount()">
+            <input type="text" name="week" id="week" class="dateInput"
+                   placeholder="Неделя" onchange="recount()">
         </div>
         <div id="countDiv" style="display: inline">
             <input type="number" name="count" id="count" class="countInput" placeholder="Количество занятий"
                    onchange="recount()">
         </div>
+        <label>
+            <input type="checkbox" name="checked">
+            Активировать сразу?
+        </label>
+        <input type="submit" value="Оплатить">
     </form>
     <p id="price"></p>
     <p id="totalPrice"></p>

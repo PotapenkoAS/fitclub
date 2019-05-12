@@ -10,14 +10,16 @@ public class Subscription {
     private int subscriptionId;
     private Integer numberOfTrains;
     private Date dateFrom;
-    private Date dateTo;
-    private Integer price;
-    private Admin adminByAdminId;
+    private String duration;
+    private Float price;
     private Client clientByClientId;
     private Collection<SubscriptionTrainDate> subscriptionTrainDatesBySubscriptionId;
     private Activity activityByActivityId;
     private Trainer trainerByTrainerId;
     private boolean isActive;
+    private Integer activityId;
+    private int clientId;
+    private Integer trainerId;
 
     @Id
     @Column(name = "subscription_id", nullable = false)
@@ -50,22 +52,12 @@ public class Subscription {
     }
 
     @Basic
-    @Column(name = "date_to")
-    public Date getDateTo() {
-        return dateTo;
-    }
-
-    public void setDateTo(Date dateTo) {
-        this.dateTo = dateTo;
-    }
-
-    @Basic
     @Column(name = "price")
-    public Integer getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
@@ -76,24 +68,14 @@ public class Subscription {
         Subscription that = (Subscription) o;
         return subscriptionId == that.subscriptionId &&
                 Objects.equals(numberOfTrains, that.numberOfTrains) &&
+                Objects.equals(duration, that.duration) &&
                 Objects.equals(dateFrom, that.dateFrom) &&
-                Objects.equals(dateTo, that.dateTo) &&
                 Objects.equals(price, that.price);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(subscriptionId, numberOfTrains, dateFrom, dateTo, price);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "admin_id", referencedColumnName = "admin_id", insertable = false, updatable = false)
-    public Admin getAdminByAdminId() {
-        return adminByAdminId;
-    }
-
-    public void setAdminByAdminId(Admin adminByAdminId) {
-        this.adminByAdminId = adminByAdminId;
+        return Objects.hash(subscriptionId, numberOfTrains, dateFrom, duration, price);
     }
 
     @ManyToOne
@@ -116,7 +98,7 @@ public class Subscription {
     }
 
     @ManyToOne
-    @JoinColumn(name = "activity_id", referencedColumnName = "activity_id")
+    @JoinColumn(name = "activity_id", referencedColumnName = "activity_id", insertable = false, updatable = false)
     public Activity getActivityByActivityId() {
         return activityByActivityId;
     }
@@ -126,7 +108,7 @@ public class Subscription {
     }
 
     @ManyToOne
-    @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id")
+    @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id", insertable = false, updatable = false)
     public Trainer getTrainerByTrainerId() {
         return trainerByTrainerId;
     }
@@ -143,5 +125,45 @@ public class Subscription {
 
     public void setIsActive(boolean isActive) {
         this.isActive = isActive;
+    }
+
+    @Basic
+    @Column(name = "duration")
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    @Basic
+    @Column(name = "activity_id")
+    public Integer getActivityId() {
+        return activityId;
+    }
+
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
+    }
+
+    @Basic
+    @Column(name = "client_id")
+    public int getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
+    }
+
+    @Basic
+    @Column(name = "trainer_id")
+    public Integer getTrainerId() {
+        return trainerId;
+    }
+
+    public void setTrainerId(Integer trainerId) {
+        this.trainerId = trainerId;
     }
 }
