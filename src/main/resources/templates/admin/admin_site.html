@@ -7,22 +7,7 @@
 </head>
 
 <body>
-<div id="header" class="header">
-    <p>Fitness club</p>
-</div>
-
-<div class="menu">
-    <div class="nav">
-        <ul class="topmenu">
-            <li><a href="">Профиль</a></li>
-            <li><a href="">Статистика фитнес-клуба</a></li>
-            <li><a href="">Тренеры</a></li>
-            <li><a href="">Клиенты</a></li>
-            <li><a href="">Уведомления</a></li>
-        </ul>
-    </div>
-</div>
-
+<div th:insert="header.html :: header-fragment"></div>
 <div class="section">
     <img class="img-circle-admin" src="/content/avatar.png" alt="none">
     <h1> Admin </h1>

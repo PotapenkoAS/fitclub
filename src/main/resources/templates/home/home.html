@@ -7,19 +7,6 @@
     <base href="/">
 </head>
 <body>
-<div id="header" class="header">
-    <a href="" style="text-decoration: none"><p>Fitness club</p></a>
-
-</div>
-<div class="menu">
-    <div class="nav">
-        <ul class="topmenu">
-            <li><a href="/client">Пользователь</a></li>
-            <li><a href="/trainer">Тренер</a></li>
-            <li><a href="/registration">Регистрация</a></li>
-            <li><a href="/group_training">Расписание</a></li>
-        </ul>
-    </div>
-</div>
+<div th:insert="header.html :: header-fragment"></div>
 </body>
 </html>
