@@ -11,6 +11,7 @@
 <script type="text/javascript" src="scripts/jquery.js"></script>
 <script type="text/javascript" src="scripts/new_sub.js"></script>
 <div class="contentText">
+    <p th:text="${error}"></p>
     <form method="post" >
         <select name="activityId" id="activities" onchange="refresh()" required>
             <option th:each="item : ${activityList}"

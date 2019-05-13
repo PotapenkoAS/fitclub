@@ -28,7 +28,6 @@ function change(value) {
 }
 
 
-
 function refresh() {
     var activityId = document.getElementById("activities").value;
     $.ajax({

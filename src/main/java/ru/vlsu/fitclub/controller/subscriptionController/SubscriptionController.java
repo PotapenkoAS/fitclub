@@ -11,6 +11,7 @@ import ru.vlsu.fitclub.model.entity.Subscription;
 import ru.vlsu.fitclub.model.entity.Trainer;
 import ru.vlsu.fitclub.service.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -36,7 +37,12 @@ public class SubscriptionController {
     @GetMapping("new_sub")
     public String getNewSubWithActivity(@RequestParam(name = "activityId", defaultValue = "0") int activityId, Model model) {
         int userId = userService.getCurrentUserId();
-        List<Subscription> subList = clientService.getClientSubsByActivityAndUserId(activityId, userId);
+        List<Subscription> subList = new ArrayList<>();
+        if (activityId > 0) {
+            subList = clientService.getClientSubsByActivityAndUserId(activityId, userId);
+        }else{
+            model.addAttribute("error","Набор не выбран с какого то XYZ");
+        }
         if (subList.isEmpty()) {
             Collection<Activity> activityList = activityService.getActivityList();
             Collection<Trainer> trainerList = trainerService.getTrainersByActivityId(activityId);

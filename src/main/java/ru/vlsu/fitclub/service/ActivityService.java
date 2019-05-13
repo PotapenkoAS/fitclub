@@ -3,18 +3,22 @@ package ru.vlsu.fitclub.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.vlsu.fitclub.model.entity.Activity;
+import ru.vlsu.fitclub.model.entity.Pack;
 import ru.vlsu.fitclub.repository.ActivityRepository;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 @Service
 public class ActivityService {
 
     private ActivityRepository activityRepository;
+    private PackService packService;
 
     @Autowired
-    public ActivityService(ActivityRepository activityRepository) {
+    public ActivityService(ActivityRepository activityRepository, PackService packService) {
         this.activityRepository = activityRepository;
+        this.packService = packService;
     }
 
     public Activity getActivityById(int id) {
@@ -40,4 +44,10 @@ public class ActivityService {
         return price;
     }
 
+    public Collection<Activity> getActivitiesByPackId(int packId) {
+        Pack pack = packService.getPackByPackId(packId);
+        Collection<Activity> result = new ArrayList<>();
+        pack.getActivityPacksByPackId().forEach(i -> result.add(i.getActivityByActivityId()));
+        return result;
+    }
 }
