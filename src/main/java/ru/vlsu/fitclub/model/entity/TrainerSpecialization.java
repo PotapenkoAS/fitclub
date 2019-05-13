@@ -1,6 +1,6 @@
 package ru.vlsu.fitclub.model.entity;
 
-import ru.vlsu.fitclub.model.stuff.TrainerSpecializationKey;
+import ru.vlsu.fitclub.model.compositeKeys.TrainerSpecializationKey;
 
 import javax.persistence.*;
 import java.util.Objects;

@@ -1,4 +1,4 @@
-package ru.vlsu.fitclub.model.stuff;
+package ru.vlsu.fitclub.model.compositeKeys;
 
 import java.io.Serializable;
 

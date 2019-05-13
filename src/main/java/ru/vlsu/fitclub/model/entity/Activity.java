@@ -20,6 +20,7 @@ public class Activity {
     private byte[] image;
     private Collection<ActivitySpecialization> activitySpecializationsByActivityId;
     private Collection<Subscription> subscriptionsByActivityId;
+    private Collection<ActivityPack> activityPacksByActivityId;
 
     @Id
     @Column(name = "activity_id", nullable = false)
@@ -174,5 +175,14 @@ public class Activity {
 
     public void setSubscriptionsByActivityId(Collection<Subscription> subscriptionsByActivityId) {
         this.subscriptionsByActivityId = subscriptionsByActivityId;
+    }
+
+    @OneToMany(mappedBy = "activityByActivityId")
+    public Collection<ActivityPack> getActivityPacksByActivityId() {
+        return activityPacksByActivityId;
+    }
+
+    public void setActivityPacksByActivityId(Collection<ActivityPack> activityPacksByActivityId) {
+        this.activityPacksByActivityId = activityPacksByActivityId;
     }
 }

@@ -1,6 +1,6 @@
 package ru.vlsu.fitclub.model.entity;
 
-import ru.vlsu.fitclub.model.stuff.ClientAcvievesKey;
+import ru.vlsu.fitclub.model.compositeKeys.ClientAcvievesKey;
 
 import javax.persistence.*;
 import java.sql.Date;
