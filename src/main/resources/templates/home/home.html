@@ -1,4 +1,5 @@
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
@@ -7,6 +8,25 @@
     <base href="/">
 </head>
 <body>
-<div th:insert="header.html :: header-fragment"></div>
+<div id="header" class="header">
+    <a href="" style="text-decoration: none"><p>Fitness club</p></a>
+
+</div>
+<div class="menu">
+    <div class="nav">
+        <ul class="topmenu">
+            <li><a href="/client">Пользователь</a></li>
+            <li>
+                <a href="/trainer">
+                    <div>Тренер</div>
+                </a>
+            </li>
+            <li><a href="/registration">
+                <div sec:authorize="!hasRole('CLIENT')">Регистрация</div>
+            </a></li>
+            <li><a href="/group_training">Расписание</a></li>
+        </ul>
+    </div>
+</div>
 </body>
 </html>

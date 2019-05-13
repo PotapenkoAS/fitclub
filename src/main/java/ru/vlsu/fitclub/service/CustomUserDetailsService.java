@@ -26,6 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         this.ur = ur;
     }
 
+
     @Override
     public UserDetails loadUserByUsername(String username) {
         User user;
