@@ -9,6 +9,12 @@
 <body>
 <div th:insert="header.html :: header-fragment"></div>
 
+<script>
+    function goBack() {
+        window.history.go(-1);
+    }
+</script>
+
 <div class="section-trainings">
     <div class="sidebar">
         <img class="img-circle" th:src="*{'data:image/jpg;base64,'+image}" alt="none">
@@ -24,10 +30,9 @@
         <h2> Стоимость </h2>
         <p th:text="|За занятие: ${activity.getPriceForTrain()} За неделю: ${activity.getPriceForWeek()} За месяц: ${activity.getPriceForMonth()} За год: ${activity.getPriceForYear()}|"></p>
         <br/>
-        <button class="button button3"> Назад</button>
-        <form method="get" th:href="@{'/new_sub?activityId=' + ${activity.getActivityId()}}">
-            <input type="submit" class="button button2" value="Записаться"/>
-        </form>
+        <button class="button button3" onclick="goBack()">Назад</button>
+        <a th:href="@{'/new_sub'(activityid=${activity.activityId})}"><input type="button" class="button button2"
+                                                                             value="Записаться"/></a>
     </div>
     <br/>
     <br/>
