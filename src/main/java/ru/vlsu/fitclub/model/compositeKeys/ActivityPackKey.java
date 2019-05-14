@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class ActivityPackKey implements Serializable {
     private int activityId;
-    private int packId;
+    private int activityPackId;
 
     public int getActivityId() {
         return activityId;
@@ -14,11 +14,11 @@ public class ActivityPackKey implements Serializable {
         this.activityId = activityId;
     }
 
-    public int getPackId() {
-        return packId;
+    public int getActivityPackId() {
+        return activityPackId;
     }
 
-    public void setPackId(int packId) {
-        this.packId = packId;
+    public void setActivityPackId(int activityPackId) {
+        this.activityPackId = activityPackId;
     }
 }

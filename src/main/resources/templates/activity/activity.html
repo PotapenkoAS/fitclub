@@ -31,7 +31,7 @@
         <p th:text="|За занятие: ${activity.getPriceForTrain()} За неделю: ${activity.getPriceForWeek()} За месяц: ${activity.getPriceForMonth()} За год: ${activity.getPriceForYear()}|"></p>
         <br/>
         <button class="button button3" onclick="goBack()">Назад</button>
-        <a th:href="@{'/new_sub'(activityid=${activity.activityId})}"><input type="button" class="button button2"
+        <a th:href="@{'/new_sub'(activity_id=${activity.activityId})}"><input type="button" class="button button2"
                                                                              value="Записаться"/></a>
     </div>
     <br/>

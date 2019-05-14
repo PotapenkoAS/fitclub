@@ -35,7 +35,7 @@ public class SubscriptionController {
     }
 
     @GetMapping("new_sub")
-    public String getNewSubWithActivity(@RequestParam(name = "activityId", defaultValue = "0") int activityId, Model model) {
+    public String getNewSubWithActivity(@RequestParam(name = "activity_id") int activityId, Model model) {
         int userId = userService.getCurrentUserId();
         List<Subscription> subList = new ArrayList<>();
         if (activityId > 0) {
@@ -46,7 +46,6 @@ public class SubscriptionController {
         if (subList.isEmpty()) {
             Collection<Activity> activityList = activityService.getActivityList();
             Collection<Trainer> trainerList = trainerService.getTrainersByActivityId(activityId);
-            model.addAttribute("trainerList", trainerList);
             model.addAttribute("activityId", activityId);
             model.addAttribute("activityList", activityList);
             return "subscription/new_sub";

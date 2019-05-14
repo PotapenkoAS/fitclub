@@ -34,7 +34,7 @@ function refresh() {
         type: 'GET',
         url: "/new_sub/trainerRefresh?activityId=" + activityId,
         dataType: "json",
-        success: function r(data) {
+        success: function (data) {
             var trainerSelect = document.getElementById("trainers");
             var i;
             for (i = trainerSelect.options.length - 1; i >= 0; i--) {

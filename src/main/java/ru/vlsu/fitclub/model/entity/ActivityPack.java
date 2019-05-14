@@ -51,7 +51,7 @@ public class ActivityPack {
     }
 
     @ManyToOne
-    @JoinColumn(name = "activity_id", referencedColumnName = "activity_id")
+    @JoinColumn(name = "activity_id", referencedColumnName = "activity_id", insertable = false, updatable = false)
     public Activity getActivityByActivityId() {
         return activityByActivityId;
     }
@@ -61,7 +61,7 @@ public class ActivityPack {
     }
 
     @ManyToOne
-    @JoinColumn(name = "activity_pack_id", referencedColumnName = "pack_id")
+    @JoinColumn(name = "activity_pack_id", referencedColumnName = "pack_id", insertable = false, updatable = false)
     public Pack getPackByActivityPackId() {
         return packByActivityPackId;
     }

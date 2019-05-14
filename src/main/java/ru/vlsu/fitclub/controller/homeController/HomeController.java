@@ -9,12 +9,12 @@ import ru.vlsu.fitclub.model.entity.User;
 import ru.vlsu.fitclub.repository.UserRepository;
 
 @Controller
-public class MainController {
+public class HomeController {
 
     private UserRepository users;
 
     @Autowired
-    public MainController(UserRepository users) {
+    public HomeController(UserRepository users) {
         this.users = users;
     }
 

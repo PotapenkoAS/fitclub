@@ -47,7 +47,7 @@ public class ActivityService {
     public Collection<Activity> getActivitiesByPackId(int packId) {
         Pack pack = packService.getPackByPackId(packId);
         Collection<Activity> result = new ArrayList<>();
-        pack.getActivityPacksByPackId().forEach(i -> result.add(i.getActivityByActivityId()));
+        pack.getActivityPacksByPackId().forEach(i -> result.add((i.getActivityByActivityId())));
         return result;
     }
 }
