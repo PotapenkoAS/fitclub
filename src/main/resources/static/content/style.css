@@ -137,6 +137,27 @@ p {
     margin-left: 34%;
 }
 
+.timetable_input{
+    width: 11%;
+    height: 30px;
+    padding: 0 10px;
+    margin-left: 1%;
+    display: inline-block;
+}
+
+.timetable_select{
+    width: 15%;
+    height: 30px;
+    padding: 0 10px;
+    margin-left: 1%;
+    display: inline-block;
+    border: 1px solid #cecece;
+    background-color: #efefef;
+    color: #787575;
+    border-radius: 5px;
+    font-family: 'Handlee', cursive;
+}
+
 .timetable {
     width: 100%;
 / / margin-right: 6 %;
@@ -520,6 +541,15 @@ h4 {
 
 .button3 {
     background-color: #9c9c9c;
+}
+
+.button_timetable{
+    background-color: #53a5f5;
+    display: inline-block;
+    width: 15%;
+    height: 30px;
+    padding: 0 10px;
+    margin-left: 1%;
 }
 
 img.img.zoom {

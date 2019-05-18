@@ -2,38 +2,43 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Timetable</title>
+    <link href="content/style.css" type="text/css" rel="stylesheet">
 </head>
-<body>
+
+<div th:insert="header.html :: header-fragment"></div>
+
+<div class="section">
 <form method="get">
-    <select name="trainerId">
-        <option value="0">Все</option>
+    <select name="trainerId" class ="timetable_select">
+        <option value="0" >Все</option>
         <option th:each="item : ${trainerList}"
                 th:value="${item.getTrainerId()}"
                 th:text="${item.getSurname()} + ' ' + ${item.getName()}"
                 th:selected="${item.getTrainerId() == trainerId}"/>
     </select>
-    <select name="activityId">
-        <option value="0">Все</option>
+
+    <select name="activityId" class ="timetable_select">
+        <option value="0" style=" display: inline-block;">Все</option>
         <option th:each="item : ${activityList}"
                 th:value="${item.getActivityId()}"
                 th:utext="${item.getName()}"
                 th:selected="${item.getActivityId() == activityId}"/>
     </select>
-    <input name="dateBegin" type="date" th:value="${dateBegin}"/>
-    <input name="dateEnd" type="date" th:value="${dateEnd}"/>
-    <input name="timeBegin" type="time" th:value="${timeBegin}"/>
-    <input name="timeEnd" type="time" th:value="${timeEnd}"/>
-    <input name="submit" type="submit" value="Поиск"/>
 
+    <input class ="timetable_input" name="dateBegin" type="date" th:value="${dateBegin}"/>
+    <input class ="timetable_input" name="dateEnd" type="date" th:value="${dateEnd}"/>
+    <input class ="timetable_input" name="timeBegin" type="time" th:value="${timeBegin}"/>
+    <input class ="timetable_input" name="timeEnd" type="time" th:value="${timeEnd}"/>
+    <input class="button button_timetable" name="submit" type="submit" value="Поиск"/>
 </form>
 <table>
     <tr>
-        <td>Дата</td>
-        <td>Тренировка</td>
-        <td>Вермя начала</td>
-        <td>Время окончания</td>
-        <td>Тренер</td>
+        <th>Дата</th>
+        <th>Тренировка</th>
+        <th>Время начала</th>
+        <th>Время окончания</th>
+        <th>Тренер</th>
     </tr>
     <tr th:each="item : ${list}">
         <td th:text="${item.getDate()}"></td>
@@ -43,5 +48,11 @@
         <td><a th:href="@{'/trainer/' + ${item.getTrainerByTrainerId().getTrainerId()}}" th:text="${item.getTrainerByTrainerId().getSurname()} + ' ' + ${item.getTrainerByTrainerId().getSurname()}"></a></td>
     </tr>
 </table>
+</div>
+
+<div class="copyright">
+    &copy; 2019 Fitness club :D All rights reserved.
+</div>
+
 </body>
 </html>
