@@ -8,6 +8,9 @@ import ru.vlsu.fitclub.model.entity.User;
 import ru.vlsu.fitclub.repository.ClientRepository;
 import ru.vlsu.fitclub.repository.UserRepository;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 
 @Service
@@ -39,6 +42,12 @@ public class RegistrationService {
             return errorList;
         }
         client.setUserId(user.getUserId());
+        try {
+            byte[] avatar = Files.readAllBytes(new File("src/main/resources/static/content/1.png").toPath().toAbsolutePath());
+            client.setAvatar(avatar);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
         cr.save(client);
         return errorList;
     }

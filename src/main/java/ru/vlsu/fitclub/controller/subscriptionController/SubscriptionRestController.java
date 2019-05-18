@@ -12,6 +12,7 @@ import ru.vlsu.fitclub.service.ActivityService;
 import ru.vlsu.fitclub.service.TrainerService;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -38,11 +39,11 @@ public class SubscriptionRestController {
     }
 
     @GetMapping("new_sub/priceRefresh")
-    public ActivityPrice priceRefresh(@RequestParam(name = "activityId", defaultValue = "0") int activityId) {
-        Activity activity = activityService.getActivityById(activityId);
-        return new ActivityPrice(activity.getPriceForYear()
-                , activity.getPriceForMonth()
-                , activity.getPriceForWeek()
-                , activity.getPriceForTrain());
+    public ActivityPrice priceRefresh(@RequestParam(name = "packId", defaultValue = "0") int packId) {
+        Collection<Activity> activityList = activityService.getActivitiesByPackId(packId);
+
+
+return null;
     }
+
 }

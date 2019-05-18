@@ -42,7 +42,7 @@ public class SubscriptionController {
         subList = clientService.getClientSubsByActivityAndUserId(activityId, userId);
         if (subList.isEmpty()) {
             Collection<Activity> activityList = activityService.getActivityList();
-            model.addAttribute("packs", packService.getAll());
+            model.addAttribute("packs", packService.getPacksByActivityId(activityId));
             model.addAttribute("activityId", activityId);
             model.addAttribute("activityList", activityList);
             return "subscription/new_sub";

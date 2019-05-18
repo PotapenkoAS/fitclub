@@ -21,5 +21,6 @@ public class LoginService {
                 , true,auths , user.getUserId());
         Authentication auth = new UsernamePasswordAuthenticationToken(cud, null, auths);
         SecurityContextHolder.getContext().setAuthentication(auth);
+
     }
 }

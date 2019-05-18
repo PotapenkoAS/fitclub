@@ -6,6 +6,7 @@ var pt;
 function change(value) {
     var count = document.getElementById("countDiv");
     var date = document.getElementById("dateDiv");
+
     var i = 0;
     var inputs;
     if (value === 1) {
@@ -29,10 +30,10 @@ function change(value) {
 
 
 function refresh() {
-    var activityId = document.getElementById("activities").value;
-    $.ajax({
+    var packId = document.getElementById("packId").value;
+/*    $.ajax({
         type: 'GET',
-        url: "/new_sub/trainerRefresh?activityId=" + activityId[0],
+        url: "/new_sub/trainerRefresh?packId=" + packId,
         dataType: "json",
         success: function (data) {
             var trainerSelect = document.getElementById("trainers");
@@ -47,11 +48,11 @@ function refresh() {
                 trainerSelect.options.add(obj);
             }
         }
-    });
+    }); */
     var price = document.getElementById("price");
     $.ajax({
         type: "GET",
-        url: "/new_sub/priceRefresh?activityId=" + activityId[0],
+        url: "/new_sub/priceRefresh?packId=" + packId,
         dataType: "json",
         success: function (data) {
             py = data.priceForYear;
