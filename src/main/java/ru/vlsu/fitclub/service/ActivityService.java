@@ -6,8 +6,7 @@ import ru.vlsu.fitclub.model.entity.Activity;
 import ru.vlsu.fitclub.model.entity.Pack;
 import ru.vlsu.fitclub.repository.ActivityRepository;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 
 @Service
 public class ActivityService {
@@ -29,17 +28,23 @@ public class ActivityService {
         return activityRepository.findAll();
     }
 
-    public float getPrice(int year, int month, int week, int count, Activity activity) {
-        float price;
+    public float getPriceForPack(int year, int month, int week, int count, Pack pack) {
+        float price = 0;
+        ArrayList<Activity> activityList = new ArrayList<>(Collections.emptyList());
+        pack.getActivityPacksByPackId().forEach(a -> activityList.add(a.getActivityByActivityId()));
         if (year == 0 && month == 0 && week == 0) {
             if (count == 0) {
-                price = 0;
+                return price;
             } else {
-                price = count * activity.getPriceForTrain();
+                for (Activity activity : activityList) {
+                    price += count * activity.getPriceForTrain();
+                }
             }
         } else {
-            price = year * activity.getPriceForYear() + month * activity.getPriceForMonth()
-                    + week * activity.getPriceForWeek();
+            for (Activity activity : activityList) {
+                price += year * activity.getPriceForYear() + month * activity.getPriceForMonth()
+                        + week * activity.getPriceForWeek();
+            }
         }
         return price;
     }

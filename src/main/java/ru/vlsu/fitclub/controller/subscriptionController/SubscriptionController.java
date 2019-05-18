@@ -1,5 +1,6 @@
 package ru.vlsu.fitclub.controller.subscriptionController;
 
+import org.hibernate.mapping.Subclass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.vlsu.fitclub.model.entity.Activity;
+import ru.vlsu.fitclub.model.entity.Pack;
 import ru.vlsu.fitclub.model.entity.Subscription;
 import ru.vlsu.fitclub.service.*;
 
@@ -39,12 +41,14 @@ public class SubscriptionController {
             model.addAttribute("error", "Набор не выбран с какого то XYZ");
             return "subscription/new_sub";
         }
-        subList = clientService.getClientSubsByActivityAndUserId(activityId, userId);
+        Collection<Pack> packs = packService.getPacksByActivityId(activityId);
+        subList = clientService.getClientSubsByPacksAndUserId(packs, userId);
         if (subList.isEmpty()) {
             Collection<Activity> activityList = activityService.getActivityList();
-            model.addAttribute("packs", packService.getPacksByActivityId(activityId));
+            model.addAttribute("packs", packs);
             model.addAttribute("activityId", activityId);
             model.addAttribute("activityList", activityList);
+
             return "subscription/new_sub";
         } else {
             return "redirect:/subs" + activityId; //todo validate inputs fuck, i dont want to do that shiet, just kill me plz
@@ -52,8 +56,8 @@ public class SubscriptionController {
     }
 
     @PostMapping("new_sub")
-    public String postNewSub(int activityId, Integer year, Integer month, Integer week, Integer count, boolean activate) {
-        Subscription sub = subscriptionService.prepareNewSub(activityId
+    public String postNewSub(int packId, Integer year, Integer month, Integer week, Integer count, boolean activate) {
+        Subscription sub = subscriptionService.prepareNewSub(packId
                 , year == null ? 0 : year
                 , month == null ? 0 : month
                 , week == null ? 0 : week

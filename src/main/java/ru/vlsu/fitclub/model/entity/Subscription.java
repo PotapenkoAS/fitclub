@@ -14,12 +14,12 @@ public class Subscription {
     private Float price;
     private Client clientByClientId;
     private Collection<SubscriptionTrainDate> subscriptionTrainDatesBySubscriptionId;
-    private Activity activityByActivityId;
     private Trainer trainerByTrainerId;
     private boolean isActive;
-    private Integer activityId;
     private int clientId;
     private Integer trainerId;
+    private Integer packId;
+    private Pack packByPackId;
 
     @Id
     @Column(name = "subscription_id", nullable = false)
@@ -98,16 +98,6 @@ public class Subscription {
     }
 
     @ManyToOne
-    @JoinColumn(name = "activity_id", referencedColumnName = "activity_id", insertable = false, updatable = false)
-    public Activity getActivityByActivityId() {
-        return activityByActivityId;
-    }
-
-    public void setActivityByActivityId(Activity activityByActivityId) {
-        this.activityByActivityId = activityByActivityId;
-    }
-
-    @ManyToOne
     @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id", insertable = false, updatable = false)
     public Trainer getTrainerByTrainerId() {
         return trainerByTrainerId;
@@ -138,16 +128,6 @@ public class Subscription {
     }
 
     @Basic
-    @Column(name = "activity_id")
-    public Integer getActivityId() {
-        return activityId;
-    }
-
-    public void setActivityId(Integer activityId) {
-        this.activityId = activityId;
-    }
-
-    @Basic
     @Column(name = "client_id")
     public int getClientId() {
         return clientId;
@@ -165,5 +145,25 @@ public class Subscription {
 
     public void setTrainerId(Integer trainerId) {
         this.trainerId = trainerId;
+    }
+
+    @Basic
+    @Column(name = "pack_id")
+    public Integer getPackId() {
+        return packId;
+    }
+
+    public void setPackId(Integer packId) {
+        this.packId = packId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "pack_id", referencedColumnName = "pack_id", insertable = false, updatable = false)
+    public Pack getPackByPackId() {
+        return packByPackId;
+    }
+
+    public void setPackByPackId(Pack packByPackId) {
+        this.packByPackId = packByPackId;
     }
 }

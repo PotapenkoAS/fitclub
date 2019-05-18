@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.vlsu.fitclub.model.entity.Activity;
+import ru.vlsu.fitclub.model.entity.Trainer;
 import ru.vlsu.fitclub.model.restObject.ActivityPrice;
 import ru.vlsu.fitclub.model.restObject.SelectArray;
-import ru.vlsu.fitclub.model.entity.Trainer;
 import ru.vlsu.fitclub.service.ActivityService;
 import ru.vlsu.fitclub.service.TrainerService;
 
@@ -41,9 +41,14 @@ public class SubscriptionRestController {
     @GetMapping("new_sub/priceRefresh")
     public ActivityPrice priceRefresh(@RequestParam(name = "packId", defaultValue = "0") int packId) {
         Collection<Activity> activityList = activityService.getActivitiesByPackId(packId);
-
-
-return null;
+        ActivityPrice result = new ActivityPrice(0,0,0,0);
+        for (Activity item : activityList) {
+            result.plusPriceForYear(item.getPriceForYear());
+            result.plusPriceForMonth(item.getPriceForMonth());
+            result.plusPriceForWeek(item.getPriceForWeek());
+            result.plusPriceForTrain(item.getPriceForTrain());
+        }
+        return result;
     }
 
 }

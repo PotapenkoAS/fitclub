@@ -3,6 +3,7 @@ package ru.vlsu.fitclub.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.vlsu.fitclub.model.entity.Client;
+import ru.vlsu.fitclub.model.entity.Pack;
 import ru.vlsu.fitclub.model.entity.Subscription;
 import ru.vlsu.fitclub.repository.UserRepository;
 
@@ -46,12 +47,12 @@ public class ClientService {
         return ur.findByUserId(userId).getClientByUserId().getSubscriptionsByClientId();
     }
 
-    public List<Subscription> getClientSubsByActivityAndUserId(int activityId, int userId) {
+    public List<Subscription> getClientSubsByPacksAndUserId(Collection<Pack> packs, int userId) {
         Client client = ur.findByUserId(userId).getClientByUserId();
         Query query = em.createNativeQuery("select * from Subscription " +
-                "where activity_id = :activityId " +
+                "where pack_id in (:packs) " +
                 "and client_id = :clientId ");
-        query.setParameter("activityId", activityId);
+        query.setParameter("packs", packs);
         query.setParameter("clientId", client.getClientId());
         return (List<Subscription>) query.getResultList();
     }

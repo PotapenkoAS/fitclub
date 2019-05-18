@@ -14,6 +14,22 @@ public class ActivityPrice {
         this.priceForTrain = priceForTrain;
     }
 
+    public void plusPriceForYear(int priceForYear) {
+        this.priceForYear += priceForYear;
+    }
+
+    public void plusPriceForMonth(int priceForMonth) {
+        this.priceForMonth += priceForMonth;
+    }
+
+    public void plusPriceForWeek(int priceForWeek) {
+        this.priceForWeek += priceForWeek;
+    }
+
+    public void plusPriceForTrain(int priceForTrain) {
+        this.priceForTrain += priceForTrain;
+    }
+
     public int getPriceForYear() {
         return priceForYear;
     }

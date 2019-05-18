@@ -15,7 +15,8 @@
         <option th:each="item : ${trainerList}"
                 th:value="${item.getTrainerId()}"
                 th:text="${item.getSurname()} + ' ' + ${item.getName()}"
-                th:selected="${item.getTrainerId() == trainerId}"/>
+                th:selected="${item.getTrainerId() == trainerId}">
+        </option>
     </select>
 
     <select name="activityId" class ="timetable_select">
@@ -23,7 +24,8 @@
         <option th:each="item : ${activityList}"
                 th:value="${item.getActivityId()}"
                 th:utext="${item.getName()}"
-                th:selected="${item.getActivityId() == activityId}"/>
+                th:selected="${item.getActivityId() == activityId}">
+        </option>
     </select>
 
     <input class ="timetable_input" name="dateBegin" type="date" th:value="${dateBegin}"/>
@@ -42,10 +44,13 @@
     </tr>
     <tr th:each="item : ${list}">
         <td th:text="${item.getDate()}"></td>
-        <td><a th:href="@{'/activity/' + ${item.getActivityByActivityId().getActivityId()}}" th:text="${item.getActivityByActivityId().getName()}"></a></td>
+        <td><a th:href="@{'/activity/' + ${item.getActivityByActivityId().getActivityId()}}"
+               th:text="${item.getActivityByActivityId().getName()}"></a></td>
         <td th:text="${item.getTimeBegin().toGMTString().substring(10,19)}"></td>
         <td th:text="${item.getTimeEnd().toGMTString().substring(10,19)}"></td>
-        <td><a th:href="@{'/trainer/' + ${item.getTrainerByTrainerId().getTrainerId()}}" th:text="${item.getTrainerByTrainerId().getSurname()} + ' ' + ${item.getTrainerByTrainerId().getSurname()}"></a></td>
+        <td><a th:href="@{'/trainer/' + ${item.getTrainerByTrainerId().getTrainerId()}}"
+               th:text="${item.getTrainerByTrainerId().getSurname()} + ' ' + ${item.getTrainerByTrainerId().getSurname()}"></a>
+        </td>
     </tr>
 </table>
 </div>

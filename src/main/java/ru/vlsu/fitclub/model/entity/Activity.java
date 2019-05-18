@@ -19,7 +19,6 @@ public class Activity {
     private Collection<Training> trainingsByActivityId;
     private byte[] image;
     private Collection<ActivitySpecialization> activitySpecializationsByActivityId;
-    private Collection<Subscription> subscriptionsByActivityId;
     private Collection<ActivityPack> activityPacksByActivityId;
 
     @Id
@@ -166,15 +165,6 @@ public class Activity {
 
     public void setActivitySpecializationsByActivityId(Collection<ActivitySpecialization> activitySpecializationsByActivityId) {
         this.activitySpecializationsByActivityId = activitySpecializationsByActivityId;
-    }
-
-    @OneToMany(mappedBy = "activityByActivityId")
-    public Collection<Subscription> getSubscriptionsByActivityId() {
-        return subscriptionsByActivityId;
-    }
-
-    public void setSubscriptionsByActivityId(Collection<Subscription> subscriptionsByActivityId) {
-        this.subscriptionsByActivityId = subscriptionsByActivityId;
     }
 
     @OneToMany(mappedBy = "activityByActivityId")

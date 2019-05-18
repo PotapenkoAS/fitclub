@@ -14,13 +14,13 @@ import java.util.List;
 @Service
 public class PackService {
 
-
     private PackRepository pr;
     private ActivityRepository ar;
 
     @Autowired
-    public PackService(PackRepository pr) {
+    public PackService(PackRepository pr, ActivityRepository ar) {
         this.pr = pr;
+        this.ar = ar;
     }
 
     public Collection<Pack> getPacksByActivityId(int activityId) {
@@ -34,7 +34,7 @@ public class PackService {
         return pr.findByPackId(packId);
     }
 
-    public List<Pack> getAll(){
+    public List<Pack> getAll() {
         return pr.findAll();
     }
 }

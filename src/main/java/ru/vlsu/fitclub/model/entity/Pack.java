@@ -12,6 +12,7 @@ public class Pack {
     private String description;
     private byte[] image;
     private Collection<ActivityPack> activityPacksByPackId;
+    private Collection<Subscription> subscriptionsByPackId;
 
     @Id
     @Column(name = "pack_id")
@@ -78,5 +79,14 @@ public class Pack {
 
     public void setActivityPacksByPackId(Collection<ActivityPack> activityPacksByPackId) {
         this.activityPacksByPackId = activityPacksByPackId;
+    }
+
+    @OneToMany(mappedBy = "packByPackId")
+    public Collection<Subscription> getSubscriptionsByPackId() {
+        return subscriptionsByPackId;
+    }
+
+    public void setSubscriptionsByPackId(Collection<Subscription> subscriptionsByPackId) {
+        this.subscriptionsByPackId = subscriptionsByPackId;
     }
 }

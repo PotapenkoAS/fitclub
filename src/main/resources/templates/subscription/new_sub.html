@@ -6,30 +6,37 @@
     <base href="/">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script type="text/javascript" src="scripts/new_sub.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet"/>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script> -->
 </head>
 
-<body onload="">
+<body onload="refresh()">
 <div th:insert="header.html :: header-fragment"></div>
-<script>
+<!--<script>
     $(document).ready(function () {
         $('.select2').select2();
     });
-</script>
+</script> -->
 <div class="contentText">
     <p th:text="${error}"></p>
     <form method="post">
-        <select class="select2" name="activityId[]" id="activities" onchange="refresh()" multiple="multiple">
-            <option th:each="item : ${activityList}"
-                    th:value="${item.getActivityId()}"
-                    th:utext="${item.getName()}"
-                    th:selected="${item.getActivityId() == activityId}"/>
+        <!--  <select class="select2" name="activityId[]" id="activities" onchange="refresh()" multiple="multiple">
+              <option th:each="item : ${activityList}"
+                      th:value="${item.getActivityId()}"
+                      th:utext="${item.getName()}"
+                      th:selected="${item.getActivityId() == activityId}"/>
+          </select> -->
+        <select name="packId" id="packId" onchange="refresh()">
+            <option th:each="item : ${packs}"
+                    th:value="${item.getPackId()}"
+                    th:utext="${item.getName()}">
+            </option>
         </select>
         <br/>
-        <select name="trainerId" id="trainers">
-            <option></option>
-        </select>
+        <!--  <select name="trainerId" id="trainers">
+              <option></option>
+          </select>
+          -->
         <br/>
         <label>
             <input type="radio" name="changer" value=0 checked onclick="change(0)">
@@ -54,7 +61,7 @@
                    onchange="recount()">
         </div>
         <label>
-            <input type="checkbox" name="checked">
+            <input type="checkbox" name="activate" value="true">
             Активировать сразу?
         </label>
         <input type="submit" value="Оплатить">

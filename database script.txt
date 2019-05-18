@@ -1,7 +1,5 @@
-create database fitness_club collate utf8mb4_0900_ai_ci;
-
+create schema fitness_club collate utf8mb4_0900_ai_ci;
 use fitness_club;
-
 create table activity
 (
 	activity_id int not null
@@ -170,13 +168,13 @@ create table subscription
 	duration varchar(255) null,
 	price float null,
 	is_active tinyint(1) default 0 null,
-	activity_id int null,
 	client_id int not null,
 	trainer_id int null,
-	constraint subscription_activity_activity_id_fk
-		foreign key (activity_id) references activity (activity_id),
+	pack_id int null,
 	constraint subscription_client_client_id_fk
 		foreign key (client_id) references client (client_id),
+	constraint subscription_pack_pack_id_fk
+		foreign key (pack_id) references pack (pack_id),
 	constraint subscription_trainer_trainer_id_fk
 		foreign key (trainer_id) references trainer (trainer_id)
 );

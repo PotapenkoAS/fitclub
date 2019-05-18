@@ -1,0 +1,12 @@
+alter table subscription drop foreign key subscription_activity_activity_id_fk;
+
+drop index subscription_activity_activity_id_fk on subscription;
+
+alter table subscription drop column activity_id;
+
+alter table subscription
+	add pack_id int null;
+
+alter table subscription
+	add constraint subscription_pack_pack_id_fk
+		foreign key (pack_id) references pack (pack_id);
