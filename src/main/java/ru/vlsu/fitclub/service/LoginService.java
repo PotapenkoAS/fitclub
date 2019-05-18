@@ -19,7 +19,7 @@ public class LoginService {
         auths.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
         CustomUserDetails cud = new CustomUserDetails(user.getLogin(), "{noop}" + user.getPassword(), true, true, true
                 , true,auths , user.getUserId());
-        Authentication auth = new UsernamePasswordAuthenticationToken(user, null, auths);
+        Authentication auth = new UsernamePasswordAuthenticationToken(cud, null, auths);
         SecurityContextHolder.getContext().setAuthentication(auth);
     }
 }

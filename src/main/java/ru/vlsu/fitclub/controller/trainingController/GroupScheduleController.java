@@ -25,8 +25,6 @@ public class GroupScheduleController {
     private ActivityService activityService;
     private TrainerService trainerService;
 
-
-
     @Autowired
     public GroupScheduleController(GroupScheduleService scheduleService, ActivityService activityService, TrainerService trainerService) {
         this.scheduleService = scheduleService;
@@ -47,12 +45,12 @@ public class GroupScheduleController {
         }
         if (timeBegin == null || timeBegin.equals("")) {
             timeBegin = "00:00:00";
-        } else if(timeBegin.length()<6){
+        } else if (timeBegin.length() < 6) {
             timeBegin += ":00";
         }
         if (timeEnd == null || timeEnd.equals("")) {
             timeEnd = "23:59:00";
-        } else if(timeEnd.length()<6){
+        } else if (timeEnd.length() < 6) {
             timeEnd += ":00";
         }
         if (trainerId == null) {

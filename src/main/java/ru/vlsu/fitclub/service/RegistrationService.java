@@ -2,6 +2,7 @@ package ru.vlsu.fitclub.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.vlsu.fitclub.model.entity.Client;
 import ru.vlsu.fitclub.model.entity.User;
 import ru.vlsu.fitclub.repository.ClientRepository;
@@ -22,6 +23,7 @@ public class RegistrationService {
         this.userService = userService;
     }
 
+    @Transactional
     public ArrayList<String> saveClient(Client client, User user) {
         ArrayList<String> errorList = userService.loginPasswordValidation(user.getLogin(), user.getPassword());
         //TODO errorList.add(userService.emailValidate(client.getEmail()));
@@ -36,7 +38,7 @@ public class RegistrationService {
         } else {
             return errorList;
         }
-        client.setUserByUserId(user);
+        client.setUserId(user.getUserId());
         cr.save(client);
         return errorList;
     }

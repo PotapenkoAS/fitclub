@@ -9,6 +9,7 @@ import ru.vlsu.fitclub.repository.PackRepository;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class PackService {
@@ -31,5 +32,9 @@ public class PackService {
 
     public Pack getPackByPackId(int packId) {
         return pr.findByPackId(packId);
+    }
+
+    public List<Pack> getAll(){
+        return pr.findAll();
     }
 }

@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.vlsu.fitclub.model.entity.Activity;
 import ru.vlsu.fitclub.model.entity.Subscription;
-import ru.vlsu.fitclub.model.entity.Trainer;
 import ru.vlsu.fitclub.service.*;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -19,33 +17,32 @@ import java.util.List;
 public class SubscriptionController {
 
     private ActivityService activityService;
-    private TrainerService trainerService;
     private UserService userService;
     private ClientService clientService;
     private SubscriptionService subscriptionService;
-
+    private PackService packService;
 
     @Autowired
-    public SubscriptionController(ActivityService activityService, TrainerService trainerService, UserService userService, ClientService clientService, SubscriptionService subscriptionService) {
+    public SubscriptionController(ActivityService activityService, UserService userService, ClientService clientService, SubscriptionService subscriptionService, PackService packService) {
         this.activityService = activityService;
-        this.trainerService = trainerService;
         this.userService = userService;
         this.clientService = clientService;
         this.subscriptionService = subscriptionService;
+        this.packService = packService;
     }
 
     @GetMapping("new_sub")
     public String getNewSubWithActivity(@RequestParam(name = "activity_id") int activityId, Model model) {
         int userId = userService.getCurrentUserId();
-        List<Subscription> subList = new ArrayList<>();
-        if (activityId > 0) {
-            subList = clientService.getClientSubsByActivityAndUserId(activityId, userId);
-        }else{
-            model.addAttribute("error","Набор не выбран с какого то XYZ");
+        List<Subscription> subList;
+        if (activityId <= 0) {
+            model.addAttribute("error", "Набор не выбран с какого то XYZ");
+            return "subscription/new_sub";
         }
+        subList = clientService.getClientSubsByActivityAndUserId(activityId, userId);
         if (subList.isEmpty()) {
             Collection<Activity> activityList = activityService.getActivityList();
-            Collection<Trainer> trainerList = trainerService.getTrainersByActivityId(activityId);
+            model.addAttribute("packs", packService.getAll());
             model.addAttribute("activityId", activityId);
             model.addAttribute("activityList", activityList);
             return "subscription/new_sub";

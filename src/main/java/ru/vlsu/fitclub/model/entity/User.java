@@ -1,9 +1,12 @@
 package ru.vlsu.fitclub.model.entity;
 
+import ru.vlsu.fitclub.model.listener.UserListener;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@EntityListeners(UserListener.class)
 public class User {
     private int userId;
     private String login;
@@ -14,6 +17,7 @@ public class User {
     private Trainer trainerByUserId;
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "user_id", nullable = false)
     public int getUserId() {
         return userId;

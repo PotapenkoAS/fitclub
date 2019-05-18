@@ -9,7 +9,7 @@
 </head>
 <body>
 <div id="header" class="header">
-    <a href="" style="text-decoration: none"><p>Fitness club</p></a>
+    <a href="/home" style="text-decoration: none"><p>Fitness club</p></a>
 
 </div>
 <div class="menu">
@@ -21,8 +21,8 @@
                     <div>Тренер</div>
                 </a>
             </li>
-            <li><a href="/registration">
-                <div sec:authorize="!hasRole('CLIENT')">Регистрация</div>
+            <li sec:authorize="!hasRole('CLIENT')"><a href="/registration">
+                <div>Регистрация</div>
             </a></li>
             <li><a href="/group_training">Расписание</a></li>
         </ul>

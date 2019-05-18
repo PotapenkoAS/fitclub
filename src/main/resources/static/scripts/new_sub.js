@@ -32,7 +32,7 @@ function refresh() {
     var activityId = document.getElementById("activities").value;
     $.ajax({
         type: 'GET',
-        url: "/new_sub/trainerRefresh?activityId=" + activityId,
+        url: "/new_sub/trainerRefresh?activityId=" + activityId[0],
         dataType: "json",
         success: function (data) {
             var trainerSelect = document.getElementById("trainers");
@@ -51,7 +51,7 @@ function refresh() {
     var price = document.getElementById("price");
     $.ajax({
         type: "GET",
-        url: "/new_sub/priceRefresh?activityId=" + activityId,
+        url: "/new_sub/priceRefresh?activityId=" + activityId[0],
         dataType: "json",
         success: function (data) {
             py = data.priceForYear;
