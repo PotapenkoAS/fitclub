@@ -28,7 +28,7 @@
 
         <div class="elements-gride" data-masonry='{ "itemSelector": ".element-item", "columnWidth": 200 }'>
             <tr th:each="image: ${imageList}">
-                <td><img th:src="*{'data:image/png;base64,'+image}" alt=""/></td>
+                <td><img th:title="${client.getName()}" th:src="*{'data:image/png;base64,'+image}" alt=""/></td>
             </tr>
         </div>
 

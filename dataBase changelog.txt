@@ -14,3 +14,9 @@ alter table subscription
 alter table client modify avatar longblob null;
 alter table trainer
 	add avatar longblob null;
+
+	alter table client modify weight FLOAT null;
+
+    alter table client modify height float null;
+
+    alter table client modify avatar longblob null;

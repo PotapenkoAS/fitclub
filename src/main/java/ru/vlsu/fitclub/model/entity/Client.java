@@ -14,8 +14,8 @@ public class Client {
     private String surname;
     private String email;
     private String phone;
-    private Integer weight;
-    private Integer height;
+    private Float weight;
+    private Float height;
     private byte[] avatar;
     private Date birthDate;
     private User userByUserId;
@@ -87,21 +87,21 @@ public class Client {
 
     @Basic
     @Column(name = "weight")
-    public Integer getWeight() {
+    public Float getWeight() {
         return weight;
     }
 
-    public void setWeight(Integer weight) {
+    public void setWeight(Float weight) {
         this.weight = weight;
     }
 
     @Basic
     @Column(name = "height")
-    public Integer getHeight() {
+    public Float getHeight() {
         return height;
     }
 
-    public void setHeight(Integer height) {
+    public void setHeight(Float height) {
         this.height = height;
     }
 
