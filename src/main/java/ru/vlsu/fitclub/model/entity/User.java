@@ -1,14 +1,12 @@
 package ru.vlsu.fitclub.model.entity;
 
-import ru.vlsu.fitclub.model.listener.UserListener;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-@EntityListeners(UserListener.class)
+//@EntityListeners(UserListener.class)
 public class User {
     private int userId;
     @Size(min = 6, max = 50,message = "Длина логина от 6 до 50 символов")
