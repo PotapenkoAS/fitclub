@@ -18,6 +18,11 @@ public class Trainer {
     private Collection<Training> trainingsByTrainerId;
     private Collection<Subscription> subscriptionsByTrainerId;
     private Integer userId;
+    private byte[] avatar;
+    private String shortDescription;
+    private String fullDescription;
+    private Double experience;
+    private Double rating;
 
     @Id
     @Column(name = "trainer_id", nullable = false)
@@ -151,5 +156,55 @@ public class Trainer {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    @Basic
+    @Column(name = "avatar")
+    public byte[] getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
+    }
+
+    @Basic
+    @Column(name = "short_description")
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
+    @Basic
+    @Column(name = "full_description")
+    public String getFullDescription() {
+        return fullDescription;
+    }
+
+    public void setFullDescription(String fullDescription) {
+        this.fullDescription = fullDescription;
+    }
+
+    @Basic
+    @Column(name = "experience")
+    public Double getExperience() {
+        return experience;
+    }
+
+    public void setExperience(Double experience) {
+        this.experience = experience;
+    }
+
+    @Basic
+    @Column(name = "rating")
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
     }
 }

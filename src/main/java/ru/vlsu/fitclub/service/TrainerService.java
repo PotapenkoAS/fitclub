@@ -2,12 +2,15 @@ package ru.vlsu.fitclub.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.vlsu.fitclub.model.entity.Specialization;
 import ru.vlsu.fitclub.model.entity.Trainer;
 import ru.vlsu.fitclub.repository.TrainerRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -42,5 +45,10 @@ public class TrainerService {
 
     public Trainer getTrainerByUserId (int userId){
         return trainerRepository.findByUserId(userId);
+    }
+    public List<Specialization> getTrainerSpecializations(Trainer trainer){
+        ArrayList<Specialization>  result = new ArrayList<>(Collections.emptyList());
+        trainer.getTrainerSpecializationsByTrainerId().forEach(i -> result.add(i.getSpecializationBySpecializationId()));
+        return result;
     }
 }

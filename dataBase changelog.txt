@@ -20,3 +20,13 @@ alter table trainer
 
     alter table client modify height float null;
 
+alter table trainer
+	add short_description text null;
+
+alter table trainer
+	add full_description text null;
+
+alter table trainer
+	add experience float null;
+alter table trainer
+	add rating float null;
