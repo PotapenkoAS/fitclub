@@ -7,7 +7,9 @@ import ru.vlsu.fitclub.model.entity.Trainer;
 import java.util.ArrayList;
 
 @Repository
-public interface TrainerRepository extends CrudRepository<Trainer,Integer> {
+public interface TrainerRepository extends CrudRepository<Trainer, Integer> {
     ArrayList<Trainer> findAll();
+
+    Trainer findByUserId(int id);
 
 }

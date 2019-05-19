@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.vlsu.fitclub.model.entity.Client;
 import ru.vlsu.fitclub.model.entity.Pack;
 import ru.vlsu.fitclub.model.entity.Subscription;
+import ru.vlsu.fitclub.repository.ClientRepository;
 import ru.vlsu.fitclub.repository.UserRepository;
 
 import javax.persistence.EntityManager;
@@ -19,15 +20,16 @@ import java.util.List;
 public class ClientService {
 
     private UserRepository ur;
+    private ClientRepository cr;
     @PersistenceContext
     private EntityManager em;
 
 
     @Autowired
-    public ClientService(UserRepository ur) {
+    public ClientService(UserRepository ur, ClientRepository cr) {
         this.ur = ur;
+        this.cr = cr;
     }
-
 
     public Client getClientByUserId(int id) {
         return ur.findByUserId(id).getClientByUserId();
@@ -49,11 +51,15 @@ public class ClientService {
 
     public List<Subscription> getClientSubsByPacksAndUserId(Collection<Pack> packs, int userId) {
         Client client = ur.findByUserId(userId).getClientByUserId();
-        Query query = em.createNativeQuery("select * from Subscription " +
+        Query query = em.createNativeQuery("select * from subscription " +
                 "where pack_id in (:packs) " +
                 "and client_id = :clientId ");
         query.setParameter("packs", packs);
         query.setParameter("clientId", client.getClientId());
         return (List<Subscription>) query.getResultList();
+    }
+
+    public void save(Client client){
+        cr.save(client);
     }
 }

@@ -11,6 +11,10 @@
 <div class="section">
     <div class="sidebar">
         <img class="img-circle" th:src="*{'data:image/png;base64,'+avatar}" alt="none">
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="submit" value="+">
+        </form>
         <h1 th:text="${client.getSurname()} + ' ' + ${client.getName()}"></h1>
         <h1 th:text="${client.getEmail()}"></h1>
     </div>

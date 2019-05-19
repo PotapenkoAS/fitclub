@@ -10,3 +10,7 @@ alter table subscription
 alter table subscription
 	add constraint subscription_pack_pack_id_fk
 		foreign key (pack_id) references pack (pack_id);
+
+alter table client modify avatar longblob null;
+alter table trainer
+	add avatar longblob null;

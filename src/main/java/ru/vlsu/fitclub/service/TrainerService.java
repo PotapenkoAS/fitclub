@@ -39,4 +39,8 @@ public class TrainerService {
     public ArrayList<Trainer> getTrainerList() {
         return trainerRepository.findAll();
     }
+
+    public Trainer getTrainerByUserId (int userId){
+        return trainerRepository.findByUserId(userId);
+    }
 }

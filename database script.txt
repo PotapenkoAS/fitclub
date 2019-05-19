@@ -98,7 +98,7 @@ create table client
 	user_id int null,
 	weight int null,
 	height int null,
-	avatar blob null,
+	avatar longblob null,
 	birth_date date null,
 	constraint client_user_user_id_fk
 		foreign key (user_id) references user (user_id)
@@ -127,6 +127,7 @@ create table trainer
 	email varchar(255) null,
 	phone varchar(20) null,
 	user_id int null,
+	avatar longblob null,
 	constraint trainer_user_user_id_fk
 		foreign key (user_id) references user (user_id)
 );
