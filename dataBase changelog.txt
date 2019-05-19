@@ -12,6 +12,7 @@ alter table subscription
 		foreign key (pack_id) references pack (pack_id);
 
 alter table client modify avatar longblob null;
+
 alter table trainer
 	add avatar longblob null;
 
@@ -19,4 +20,3 @@ alter table trainer
 
     alter table client modify height float null;
 
-    alter table client modify avatar longblob null;
