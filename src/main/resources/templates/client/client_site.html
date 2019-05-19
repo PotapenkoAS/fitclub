@@ -27,8 +27,8 @@
         <h2> Достижения </h2>
 
         <div class="elements-gride" data-masonry='{ "itemSelector": ".element-item", "columnWidth": 200 }'>
-            <tr th:each="image: ${imageList}">
-                <td><img th:title="${client.getName()}" th:src="*{'data:image/png;base64,'+image}" alt=""/></td>
+            <tr th:each="item: ${imageList}">
+                <td><img th:title="${item.getTitle()}" th:src="*{'data:image/png;base64,'+item.getImage()}" alt=""/></td>
             </tr>
         </div>
 

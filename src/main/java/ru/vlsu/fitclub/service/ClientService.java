@@ -1,10 +1,13 @@
 package ru.vlsu.fitclub.service;
 
+import org.apache.tomcat.util.digester.ArrayStack;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.vlsu.fitclub.model.entity.Achievement;
 import ru.vlsu.fitclub.model.entity.Client;
 import ru.vlsu.fitclub.model.entity.Pack;
 import ru.vlsu.fitclub.model.entity.Subscription;
+import ru.vlsu.fitclub.model.viewObject.AchievementImageAndTitle;
 import ru.vlsu.fitclub.repository.ClientRepository;
 import ru.vlsu.fitclub.repository.UserRepository;
 
@@ -44,6 +47,17 @@ public class ClientService {
         }
         return stringImageList;
     }
+
+    public ArrayList<AchievementImageAndTitle> getAchievementImagesAndTitleByClient(Client client){
+        ArrayList<Achievement> achievementList = new ArrayList<>();
+        client.getClientAchievesByClientId().forEach(i -> achievementList.add(i.getAchievementByAchievementId()));
+        ArrayList<AchievementImageAndTitle> result = new ArrayList<>();
+        for(Achievement entry:achievementList){
+            result.add(new AchievementImageAndTitle(Base64.getEncoder().encodeToString(entry.getImage()),entry.getDescription()));
+        }
+        return result;
+    }
+
 
     public Collection<Subscription> getClientSubsByUserId(int userId) {
         return ur.findByUserId(userId).getClientByUserId().getSubscriptionsByClientId();

@@ -1,6 +1,6 @@
 package ru.vlsu.fitclub.model.entity;
 
-import ru.vlsu.fitclub.model.compositeKeys.GroupClientsKey;
+import ru.vlsu.fitclub.model.compositeKey.GroupClientsKey;
 
 import javax.persistence.*;
 import java.util.Objects;

@@ -41,7 +41,7 @@ public class ClientController {
         String avatar = Base64.getEncoder().encodeToString(client.getAvatar());
         model.addAttribute("avatar", avatar);
         model.addAttribute("client", client);
-        model.addAttribute("imageList", clientService.getClientAchievementsImages(client));
+        model.addAttribute("imageList", clientService.getAchievementImagesAndTitleByClient(client));
         return "client/client_site";
     }
 
