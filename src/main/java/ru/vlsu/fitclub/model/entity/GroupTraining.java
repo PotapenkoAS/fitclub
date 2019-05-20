@@ -22,6 +22,19 @@ public class GroupTraining {
     private Integer trainerId;
     private Integer activityId;
 
+    @Transient
+    private boolean recorded;
+
+    @Transient
+    public boolean isRecorded() {
+        return recorded;
+    }
+
+    @Transient
+    public void setRecorded(boolean recorded) {
+        this.recorded = recorded;
+    }
+
     @Id
     @Column(name = "group_id", nullable = false)
     public int getGroupId() {

@@ -51,6 +51,10 @@
         <td><a th:href="@{'/trainer/' + ${item.getTrainerByTrainerId().getTrainerId()}}"
                th:text="${item.getTrainerByTrainerId().getSurname()} + ' ' + ${item.getTrainerByTrainerId().getSurname()}"></a>
         </td>
+        <td>
+            <p th:if="${item.isRecorded()}">✓</p>
+            <a th:if="${!item.isRecorded()}" th:href="@{'/gefgejgf'}">Записаться</a>
+        </td>
     </tr>
 </table>
 </div>

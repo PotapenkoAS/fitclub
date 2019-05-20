@@ -10,6 +10,7 @@ import ru.vlsu.fitclub.model.CustomUserDetails;
 import ru.vlsu.fitclub.model.entity.Client;
 import ru.vlsu.fitclub.model.entity.Trainer;
 import ru.vlsu.fitclub.service.TrainerService;
+import ru.vlsu.fitclub.service.UserService;
 
 import java.util.Base64;
 
@@ -18,24 +19,23 @@ public class TrainerController {
 
 
     private TrainerService trainerService;
+    private UserService userService;
+
 
     @Autowired
-    public TrainerController(TrainerService trainerService) {
+    public TrainerController(TrainerService trainerService, UserService userService) {
         this.trainerService = trainerService;
+        this.userService = userService;
     }
-
 
     @GetMapping("/trainer")
     public String getTrainerHomePage() {
-        //int id = ((CustomUserDetails) (SecurityContextHolder.getContext().getAuthentication().getPrincipal())).getUserId();
-        // return "redirect:/trainer/" + id;
-
-        return "trainer/trainer_site";
+        int id = userService.getCurrentUserId();
+        return "redirect:/trainer/" + id;
     }
 
     @GetMapping("/trainer/{userId}")
     public String GetTrainerId(@PathVariable int userId, Model model) {
-        //Client client = clientService.getClientByUserId(userId);
         Trainer trainer = trainerService.getTrainerByUserId(userId);
         String avatar = Base64.getEncoder().encodeToString(trainer.getAvatar());
         model.addAttribute("avatar", avatar);

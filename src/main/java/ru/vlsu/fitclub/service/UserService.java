@@ -20,7 +20,7 @@ public class UserService {
         this.ur = ur;
     }
 
-    public User getUserByLogin(String login){
+    public User getUserByLogin(String login) {
         return ur.findByLogin(login);
     }
 
@@ -38,9 +38,13 @@ public class UserService {
         return errorList;
     }
 
-    public int getCurrentUserId(){
+    public int getCurrentUserId() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return ((CustomUserDetails) principal).getUserId();
+        if (principal instanceof CustomUserDetails) {
+            return ((CustomUserDetails) principal).getUserId();
+        }else{
+            return 0;
+        }
     }
 
     public String userExistsByLoginValidation(String login) {
