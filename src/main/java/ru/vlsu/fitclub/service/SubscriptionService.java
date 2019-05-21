@@ -2,11 +2,17 @@ package ru.vlsu.fitclub.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.vlsu.fitclub.model.entity.Activity;
 import ru.vlsu.fitclub.model.entity.Pack;
 import ru.vlsu.fitclub.model.entity.Subscription;
 import ru.vlsu.fitclub.repository.SubscriptionRepository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class SubscriptionService {
@@ -16,6 +22,9 @@ public class SubscriptionService {
     private UserService userService;
     private PackService packService;
     private SubscriptionRepository sr;
+
+    @PersistenceContext
+    private EntityManager em;
 
     @Autowired
     public SubscriptionService(ActivityService activityService, ClientService clientService, UserService userService, PackService packService, SubscriptionRepository sr) {
@@ -46,5 +55,17 @@ public class SubscriptionService {
 
     public void save(Subscription sub) {
         sr.save(sub);
+    }
+
+    public List<Subscription> getAllByUserIdAndActivityId(int userId, int activityId) {
+        int clientId = clientService.getClientByUserId(userId).getClientId();
+        Query query = em.createQuery("select s from Subscription s " +
+                "inner join Pack p on p.packId=s.packId " +
+                "inner join ActivityPack ap on ap.activityPackId = p.packId " +
+                "where ap.activityId=:activityId " +
+                "and s.clientId=:clientId");
+        query.setParameter("activityId", activityId);
+        query.setParameter("clientId", clientId);
+        return (List<Subscription>) query.getResultList();
     }
 }

@@ -30,3 +30,9 @@ alter table trainer
 	add experience float null;
 alter table trainer
 	add rating float null;
+
+
+alter table training
+	add date date null;
+
+alter table training drop column is_paid;

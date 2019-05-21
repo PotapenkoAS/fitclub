@@ -1,62 +1,66 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Timetable</title>
     <link href="content/style.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/group_training_schedule.js"></script>
 </head>
-
+<body>
 <div th:insert="header.html :: header-fragment"></div>
 
 <div class="section">
-<form method="get">
-    <select name="trainerId" class ="timetable_select">
-        <option value="0" >Все</option>
-        <option th:each="item : ${trainerList}"
-                th:value="${item.getTrainerId()}"
-                th:text="${item.getSurname()} + ' ' + ${item.getName()}"
-                th:selected="${item.getTrainerId() == trainerId}">
-        </option>
-    </select>
+    <form method="get">
+        <select name="trainerId" class="timetable_select">
+            <option value="0">Все</option>
+            <option th:each="item : ${trainerList}"
+                    th:value="${item.getTrainerId()}"
+                    th:text="${item.getSurname()} + ' ' + ${item.getName()}"
+                    th:selected="${item.getTrainerId() == trainerId}">
+            </option>
+        </select>
 
-    <select name="activityId" class ="timetable_select">
-        <option value="0" style=" display: inline-block;">Все</option>
-        <option th:each="item : ${activityList}"
-                th:value="${item.getActivityId()}"
-                th:utext="${item.getName()}"
-                th:selected="${item.getActivityId() == activityId}">
-        </option>
-    </select>
+        <select name="activityId" class="timetable_select">
+            <option value="0" style=" display: inline-block;">Все</option>
+            <option th:each="item : ${activityList}"
+                    th:value="${item.getActivityId()}"
+                    th:utext="${item.getName()}"
+                    th:selected="${item.getActivityId() == activityId}">
+            </option>
+        </select>
 
-    <input class ="timetable_input" name="dateBegin" type="date" th:value="${dateBegin}"/>
-    <input class ="timetable_input" name="dateEnd" type="date" th:value="${dateEnd}"/>
-    <input class ="timetable_input" name="timeBegin" type="time" th:value="${timeBegin}"/>
-    <input class ="timetable_input" name="timeEnd" type="time" th:value="${timeEnd}"/>
-    <input class="button button_timetable" name="submit" type="submit" value="Поиск"/>
-</form>
-<table>
-    <tr>
-        <th>Дата</th>
-        <th>Тренировка</th>
-        <th>Время начала</th>
-        <th>Время окончания</th>
-        <th>Тренер</th>
-    </tr>
-    <tr th:each="item : ${list}">
-        <td th:text="${item.getDate()}"></td>
-        <td><a th:href="@{'/activity/' + ${item.getActivityByActivityId().getActivityId()}}"
-               th:text="${item.getActivityByActivityId().getName()}"></a></td>
-        <td th:text="${item.getTimeBegin().toGMTString().substring(10,19)}"></td>
-        <td th:text="${item.getTimeEnd().toGMTString().substring(10,19)}"></td>
-        <td><a th:href="@{'/trainer/' + ${item.getTrainerByTrainerId().getTrainerId()}}"
-               th:text="${item.getTrainerByTrainerId().getSurname()} + ' ' + ${item.getTrainerByTrainerId().getSurname()}"></a>
-        </td>
-        <td>
-            <p th:if="${item.isRecorded()}">✓</p>
-            <a th:if="${!item.isRecorded()}" th:href="@{'/gefgejgf'}">Записаться</a>
-        </td>
-    </tr>
-</table>
+        <input class="timetable_input" name="dateBegin" type="date" th:value="${dateBegin}"/>
+        <input class="timetable_input" name="dateEnd" type="date" th:value="${dateEnd}"/>
+        <input class="timetable_input" name="timeBegin" type="time" th:value="${timeBegin}"/>
+        <input class="timetable_input" name="timeEnd" type="time" th:value="${timeEnd}"/>
+        <input class="button button_timetable" name="submit" type="submit" value="Поиск"/>
+    </form>
+    <table>
+        <tr>
+            <th>Дата</th>
+            <th>Тренировка</th>
+            <th>Время начала</th>
+            <th>Время окончания</th>
+            <th>Тренер</th>
+            <th sec:authorize="isAuthenticated()">Запись</th>
+        </tr>
+        <tr th:each="item : ${list}">
+            <td th:text="${item.getDate()}"></td>
+            <td><a th:href="@{'/activity/' + ${item.getActivityByActivityId().getActivityId()}}"
+                   th:text="${item.getActivityByActivityId().getName()}"></a></td>
+            <td th:text="${item.getTimeBegin().toGMTString().substring(10,19)}"></td>
+            <td th:text="${item.getTimeEnd().toGMTString().substring(10,19)}"></td>
+            <td><a th:href="@{'/trainer/' + ${item.getTrainerByTrainerId().getTrainerId()}}"
+                   th:text="${item.getTrainerByTrainerId().getSurname()} + ' ' + ${item.getTrainerByTrainerId().getSurname()}"></a>
+            </td>
+            <td sec:authorize="isAuthenticated()">
+                <p th:if="${item.isRecorded()}">✓</p>
+                <button id="recordButton" th:text="chpok" th:if="${!item.isRecorded()}" th:onclick="'send(\''+${item.groupId}+'\');'"></button>
+            </td>
+        </tr>
+    </table>
 </div>
 
 <div class="copyright">

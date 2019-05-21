@@ -20,11 +20,11 @@ public class ActivityService {
         this.packService = packService;
     }
 
-    public Activity getActivityById(int id) {
+    public Activity getById(int id) {
         return activityRepository.findByActivityId(id);
     }
 
-    public ArrayList<Activity> getActivityList() {
+    public ArrayList<Activity> getAll() {
         return activityRepository.findAll();
     }
 

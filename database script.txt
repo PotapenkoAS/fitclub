@@ -1,5 +1,7 @@
 create schema fitness_club collate utf8mb4_0900_ai_ci;
-use fitness_club;
+
+use fitness_club
+
 create table activity
 (
 	activity_id int not null
@@ -96,8 +98,8 @@ create table client
 	email varchar(255) null,
 	phone varchar(20) null,
 	user_id int null,
-	weight int null,
-	height int null,
+	weight float null,
+	height float null,
 	avatar longblob null,
 	birth_date date null,
 	constraint client_user_user_id_fk
@@ -128,6 +130,10 @@ create table trainer
 	phone varchar(20) null,
 	user_id int null,
 	avatar longblob null,
+	short_description text null,
+	full_description text null,
+	experience float null,
+	rating float null,
 	constraint trainer_user_user_id_fk
 		foreign key (user_id) references user (user_id)
 );
@@ -201,7 +207,7 @@ create table training
 	time_begin datetime null,
 	time_end datetime null,
 	activity_id int null,
-	is_paid tinyint(1) null,
+	date date null,
 	constraint training_activity_activity_id_fk
 		foreign key (activity_id) references activity (activity_id),
 	constraint training_client_client_id_fk

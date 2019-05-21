@@ -67,7 +67,7 @@ public class GroupScheduleController {
                 , activityId);
         scheduleService.setIsRecordedForAll(list);
         ArrayList<Trainer> trainerList = trainerService.getTrainerList();
-        ArrayList<Activity> activityList = activityService.getActivityList();
+        ArrayList<Activity> activityList = activityService.getAll();
         model.addAttribute("list", list);
         model.addAttribute("trainerList", trainerList);
         model.addAttribute("activityList", activityList);

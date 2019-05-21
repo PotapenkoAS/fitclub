@@ -2,12 +2,10 @@ package ru.vlsu.fitclub.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.vlsu.fitclub.model.entity.Achievement;
-import ru.vlsu.fitclub.model.entity.Client;
-import ru.vlsu.fitclub.model.entity.Pack;
-import ru.vlsu.fitclub.model.entity.Subscription;
+import ru.vlsu.fitclub.model.entity.*;
 import ru.vlsu.fitclub.model.viewObject.AchievementImageAndTitle;
 import ru.vlsu.fitclub.repository.ClientRepository;
+import ru.vlsu.fitclub.repository.GroupClientsRepository;
 import ru.vlsu.fitclub.repository.UserRepository;
 
 import javax.persistence.EntityManager;
@@ -23,14 +21,16 @@ public class ClientService {
 
     private UserRepository ur;
     private ClientRepository cr;
+    private GroupClientsRepository gcr;
+
     @PersistenceContext
     private EntityManager em;
 
-
     @Autowired
-    public ClientService(UserRepository ur, ClientRepository cr) {
+    public ClientService(UserRepository ur, ClientRepository cr, GroupClientsRepository gcr) {
         this.ur = ur;
         this.cr = cr;
+        this.gcr = gcr;
     }
 
     public Client getClientByUserId(int id) {
@@ -47,12 +47,12 @@ public class ClientService {
         return stringImageList;
     }
 
-    public ArrayList<AchievementImageAndTitle> getAchievementImagesAndTitleByClient(Client client){
+    public ArrayList<AchievementImageAndTitle> getAchievementImagesAndTitleByClient(Client client) {
         ArrayList<Achievement> achievementList = new ArrayList<>();
         client.getClientAchievesByClientId().forEach(i -> achievementList.add(i.getAchievementByAchievementId()));
         ArrayList<AchievementImageAndTitle> result = new ArrayList<>();
-        for(Achievement entry:achievementList){
-            result.add(new AchievementImageAndTitle(Base64.getEncoder().encodeToString(entry.getImage()),entry.getDescription()));
+        for (Achievement entry : achievementList) {
+            result.add(new AchievementImageAndTitle(Base64.getEncoder().encodeToString(entry.getImage()), entry.getDescription()));
         }
         return result;
     }
@@ -60,6 +60,13 @@ public class ClientService {
 
     public Collection<Subscription> getClientSubsByUserId(int userId) {
         return ur.findByUserId(userId).getClientByUserId().getSubscriptionsByClientId();
+    }
+
+    public void addClientToGroupTraining(int clientId, int groupId) {
+        GroupClients groupClients = new GroupClients();
+        groupClients.setClientId(clientId);
+        groupClients.setGroupId(groupId);
+        gcr.save(groupClients);
     }
 
     public List<Subscription> getClientSubsByPacksAndUserId(Collection<Pack> packs, int userId) {
@@ -72,7 +79,7 @@ public class ClientService {
         return (List<Subscription>) query.getResultList();
     }
 
-    public void save(Client client){
+    public void save(Client client) {
         cr.save(client);
     }
 }

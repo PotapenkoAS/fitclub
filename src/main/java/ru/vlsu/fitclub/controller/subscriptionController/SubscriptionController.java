@@ -1,6 +1,5 @@
 package ru.vlsu.fitclub.controller.subscriptionController;
 
-import org.hibernate.mapping.Subclass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,24 +34,10 @@ public class SubscriptionController {
 
     @GetMapping("new_sub")
     public String getNewSubWithActivity(@RequestParam(name = "activity_id") int activityId, Model model) {
-        int userId = userService.getCurrentUserId();
-        List<Subscription> subList;
-        if (activityId <= 0) {
-            model.addAttribute("error", "Набор не выбран с какого то XYZ");
-            return "subscription/new_sub";
-        }
         Collection<Pack> packs = packService.getPacksByActivityId(activityId);
-        subList = clientService.getClientSubsByPacksAndUserId(packs, userId);
-        if (subList.isEmpty()) {
-            Collection<Activity> activityList = activityService.getActivityList();
-            model.addAttribute("packs", packs);
-            model.addAttribute("activityId", activityId);
-            model.addAttribute("activityList", activityList);
-
-            return "subscription/new_sub";
-        } else {
-            return "redirect:/subs" + activityId; //todo validate inputs fuck, i dont want to do that shiet, just kill me plz
-        }
+        model.addAttribute("packs", packs);
+        model.addAttribute("activityId", activityId);
+        return "subscription/new_sub";
     }
 
     @PostMapping("new_sub")

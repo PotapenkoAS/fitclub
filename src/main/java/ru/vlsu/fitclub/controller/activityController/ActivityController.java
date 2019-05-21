@@ -27,7 +27,7 @@ public class ActivityController {
 
     @GetMapping("activity/{activityId}")
     public String getActivity(@PathVariable int activityId, Model model) {
-        Activity activity = activityService.getActivityById(activityId);
+        Activity activity = activityService.getById(activityId);
         String image = Base64.getEncoder().encodeToString(activity.getImage());
         ArrayList<Trainer> trainers = trainerService.getTrainersByActivityId(activityId);
         model.addAttribute("activity", activity);
