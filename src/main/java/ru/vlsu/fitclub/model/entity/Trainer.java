@@ -26,6 +26,7 @@ public class Trainer {
 
     @Transient
     private String encodedAvatar;
+    private Collection<TrainerPack> trainerPacksByTrainerId;
 
     @Transient
     public String getEncodedAvatar() {
@@ -219,5 +220,14 @@ public class Trainer {
 
     public void setRating(Double rating) {
         this.rating = rating;
+    }
+
+    @OneToMany(mappedBy = "trainerByTrainerId")
+    public Collection<TrainerPack> getTrainerPacksByTrainerId() {
+        return trainerPacksByTrainerId;
+    }
+
+    public void setTrainerPacksByTrainerId(Collection<TrainerPack> trainerPacksByTrainerId) {
+        this.trainerPacksByTrainerId = trainerPacksByTrainerId;
     }
 }

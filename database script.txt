@@ -1,7 +1,5 @@
 create schema fitness_club collate utf8mb4_0900_ai_ci;
-
-use fitness_club
-
+use fitness_club;
 create table activity
 (
 	activity_id int not null
@@ -183,6 +181,16 @@ create table subscription
 	constraint subscription_pack_pack_id_fk
 		foreign key (pack_id) references pack (pack_id),
 	constraint subscription_trainer_trainer_id_fk
+		foreign key (trainer_id) references trainer (trainer_id)
+);
+
+create table trainer_pack
+(
+	trainer_id int null,
+	pack_id int null,
+	constraint trainer_pack_pack_pack_id_fk
+		foreign key (pack_id) references pack (pack_id),
+	constraint trainer_pack_trainer_trainer_id_fk
 		foreign key (trainer_id) references trainer (trainer_id)
 );
 

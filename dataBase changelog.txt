@@ -36,3 +36,14 @@ alter table training
 	add date date null;
 
 alter table training drop column is_paid;
+
+
+create table trainer_pack
+(
+	trainer_id int null,
+	pack_id int null,
+	constraint trainer_pack_pack_pack_id_fk
+		foreign key (pack_id) references pack (pack_id),
+	constraint trainer_pack_trainer_trainer_id_fk
+		foreign key (trainer_id) references trainer (trainer_id)
+);

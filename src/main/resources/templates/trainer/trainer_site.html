@@ -1,4 +1,5 @@
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -30,6 +31,7 @@
 
         <h2> Обо мне </h2>
         <p th:text="${trainer.getFullDescription()}"></p>
+
     </div>
 </div>
 
