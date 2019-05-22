@@ -24,6 +24,19 @@ public class Trainer {
     private Double experience;
     private Double rating;
 
+    @Transient
+    private String encodedAvatar;
+
+    @Transient
+    public String getEncodedAvatar() {
+        return encodedAvatar;
+    }
+
+    @Transient
+    public void setEncodedAvatar(String encodedAvatar) {
+        this.encodedAvatar = encodedAvatar;
+    }
+
     @Id
     @Column(name = "trainer_id", nullable = false)
     public int getTrainerId() {

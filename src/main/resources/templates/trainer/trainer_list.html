@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>First page</title>
+    <link href="/content/style.css" rel="stylesheet">
+</head>
+
+<body>
+<div th:insert="header.html :: header-fragment"></div>
+
+<table>
+    <tr th:each="item:${trainerList}">
+        <td><img th:src="*{'data:image/png;base64,'+item.getEncodedAvatar()}" alt="/content/1.png"></td>
+        <td ><a th:text="${item.getSurname()} + ' ' + ${item.getName()}" th:href="@{'/trainer/' + ${item.getUserId()}}"></a></td>
+    </tr>
+</table>
+</body>
+</html>

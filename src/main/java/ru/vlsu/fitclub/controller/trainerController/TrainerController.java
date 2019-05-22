@@ -10,6 +10,7 @@ import ru.vlsu.fitclub.service.TrainerService;
 import ru.vlsu.fitclub.service.UserService;
 
 import java.util.Base64;
+import java.util.List;
 
 @Controller
 public class TrainerController {
@@ -40,6 +41,14 @@ public class TrainerController {
         model.addAttribute("specializations", trainerService.getTrainerSpecializations(trainer));
 
         return "trainer/trainer_site";
+    }
+
+    @GetMapping("/trainer_list")
+    public String getTrainerList(Model model) {
+        List<Trainer> trainerList = trainerService.getAll();
+        trainerService.encodeAllAvatars(trainerList);
+        model.addAttribute("trainerList",trainerList);
+        return "trainer/trainer_list";
     }
 
 }
