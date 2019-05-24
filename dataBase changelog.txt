@@ -47,3 +47,5 @@ create table trainer_pack
 	constraint trainer_pack_trainer_trainer_id_fk
 		foreign key (trainer_id) references trainer (trainer_id)
 );
+
+alter table subscription drop column is_active;

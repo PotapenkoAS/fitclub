@@ -15,7 +15,6 @@ public class Subscription {
     private Client clientByClientId;
     private Collection<SubscriptionTrainDate> subscriptionTrainDatesBySubscriptionId;
     private Trainer trainerByTrainerId;
-    private boolean isActive;
     private int clientId;
     private Integer trainerId;
     private Integer packId;
@@ -105,16 +104,6 @@ public class Subscription {
 
     public void setTrainerByTrainerId(Trainer trainerByTrainerId) {
         this.trainerByTrainerId = trainerByTrainerId;
-    }
-
-    @Basic
-    @Column(name = "is_active")
-    public boolean getIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(boolean isActive) {
-        this.isActive = isActive;
     }
 
     @Basic

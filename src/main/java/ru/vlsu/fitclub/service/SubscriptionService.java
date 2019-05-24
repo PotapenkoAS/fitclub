@@ -43,7 +43,6 @@ public class SubscriptionService {
         sub.setClientId(clientId);
         sub.setPrice(price);
         sub.setDuration(year + ":" + months + ":" + week);
-        sub.setIsActive(activate);
         if (activate) {
             Date date = new Date();
             sub.setDateFrom(new java.sql.Date(date.getTime()));

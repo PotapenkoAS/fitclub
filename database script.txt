@@ -172,7 +172,6 @@ create table subscription
 	date_from date null,
 	duration varchar(255) null,
 	price float null,
-	is_active tinyint(1) default 0 null,
 	client_id int not null,
 	trainer_id int null,
 	pack_id int null,
