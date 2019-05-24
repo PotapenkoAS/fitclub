@@ -50,7 +50,7 @@ public class ActivityService {
     }
 
     public Collection<Activity> getActivitiesByPackId(int packId) {
-        Pack pack = packService.getPackByPackId(packId);
+        Pack pack = packService.getById(packId);
         Collection<Activity> result = new ArrayList<>();
         pack.getActivityPacksByPackId().forEach(i -> result.add((i.getActivityByActivityId())));
         return result;

@@ -2,15 +2,14 @@ package ru.vlsu.fitclub.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.vlsu.fitclub.model.entity.Activity;
 import ru.vlsu.fitclub.model.entity.Pack;
 import ru.vlsu.fitclub.model.entity.Subscription;
+import ru.vlsu.fitclub.model.entity.Trainer;
 import ru.vlsu.fitclub.repository.SubscriptionRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -36,7 +35,7 @@ public class SubscriptionService {
     }
 
     public Subscription prepareNewSub(int packId, int year, int months, int week, int count, boolean activate) {
-        Pack pack = packService.getPackByPackId(packId);
+        Pack pack = packService.getById(packId);
         float price = activityService.getPriceForPack(year, months, week, count, pack);
         Subscription sub = new Subscription();
         int clientId = clientService.getClientByUserId(userService.getCurrentUserId()).getClientId();
@@ -65,6 +64,19 @@ public class SubscriptionService {
                 "where ap.activityId=:activityId " +
                 "and s.clientId=:clientId");
         query.setParameter("activityId", activityId);
+        query.setParameter("clientId", clientId);
+        return (List<Subscription>) query.getResultList();
+    }
+
+    public List<Subscription> getAllByTrainerId(int trainerId) {
+        int userId = userService.getCurrentUserId();
+        int clientId = clientService.getClientByUserId(userId).getClientId();
+        Query query = em.createQuery("select s from Subscription s " +
+                "inner join Pack p on p.packId=s.packId " +
+                "inner join TrainerPack tp on tp.packId = p.packId " +
+                "where tp.trainerId=:trainerId " +
+                "and s.clientId=:clientId");
+        query.setParameter("trainerId", trainerId);
         query.setParameter("clientId", clientId);
         return (List<Subscription>) query.getResultList();
     }

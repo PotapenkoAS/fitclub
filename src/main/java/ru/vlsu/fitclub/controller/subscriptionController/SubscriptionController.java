@@ -11,6 +11,7 @@ import ru.vlsu.fitclub.model.entity.Pack;
 import ru.vlsu.fitclub.model.entity.Subscription;
 import ru.vlsu.fitclub.service.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -33,10 +34,18 @@ public class SubscriptionController {
     }
 
     @GetMapping("new_sub")
-    public String getNewSubWithActivity(@RequestParam(name = "activity_id") int activityId, Model model) {
-        Collection<Pack> packs = packService.getPacksByActivityId(activityId);
+    public String getNewSubWithActivity(@RequestParam(name = "activity_id", defaultValue = "0") int activityId
+            , @RequestParam(name = "trainer_id", defaultValue = "0") int trainerId
+            , Model model) {
+        ArrayList<Pack> packs = new ArrayList<>();
+        if (activityId != 0) {
+            packs = packService.getPacksByActivityId(activityId);
+        } else if (trainerId != 0) {
+            packs = packService.getPacksByTrainerId(trainerId);
+        }else{
+            model.addAttribute("error","произошел косяк");
+        }
         model.addAttribute("packs", packs);
-        model.addAttribute("activityId", activityId);
         return "subscription/new_sub";
     }
 

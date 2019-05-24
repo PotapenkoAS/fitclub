@@ -5,7 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import ru.vlsu.fitclub.model.entity.Subscription;
 import ru.vlsu.fitclub.model.entity.Trainer;
+import ru.vlsu.fitclub.service.SubscriptionService;
 import ru.vlsu.fitclub.service.TrainerService;
 import ru.vlsu.fitclub.service.UserService;
 
@@ -18,12 +21,13 @@ public class TrainerController {
 
     private TrainerService trainerService;
     private UserService userService;
-
+    private SubscriptionService subscriptionService;
 
     @Autowired
-    public TrainerController(TrainerService trainerService, UserService userService) {
+    public TrainerController(TrainerService trainerService, UserService userService, SubscriptionService subscriptionService) {
         this.trainerService = trainerService;
         this.userService = userService;
+        this.subscriptionService = subscriptionService;
     }
 
     @GetMapping("/trainer")
@@ -39,16 +43,16 @@ public class TrainerController {
         model.addAttribute("avatar", avatar);
         model.addAttribute("trainer", trainer);
         model.addAttribute("specializations", trainerService.getTrainerSpecializations(trainer));
-
         return "trainer/trainer_site";
     }
 
-    @GetMapping("/trainer_list")
-    public String getTrainerList(Model model) {
-        List<Trainer> trainerList = trainerService.getAll();
-        trainerService.encodeAllAvatars(trainerList);
-        model.addAttribute("trainerList",trainerList);
-        return "trainer/trainer_list";
+    @PostMapping("/trainer/sub_check")
+    public String postSubCheck(int trainerId) {
+        List<Subscription> subList = subscriptionService.getAllByTrainerId(trainerId);
+        if (subList.isEmpty()) {
+            return "redirect:/new_sub?trainer_id=" + trainerId;
+        }else{
+            return "redirect:/new_train";
+        }
     }
-
 }

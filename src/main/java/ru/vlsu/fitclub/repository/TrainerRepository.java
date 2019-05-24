@@ -11,5 +11,6 @@ public interface TrainerRepository extends CrudRepository<Trainer, Integer> {
     ArrayList<Trainer> findAll();
 
     Trainer findByUserId(int id);
+    Trainer findByTrainerId(int id);
 
 }

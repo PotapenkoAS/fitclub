@@ -32,6 +32,10 @@
         <h2> Обо мне </h2>
         <p th:text="${trainer.getFullDescription()}"></p>
 
+        <form method="post" action="/trainer/sub_check" sec:authorize="hasRole('CLIENT')">
+            <input name="trainerId" th:value="${trainer.getTrainerId()}" readonly style="display: none">
+            <input type="submit" value="Записаться">
+        </form>
     </div>
 </div>
 
