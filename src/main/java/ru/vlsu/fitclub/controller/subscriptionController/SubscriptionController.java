@@ -42,8 +42,8 @@ public class SubscriptionController {
             packs = packService.getPacksByActivityId(activityId);
         } else if (trainerId != 0) {
             packs = packService.getPacksByTrainerId(trainerId);
-        }else{
-            model.addAttribute("error","произошел косяк");
+        } else {
+            model.addAttribute("error", "произошел косяк");
         }
         model.addAttribute("packs", packs);
         return "subscription/new_sub";

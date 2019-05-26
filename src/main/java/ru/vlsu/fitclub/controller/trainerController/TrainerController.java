@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.vlsu.fitclub.model.entity.Subscription;
 import ru.vlsu.fitclub.model.entity.Trainer;
 import ru.vlsu.fitclub.service.SubscriptionService;
@@ -47,11 +48,12 @@ public class TrainerController {
     }
 
     @PostMapping("/trainer/sub_check")
-    public String postSubCheck(int trainerId) {
+    public String postSubCheck(int trainerId, RedirectAttributes redirectAttributes) {
         List<Subscription> subList = subscriptionService.getAllByTrainerId(trainerId);
         if (subList.isEmpty()) {
             return "redirect:/new_sub?trainer_id=" + trainerId;
         }else{
+            redirectAttributes.addAttribute("trainerId",trainerId);
             return "redirect:/new_train";
         }
     }
