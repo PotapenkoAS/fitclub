@@ -51,7 +51,7 @@ public class TrainerPack {
     }
 
     @ManyToOne
-    @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id")
+    @JoinColumn(name = "trainer_id", referencedColumnName = "trainer_id", updatable = false, insertable = false)
     public Trainer getTrainerByTrainerId() {
         return trainerByTrainerId;
     }
@@ -61,7 +61,7 @@ public class TrainerPack {
     }
 
     @ManyToOne
-    @JoinColumn(name = "pack_id", referencedColumnName = "pack_id")
+    @JoinColumn(name = "pack_id", referencedColumnName = "pack_id", updatable = false, insertable = false)
     public Pack getPackByPackId() {
         return packByPackId;
     }
