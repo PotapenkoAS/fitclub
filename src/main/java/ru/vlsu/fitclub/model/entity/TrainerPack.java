@@ -1,10 +1,13 @@
 package ru.vlsu.fitclub.model.entity;
 
+import ru.vlsu.fitclub.model.compositeKey.TrainerPackKey;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "trainer_pack", schema = "fitness_club", catalog = "")
+@IdClass(TrainerPackKey.class)
+@Table(name = "trainer_pack", schema = "fitness_club")
 public class TrainerPack {
     private Integer trainerId;
     private Integer packId;
@@ -12,6 +15,7 @@ public class TrainerPack {
     private Pack packByPackId;
 
     @Basic
+    @Id
     @Column(name = "trainer_id")
     public Integer getTrainerId() {
         return trainerId;
@@ -22,6 +26,7 @@ public class TrainerPack {
     }
 
     @Basic
+    @Id
     @Column(name = "pack_id")
     public Integer getPackId() {
         return packId;

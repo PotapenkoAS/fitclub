@@ -28,4 +28,5 @@ public class TrainingService {
     public ArrayList<Training> getAllByTrainerId(int trainerId) {
         return tr.findAllByTrainerId(trainerId);
     }
+
 }

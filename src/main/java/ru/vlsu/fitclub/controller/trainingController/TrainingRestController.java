@@ -48,6 +48,6 @@ public class TrainingRestController {
     public String refreshTrainerSchedule(@RequestParam(name = "month_offset") int monthOffset
             ,@RequestParam(name = "trainer_id") int trainerId){
 
-
+return null;
     }
 }

@@ -7,6 +7,8 @@ import ru.vlsu.fitclub.model.entity.Training;
 import ru.vlsu.fitclub.model.restObject.CalendarSchedule;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 @Service
 public class CalendarScheduleService {
@@ -20,8 +22,9 @@ public class CalendarScheduleService {
         this.groupTrainingService = groupTrainingService;
     }
 
-    public ArrayList<CalendarSchedule> getListCalendarScheduleByTrainerId(int trainerId) {
-        ArrayList<Training> trainings = trainingService.getAllByTrainerId(trainerId);
-        ArrayList<GroupTraining> groupTrainings = groupTrainingService.getAllByTrainerId(trainerId);
+    public ArrayList<CalendarSchedule> getListCalendarScheduleByTrainerIdFormMonth(int trainerId, int offset) {
+        GregorianCalendar dateWithOffset = new GregorianCalendar();
+        dateWithOffset.add(Calendar.MONTH,offset);
+        return null;
     }
 }
