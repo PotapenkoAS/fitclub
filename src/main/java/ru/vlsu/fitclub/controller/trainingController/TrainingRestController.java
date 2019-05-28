@@ -1,7 +1,9 @@
 package ru.vlsu.fitclub.controller.trainingController;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.vlsu.fitclub.model.entity.GroupTraining;
 import ru.vlsu.fitclub.model.entity.Subscription;
@@ -42,5 +44,10 @@ public class TrainingRestController {
         clientService.addClientToGroupTraining(clientId, groupId);
         return "Success";
     }
+    @GetMapping("/trainer_schedule/refresh")
+    public String refreshTrainerSchedule(@RequestParam(name = "month_offset") int monthOffset
+            ,@RequestParam(name = "trainer_id") int trainerId){
 
+
+    }
 }

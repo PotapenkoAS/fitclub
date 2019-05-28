@@ -1,6 +1,7 @@
 package ru.vlsu.fitclub.model.entity;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Objects;
@@ -20,6 +21,7 @@ public class Training {
     private Integer trainerId;
     private Integer clientId;
     private Integer activityId;
+    private Date date;
 
     @Id
     @Column(name = "training_id", nullable = false)
@@ -166,5 +168,15 @@ public class Training {
 
     public void setActivityId(Integer activityId) {
         this.activityId = activityId;
+    }
+
+    @Basic
+    @Column(name = "date")
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

@@ -5,10 +5,12 @@ import org.springframework.stereotype.Service;
 import ru.vlsu.fitclub.model.entity.GroupTraining;
 import ru.vlsu.fitclub.repository.GroupTrainingRepository;
 
+import java.util.ArrayList;
+
 @Service
 public class GroupTrainingService {
 
-    GroupTrainingRepository gtr;
+    private GroupTrainingRepository gtr;
 
     @Autowired
     public GroupTrainingService(GroupTrainingRepository gtr) {
@@ -17,5 +19,9 @@ public class GroupTrainingService {
 
     public GroupTraining getById(int groupId) {
         return gtr.findByGroupId(groupId);
+    }
+
+    public ArrayList<GroupTraining> getAllByTrainerId(int trainerId){
+        return gtr.findAllByTrainerId(trainerId);
     }
 }

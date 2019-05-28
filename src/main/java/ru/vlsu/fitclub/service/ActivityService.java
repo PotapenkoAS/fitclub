@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.vlsu.fitclub.model.entity.Activity;
 import ru.vlsu.fitclub.model.entity.Pack;
+import ru.vlsu.fitclub.model.entity.Trainer;
 import ru.vlsu.fitclub.repository.ActivityRepository;
 
 import java.util.*;
@@ -13,11 +14,13 @@ public class ActivityService {
 
     private ActivityRepository activityRepository;
     private PackService packService;
+    private TrainerService trainerService;
 
     @Autowired
-    public ActivityService(ActivityRepository activityRepository, PackService packService) {
+    public ActivityService(ActivityRepository activityRepository, PackService packService, TrainerService trainerService) {
         this.activityRepository = activityRepository;
         this.packService = packService;
+        this.trainerService = trainerService;
     }
 
     public Activity getById(int id) {
@@ -49,10 +52,19 @@ public class ActivityService {
         return price;
     }
 
-    public Collection<Activity> getActivitiesByPackId(int packId) {
+    public Collection<Activity> getAllByPackId(int packId) {
         Pack pack = packService.getById(packId);
         Collection<Activity> result = new ArrayList<>();
         pack.getActivityPacksByPackId().forEach(i -> result.add((i.getActivityByActivityId())));
+        return result;
+    }
+
+    public ArrayList<Activity> getAllByTrainerId(int trainerId) {
+        Trainer trainer = trainerService.getById(trainerId);
+        ArrayList<Activity> result = new ArrayList<>();
+        trainer.getTrainerPacksByTrainerId()
+                .forEach(i -> i.getPackByPackId().getActivityPacksByPackId()
+                        .forEach(a -> result.add(a.getActivityByActivityId())));
         return result;
     }
 }

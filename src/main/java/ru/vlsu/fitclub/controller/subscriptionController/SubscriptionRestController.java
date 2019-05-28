@@ -40,7 +40,7 @@ public class SubscriptionRestController {
 
     @GetMapping("new_sub/priceRefresh")
     public ActivityPrice priceRefresh(@RequestParam(name = "packId", defaultValue = "0") int packId) {
-        Collection<Activity> activityList = activityService.getActivitiesByPackId(packId);
+        Collection<Activity> activityList = activityService.getAllByPackId(packId);
         ActivityPrice result = new ActivityPrice(0,0,0,0);
         for (Activity item : activityList) {
             result.plusPriceForYear(item.getPriceForYear());

@@ -34,7 +34,7 @@ public class SubscriptionService {
         this.sr = sr;
     }
 
-    public Subscription prepareNewSub(int packId, int year, int months, int week, int count, boolean activate) {
+    public Subscription prepareNewSub(int packId, int year, int months, int week, int count) {
         Pack pack = packService.getById(packId);
         float price = activityService.getPriceForPack(year, months, week, count, pack);
         Subscription sub = new Subscription();
@@ -43,10 +43,8 @@ public class SubscriptionService {
         sub.setClientId(clientId);
         sub.setPrice(price);
         sub.setDuration(year + ":" + months + ":" + week);
-        if (activate) {
-            Date date = new Date();
-            sub.setDateFrom(new java.sql.Date(date.getTime()));
-        }
+        Date date = new Date();
+        sub.setDateFrom(new java.sql.Date(date.getTime()));
         sub.setNumberOfTrains(count);
         return sub;
     }

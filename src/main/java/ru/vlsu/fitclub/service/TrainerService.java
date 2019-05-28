@@ -36,6 +36,10 @@ public class TrainerService {
         return result;
     }
 
+    public Trainer getById(int trainerId){
+        return trainerRepository.findByTrainerId(trainerId);
+    }
+
     public ArrayList<Trainer> getAll() {
         return trainerRepository.findAll();
     }

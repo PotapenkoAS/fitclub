@@ -50,13 +50,12 @@ public class SubscriptionController {
     }
 
     @PostMapping("new_sub")
-    public String postNewSub(int packId, Integer year, Integer month, Integer week, Integer count, boolean activate) {
+    public String postNewSub(int packId, Integer year, Integer month, Integer week, Integer count) {
         Subscription sub = subscriptionService.prepareNewSub(packId
                 , year == null ? 0 : year
                 , month == null ? 0 : month
                 , week == null ? 0 : week
-                , count == null ? 0 : count
-                , activate);
+                , count == null ? 0 : count);
         subscriptionService.save(sub);
         return "subscription/success";
     }
