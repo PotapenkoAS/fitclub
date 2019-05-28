@@ -6,6 +6,7 @@ import ru.vlsu.fitclub.model.entity.Training;
 import ru.vlsu.fitclub.repository.TrainingRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 @Service
 public class TrainingService {
@@ -29,4 +30,7 @@ public class TrainingService {
         return tr.findAllByTrainerId(trainerId);
     }
 
+    public ArrayList<Training> getAllByTrainerIdAndDate(int trainerId, Date dateFrom, Date dateTo) {
+        return tr.findAllByTrainerIdAndDateIsLessThanAndDateIsGreaterThanEqual(trainerId,dateTo,dateFrom);
+    }
 }
