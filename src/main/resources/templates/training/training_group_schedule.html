@@ -52,12 +52,12 @@
                    th:text="${item.getActivityByActivityId().getName()}"></a></td>
             <td th:text="${item.getTimeBegin().toGMTString().substring(10,19)}"></td>
             <td th:text="${item.getTimeEnd().toGMTString().substring(10,19)}"></td>
-            <td><a th:href="@{'/trainer/' + ${item.getTrainerByTrainerId().getTrainerId()}}"
-                   th:text="${item.getTrainerByTrainerId().getSurname()} + ' ' + ${item.getTrainerByTrainerId().getSurname()}"></a>
+            <td><a th:href="@{'/trainer/' + ${item.getTrainerByTrainerId().getUserId()}}"
+                   th:text="${item.getTrainerByTrainerId().getSurname()} + ' ' + ${item.getTrainerByTrainerId().getName()}"></a>
             </td>
             <td sec:authorize="isAuthenticated()">
                 <p th:if="${item.isRecorded()}">✓</p>
-                <button id="recordButton" th:text="chpok" th:if="${!item.isRecorded()}" th:onclick="'send(\''+${item.groupId}+'\');'"></button>
+                <button class="button button_timetable_record"  id="recordButton" th:text="chpok" th:if="${!item.isRecorded()}" th:onclick="'send(\''+${item.groupId}+'\');'"></button>
             </td>
         </tr>
     </table>

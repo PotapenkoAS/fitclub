@@ -60,7 +60,7 @@ function refresh() {
             pw = data.priceForWeek;
             pt = data.priceForTrain;
             recount();
-            price.innerText = "За год: " + py + "Р. За месяц: " + pm + "Р. За неделю: " + pw + "Р. За тренировку: " + pt + "Р";
+            price.innerText = "За год: " + py + "Р. \nЗа месяц: " + pm + "Р. \nЗа неделю: " + pw + "Р. \nЗа тренировку: " + pt + "Р";
         }
     });
 }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>newSub</title>
     <link href="content/style.css" type="text/css" rel="stylesheet">
     <base href="/">
@@ -17,16 +18,20 @@
         $('.select2').select2();
     });
 </script> -->
-<div class="contentText">
+<div class="section">
+    <h1>Покупка абонемента</h1>
+<div class="contentTextNewSubRight">
     <p th:text="${error}" style="color: deeppink"></p>
-    <form method="post">
+
+    <br method="post">
         <!--  <select class="select2" name="activityId[]" id="activities" onchange="refresh()" multiple="multiple">
               <option th:each="item : ${activityList}"
                       th:value="${item.getActivityId()}"
                       th:utext="${item.getName()}"
                       th:selected="${item.getActivityId() == activityId}"/>
           </select> -->
-        <select name="packId" id="packId" onchange="refresh()">
+        <h3 style="display: inline">Вид абонемента:</h3>
+        <select class="newSub_select" name="packId" id="packId" onchange="refresh()">
             <option th:each="item : ${packs}"
                     th:value="${item.getPackId()}"
                     th:utext="${item.getName()}">
@@ -39,30 +44,42 @@
           -->
         <br/>
         <label>
-            <input type="radio" name="changer" value=0 checked onclick="change(0)">
+            <input type="radio" style="width: 5%" name="changer" value=0 checked onclick="change(0)">
             Количество
         </label>
         <br/>
         <label>
-            <input type="radio" name="changer" value=1 onclick="change(1)">
+            <input type="radio" style="width: 5%" name="changer" value=1 onclick="change(1)">
             Период
         </label>
-        <br/>
+        <br/><br/>
         <div id="dateDiv" style="display: none">
-            <input type="text" name="year" id="year" class="dateInput"
+            <input type="text" name="year" id="year" class="dateInput timetable_input"
                    placeholder="Год" onchange="recount()">
-            <input type="text" name="month" id="month" class="dateInput"
+            <input type="text" name="month" id="month" class="dateInput timetable_input"
                    placeholder="Месяц" onchange="recount()">
-            <input type="text" name="week" id="week" class="dateInput"
+            <input type="text" name="week" id="week" class="dateInput timetable_input"
                    placeholder="Неделя" onchange="recount()">
         </div>
         <div id="countDiv" style="display: inline">
-            <input type="number" name="count" id="count" class="countInput" placeholder="Количество занятий"
+            <input type="number" name="count" id="count" class="countInput timetable_input1" placeholder="Количество занятий"
                    onchange="recount()">
         </div>
-        <input type="submit" value="Оплатить">
+    </br>
+        <input type="submit" class="button buttonNewSub" value="Оплатить">
     </form>
-    <p id="price"></p>
-    <p id="totalPrice"></p>
 </div>
+    <div class="contentTextNewSubLeft">
+        <h3>Стоимость:</h3>
+        <p id="price"></p>
+        <br/>
+        <p id="totalPrice"></p>
+</div>
+</div>
+
+<div class="copyright">
+    &copy; 2019 Fitness club :D All rights reserved.
+</div>
+
 </body>
+</html>

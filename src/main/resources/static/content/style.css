@@ -91,6 +91,20 @@ p {
     text-align: left;
 }
 
+.contentTextNewSubLeft {
+    padding: 0 10px;
+    text-align: left;
+    float: left;
+    margin-left: 20%;
+}
+
+.contentTextNewSubRight {
+    padding: 0 10px;
+    float: right;
+    margin-right: 3%;
+    width: 55%;
+}
+
 .sidebarProgress {
 / / margin-top: 10 px;
     width: 55%;
@@ -145,9 +159,29 @@ p {
     display: inline-block;
 }
 
+.timetable_input1{
+    width: 25%;
+    height: 30px;
+    padding: 0 10px;
+    margin-left: 1%;
+}
+
 .timetable_select{
     width: 15%;
-    height: 30px;
+    height: 32px;
+    padding: 0 10px;
+    margin-left: 1%;
+    display: inline-block;
+    border: 1px solid #cecece;
+    background-color: #efefef;
+    color: #787575;
+    border-radius: 5px;
+    font-family: 'Handlee', cursive;
+}
+
+.newSub_select{
+    width: 30%;
+    height: 32px;
     padding: 0 10px;
     margin-left: 1%;
     display: inline-block;
@@ -210,11 +244,22 @@ table {
     margin: auto;
 }
 
-table, th, td {
+table, th {
     border: 2px solid #cecece;
+    background: #53a5f5;
     border-collapse: collapse;
     text-align: center;
     table-layout: fixed;
+    color: white;
+}
+
+table, td {
+    border: 2px solid #cecece;
+    background: white;
+    border-collapse: collapse;
+    text-align: center;
+    table-layout: fixed;
+    color: #2a323b;
 }
 
 .selected {
@@ -535,6 +580,10 @@ h4 {
     background-color: #0cfe03;
 }
 
+.buttonNewSub {
+    background-color: #0cfe03;
+}
+
 .button1 {
     background-color: #53a5f5;
 }
@@ -550,6 +599,31 @@ h4 {
     height: 30px;
     padding: 0 10px;
     margin-left: 1%;
+}
+
+.button_timetable_record{
+    background-color: #53a5f5;
+    display: inline-block;
+    width: 40%;
+    height: 30px;
+    padding: 0 10px;
+    margin-left: 1%;
+}
+
+.button_timetable_record_nice{
+    background-color: #00ff7f;
+    display: inline-block;
+    width: 40%;
+    height: 30px;
+    padding: 0 10px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    margin: 16px 2px;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 img.img.zoom {

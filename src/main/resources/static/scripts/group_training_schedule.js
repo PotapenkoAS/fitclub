@@ -11,6 +11,7 @@ function send(groupId) {
                 var button = document.getElementById('recordButton');
                 button.textContent = 'nice';
                 button.disabled = 'disabled';
+                button.className = 'button_timetable_record_nice';
             }
         }
     })
