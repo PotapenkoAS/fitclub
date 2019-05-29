@@ -1,6 +1,6 @@
 package ru.vlsu.fitclub.service;
 
-import javafx.util.Pair;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.vlsu.fitclub.model.entity.GroupTraining;

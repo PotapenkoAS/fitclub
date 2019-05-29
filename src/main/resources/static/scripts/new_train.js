@@ -25,11 +25,11 @@ function refreshSchedule(offset) {
                 arr[++j] = '<tr>';
                 for (var d = 0; d < 7; d++) {
                     if (data[i].days[d].value.count > 0) {
-                        arr[++j] = '<td style="background-color: aqua">';
-                        arr[++j] = '<p style="position:relative; font-size: 9px" align="left">' + data[i].days[d].value.date.substr(8, 2) + '</p><a href=""><p class="tooltip">' + data[i].days[d].value.count + ' занятий<span class="tooltiptext">' + data[i].days[d].value.text + '</span></p></a>';
+                        arr[++j] = '<td style="background-color: #d7f3f7; border: 2px solid #cecece">';
+                        arr[++j] = '<p style="position:relative; font-size: 9px" align="left">' + data[i].days[d].value.date.substr(8, 2) + '</p><a href=""><p class="tooltip">' + 'занятий: ' + data[i].days[d].value.count + '<span class="tooltiptext">' + data[i].days[d].value.text + '</span></p></a>';
                         arr[++j] = '</td>';
                     } else {
-                        arr[++j] = '<td><p style="position:relative; font-size: 9px" align="left">' + data[i].days[d].value.date.substr(8, 2) + '</p><button id="' + i + ' ' + d + '" style="color: #6be003" onclick="change(this)">Записаться</button></td>';
+                        arr[++j] = '<td style="border: 2px solid #cecece"><p style="position:relative; font-size: 9px" align="left">' + data[i].days[d].value.date.substr(8, 2) + '</p><button id="' + i + ' ' + d + '" class="button button_new_train" onclick="change(this)">Записаться</button></td>';
                     }
                 }
                 arr[++j] = '<tr/>';
@@ -62,7 +62,7 @@ function change(button) {
             }
         });
     } else {
-        button.style.color = "#6be003";
+        button.style.color = "white";
         button.innerText = "Записаться";
         $.ajax({
             type: "DELETE",

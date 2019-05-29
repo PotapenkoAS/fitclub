@@ -47,15 +47,15 @@
             <th sec:authorize="isAuthenticated()">Запись</th>
         </tr>
         <tr th:each="item : ${list}">
-            <td th:text="${item.getDate()}"></td>
-            <td><a th:href="@{'/activity/' + ${item.getActivityByActivityId().getActivityId()}}"
+            <td class="table_timetable" th:text="${item.getDate()}"></td>
+            <td class="table_timetable"><a th:href="@{'/activity/' + ${item.getActivityByActivityId().getActivityId()}}"
                    th:text="${item.getActivityByActivityId().getName()}"></a></td>
-            <td th:text="${item.getTimeBegin().toGMTString().substring(10,19)}"></td>
-            <td th:text="${item.getTimeEnd().toGMTString().substring(10,19)}"></td>
-            <td><a th:href="@{'/trainer/' + ${item.getTrainerByTrainerId().getUserId()}}"
+            <td class="table_timetable" th:text="${item.getTimeBegin().toGMTString().substring(10,19)}"></td>
+            <td class="table_timetable" th:text="${item.getTimeEnd().toGMTString().substring(10,19)}"></td>
+            <td class="table_timetable"><a th:href="@{'/trainer/' + ${item.getTrainerByTrainerId().getUserId()}}"
                    th:text="${item.getTrainerByTrainerId().getSurname()} + ' ' + ${item.getTrainerByTrainerId().getName()}"></a>
             </td>
-            <td sec:authorize="isAuthenticated()">
+            <td class="table_timetable" sec:authorize="isAuthenticated()">
                 <p th:if="${item.isRecorded()}">✓</p>
                 <button class="button button_timetable_record"  id="recordButton" th:text="chpok" th:if="${!item.isRecorded()}" th:onclick="'send(\''+${item.groupId}+'\');'"></button>
             </td>
@@ -64,7 +64,7 @@
 </div>
 
 <div class="copyright">
-    &copy; 2019 Fitness club :D All rights reserved.
+    &copy; 2019 Fitness club. All rights reserved.
 </div>
 
 </body>

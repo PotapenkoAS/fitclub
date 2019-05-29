@@ -15,20 +15,26 @@
     trainerId = /*[[${trainerId}]]*/ 0;
     /*]]>*/
 </script>
-<select name="activityId" id="activityId" class="timetable_select">
+
+
+<div class="section">
+    <div style="margin-left: 18%">
+    <select name="activityId" id="activityId" class="timetable_select">
     <option th:each="item : ${activityList}"
             th:value="${item.getActivityId()}"
             th:utext="${item.getName()}">
     </option>
 </select>
-<input id="timeBegin" type="time">
-<input id="timeEnd" type="time">
-<button onclick="refreshSchedule(--offset)">Назад</button>
-<button onclick="refreshSchedule(++offset)">Вперед</button>
-<div class="section">
-    <table id="schedule">
-    </table>
-</div>
+    <input class="timetable_input" id="timeBegin" type="time">
+    <input class="timetable_input" id="timeEnd" type="time">
+        <button class="button button_timetable" onclick="refreshSchedule(--offset)">Назад</button>
+        <button class="button button_timetable" onclick="refreshSchedule(++offset)">Вперед</button></div>
+        <br>
+    <table class="table_timetable"  id="schedule"></table>
 
+</div>
+<div class="copyright">
+    &copy; 2019 Fitness club. All rights reserved.
+</div>
 </body>
 </html>
