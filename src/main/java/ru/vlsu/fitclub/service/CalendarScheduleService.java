@@ -44,7 +44,7 @@ public class CalendarScheduleService {
             CalendarSchedule cs = new CalendarSchedule();
             cs.getDays().forEach((k, v) -> {
                 v.setDate(curCal);
-                curCal.add(Calendar.DAY_OF_MONTH, curCal.get(Calendar.DAY_OF_MONTH) + 1);
+                curCal.set(Calendar.DAY_OF_MONTH, curCal.get(Calendar.DAY_OF_MONTH) + 1);
             });
             result.add(cs);
         }
@@ -54,7 +54,7 @@ public class CalendarScheduleService {
             int weekIndex = tmp.get(Calendar.WEEK_OF_MONTH) - 1;
             String dayOfWeek = getDayOfWeek(tmp.get(Calendar.DAY_OF_WEEK));
             CalendarScheduleItem item = result.get(weekIndex).getDays().get(dayOfWeek);
-            item.setTrainingId(entry.getTrainingId());
+            item.setTrainingId(entry.getTrainingId()); //todo поглядеть как можно посчитать количество занятий за день или как это обойти
             item.setText(item.getText() + "\n" + entry.getTimeBegin() + " - " + entry.getTimeEnd() + ". " + entry.getActivityByActivityId().getName());
             result.get(weekIndex).getDays().put(dayOfWeek, item);
 

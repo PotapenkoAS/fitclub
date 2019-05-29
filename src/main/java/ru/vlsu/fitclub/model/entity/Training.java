@@ -13,7 +13,6 @@ public class Training {
     private String weekDay;
     private Timestamp timeBegin;
     private Timestamp timeEnd;
-    private Byte isPaid;
     private Collection<SubscriptionTrainDate> subscriptionTrainDatesByTrainingId;
     private Trainer trainerByTrainerId;
     private Client clientByClientId;
@@ -73,15 +72,6 @@ public class Training {
         this.timeEnd = timeEnd;
     }
 
-    @Basic
-    @Column(name = "is_paid")
-    public Byte getIsPaid() {
-        return isPaid;
-    }
-
-    public void setIsPaid(Byte isPaid) {
-        this.isPaid = isPaid;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -92,13 +82,13 @@ public class Training {
                 Objects.equals(regularity, training.regularity) &&
                 Objects.equals(weekDay, training.weekDay) &&
                 Objects.equals(timeBegin, training.timeBegin) &&
-                Objects.equals(timeEnd, training.timeEnd) &&
-                Objects.equals(isPaid, training.isPaid);
+                Objects.equals(timeEnd, training.timeEnd);
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(trainingId, regularity, weekDay, timeBegin, timeEnd, isPaid);
+        return Objects.hash(trainingId, regularity, weekDay, timeBegin, timeEnd);
     }
 
     @OneToMany(mappedBy = "trainingByTrainingId")
