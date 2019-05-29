@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.vlsu.fitclub.model.entity.GroupTraining;
 import ru.vlsu.fitclub.model.entity.Subscription;
 import ru.vlsu.fitclub.model.restObject.CalendarSchedule;
+import ru.vlsu.fitclub.model.restObject.JsonTraining;
 import ru.vlsu.fitclub.service.*;
 
 import java.sql.Time;
@@ -53,23 +54,27 @@ public class TrainingRestController {
     }
 
     @PostMapping("/training/new")
-    public void createNewTraining(int week, int day, int offset, Time timeBegin, Time timeEnd, int activityId, int trainerId) {
+    public void createNewTraining(int week, int day, int offset, String timeBegin, String timeEnd, int activityId, int trainerId) {
         int clientId = clientService.getClientByUserId(userService.getCurrentUserId()).getClientId();
         GregorianCalendar date = new GregorianCalendar();
         date.add(Calendar.MONTH, offset);
         date.set(Calendar.WEEK_OF_MONTH, week + 1);
-        date.set(Calendar.DAY_OF_WEEK, dayOfWeekConvert(day));
-        trainingService.save(clientId, trainerId,activityId,date.getTime(),timeBegin,timeEnd);
+        date.set(Calendar.DAY_OF_WEEK, dayOfWeekConvert(day + 1));
+        timeBegin += ":00";
+        timeEnd += ":00";
+        trainingService.save(clientId, trainerId, activityId, date.getTime(), Time.valueOf(timeBegin), Time.valueOf(timeEnd));
     }
 
     @DeleteMapping("/training/delete")
-    public void deleteTraining(int week, int day, int offset, Time timeBegin, Time timeEnd, int activityId, int trainerId){
+    public void deleteTraining(int week, int day, int offset, String timeBegin, String timeEnd, int activityId, int trainerId) {
         int clientId = clientService.getClientByUserId(userService.getCurrentUserId()).getClientId();
         GregorianCalendar date = new GregorianCalendar();
         date.add(Calendar.MONTH, offset);
         date.set(Calendar.WEEK_OF_MONTH, week + 1);
-        date.set(Calendar.DAY_OF_WEEK, dayOfWeekConvert(day));
-        trainingService.delete(clientId, trainerId,activityId,date.getTime(),timeBegin,timeEnd);
+        date.set(Calendar.DAY_OF_WEEK, dayOfWeekConvert(day + 1));
+        timeBegin += ":00";
+        timeEnd += ":00";
+        trainingService.delete(clientId, trainerId, activityId, date.getTime(), Time.valueOf(timeBegin), Time.valueOf(timeEnd));
     }
 
     private int dayOfWeekConvert(int day) {

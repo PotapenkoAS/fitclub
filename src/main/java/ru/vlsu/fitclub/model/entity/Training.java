@@ -2,6 +2,7 @@ package ru.vlsu.fitclub.model.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Objects;
@@ -11,8 +12,8 @@ public class Training {
     private int trainingId;
     private Integer regularity;
     private String weekDay;
-    private Timestamp timeBegin;
-    private Timestamp timeEnd;
+    private Time timeBegin;
+    private Time timeEnd;
     private Collection<SubscriptionTrainDate> subscriptionTrainDatesByTrainingId;
     private Trainer trainerByTrainerId;
     private Client clientByClientId;
@@ -55,21 +56,21 @@ public class Training {
 
     @Basic
     @Column(name = "time_begin")
-    public Timestamp getTimeBegin() {
+    public Time getTimeBegin() {
         return timeBegin;
     }
 
-    public void setTimeBegin(Timestamp timeBegin) {
+    public void setTimeBegin(Time timeBegin) {
         this.timeBegin = timeBegin;
     }
 
     @Basic
     @Column(name = "time_end")
-    public Timestamp getTimeEnd() {
+    public Time getTimeEnd() {
         return timeEnd;
     }
 
-    public void setTimeEnd(Timestamp timeEnd) {
+    public void setTimeEnd(Time timeEnd) {
         this.timeEnd = timeEnd;
     }
 

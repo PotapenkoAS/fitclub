@@ -52,9 +52,9 @@ public class TrainerController {
         List<Subscription> subList = subscriptionService.getAllByTrainerId(trainerId);
         if (subList.isEmpty()) {
             return "redirect:/new_sub?trainer_id=" + trainerId;
-        }else{
-            redirectAttributes.addAttribute("trainerId",trainerId);
-            return "redirect:/new_train";
+        } else {
+            redirectAttributes.addAttribute("trainerId", trainerId);
+            return "redirect:/new_train?trainer_id=" + trainerId;
         }
     }
 }

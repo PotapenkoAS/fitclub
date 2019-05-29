@@ -23,6 +23,5 @@ dependencies {
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.13'
     runtimeOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    compile group: 'org.openjfx', name: 'javafx', version: '11-ea+25', ext: 'pom'
-    
+
 }

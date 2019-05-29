@@ -7,6 +7,9 @@ import ru.vlsu.fitclub.model.entity.Pack;
 import ru.vlsu.fitclub.model.entity.Trainer;
 import ru.vlsu.fitclub.repository.ActivityRepository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.*;
 
 @Service
@@ -15,6 +18,8 @@ public class ActivityService {
     private ActivityRepository activityRepository;
     private PackService packService;
     private TrainerService trainerService;
+    @PersistenceContext
+    EntityManager em;
 
     @Autowired
     public ActivityService(ActivityRepository activityRepository, PackService packService, TrainerService trainerService) {
@@ -60,11 +65,12 @@ public class ActivityService {
     }
 
     public ArrayList<Activity> getAllByTrainerId(int trainerId) {
-        Trainer trainer = trainerService.getById(trainerId);
-        ArrayList<Activity> result = new ArrayList<>();
-        trainer.getTrainerPacksByTrainerId()
-                .forEach(i -> i.getPackByPackId().getActivityPacksByPackId()
-                        .forEach(a -> result.add(a.getActivityByActivityId())));
-        return result;
+        Query query = em.createQuery("select a from Activity a " +
+                "inner join ActivitySpecialization acts on acts.activityId=a.activityId " +
+                "inner join TrainerSpecialization ts on ts.specializationId=acts.specializationId " +
+                "where ts.trainerId=:trainerId")
+                .setParameter("trainerId", trainerId);
+
+        return (ArrayList<Activity>)query.getResultList();
     }
 }

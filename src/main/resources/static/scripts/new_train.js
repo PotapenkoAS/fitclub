@@ -42,6 +42,9 @@ function refreshSchedule(offset) {
 function change(button) {
     var week = button.id.split(" ")[0];
     var day = button.id.split(" ")[1];
+    var actId = Number(document.getElementById("activityId").value);
+    var tb = document.getElementById("timeBegin").value;
+    var te = document.getElementById("timeEnd").value;
     if (button.innerText === "Записаться") {
         button.innerText = "Отмена";
         button.style.color = "#d8005b";
@@ -49,16 +52,13 @@ function change(button) {
             type: "POST",
             url: "training/new",
             data: {
-                week: week,
-                day: day,
+                week: Number(week),
+                day: Number(day),
                 offset: offset,
-                timeBegin: $('#timeBegin'),
-                timeEnd: $('#timeEnd'),
-                activityId: $('#activityId').value,
+                timeBegin: tb,
+                timeEnd: te,
+                activityId: actId,
                 trainerId: trainerId
-            },
-            success: function () {
-
             }
         });
     } else {
@@ -68,16 +68,13 @@ function change(button) {
             type: "DELETE",
             url: "training/delete",
             data: {
-                week: week,
-                day: day,
+                week: Number(week),
+                day: Number(day),
                 offset: offset,
-                timeBegin: $('#timeBegin'),
-                timeEnd: $('#timeEnd'),
-                activityId: $('#activityId').value,
+                timeBegin: tb,
+                timeEnd: te,
+                activityId: actId,
                 trainerId: trainerId
-            },
-            success: function () {
-
             }
         });
     }

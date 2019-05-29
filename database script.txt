@@ -1,5 +1,5 @@
 create schema fitness_club collate utf8mb4_0900_ai_ci;
-use fitness_club;
+
 create table activity
 (
 	activity_id int not null
@@ -211,8 +211,8 @@ create table training
 	client_id int null,
 	regularity int null,
 	week_day varchar(20) null,
-	time_begin datetime null,
-	time_end datetime null,
+	time_begin time null,
+	time_end time null,
 	activity_id int null,
 	date date null,
 	constraint training_activity_activity_id_fk
