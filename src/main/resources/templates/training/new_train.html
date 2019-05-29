@@ -4,9 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="content/style.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/new_train.js"></script>
 </head>
 <body>
 <div th:insert="header.html :: header-fragment"></div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    trainerId = /*[[${trainerId}]]*/ 0;
+    /*]]>*/
+</script>
 
+<div class="section">
+    <table>
+        <tr>
+            <th>Понедельник</th>
+            <th>Вторник</th>
+            <th>Среда</th>
+            <th>Четверг</th>
+            <th>Пятница</th>
+            <th>Суббота</th>
+            <th>Воскресенье</th>
+        </tr>
+
+    </table>
+</div>
 </body>
 </html>

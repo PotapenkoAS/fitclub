@@ -1,5 +1,6 @@
 package ru.vlsu.fitclub.service;
 
+import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.vlsu.fitclub.model.entity.GroupTraining;
@@ -39,12 +40,13 @@ public class CalendarScheduleService {
         GregorianCalendar curCal = (GregorianCalendar) calendar.clone();
         GregorianCalendar monthEnd = (GregorianCalendar) calendar.clone();
         monthEnd.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        curCal.add(Calendar.DAY_OF_MONTH, (curCal.get(Calendar.DAY_OF_WEEK) - 2) * -1);
         ArrayList<CalendarSchedule> result = new ArrayList<>();
         while (curCal.compareTo(monthEnd) < 0) {
             CalendarSchedule cs = new CalendarSchedule();
-            cs.getDays().forEach((k, v) -> {
-                v.setDate(curCal);
-                curCal.add(Calendar.DAY_OF_MONTH, curCal.get(Calendar.DAY_OF_MONTH) + 1);
+            cs.getDays().forEach((i) -> {
+                i.getValue().setDate((GregorianCalendar) curCal.clone());
+                curCal.set(Calendar.DAY_OF_MONTH, curCal.get(Calendar.DAY_OF_MONTH) + 1);
             });
             result.add(cs);
         }
@@ -52,43 +54,45 @@ public class CalendarScheduleService {
         for (Training entry : trainings) {
             tmp.setTime(entry.getDate());
             int weekIndex = tmp.get(Calendar.WEEK_OF_MONTH) - 1;
-            String dayOfWeek = getDayOfWeek(tmp.get(Calendar.DAY_OF_WEEK));
-            CalendarScheduleItem item = result.get(weekIndex).getDays().get(dayOfWeek);
+            int dayOfWeek = getDayOfWeek(tmp.get(Calendar.DAY_OF_WEEK)) - 1;
+            CalendarScheduleItem item = result.get(weekIndex).getDays().get(dayOfWeek).getValue();
             item.setTrainingId(entry.getTrainingId());
+            item.setCount(item.getCount() + 1);
             item.setText(item.getText() + "\n" + entry.getTimeBegin() + " - " + entry.getTimeEnd() + ". " + entry.getActivityByActivityId().getName());
-            result.get(weekIndex).getDays().put(dayOfWeek, item);
+            result.get(weekIndex).setItem(dayOfWeek, item);
 
         }
         for (GroupTraining entry : groupTrainings) {
             tmp.setTime(entry.getDate());
             int weekIndex = tmp.get(Calendar.WEEK_OF_MONTH) - 1;
-            String dayOfWeek = getDayOfWeek(tmp.get(Calendar.DAY_OF_WEEK));
-            CalendarScheduleItem item = result.get(weekIndex).getDays().get(dayOfWeek);
+            int dayOfWeek = getDayOfWeek(tmp.get(Calendar.DAY_OF_WEEK)) - 1;
+            CalendarScheduleItem item = result.get(weekIndex).getDays().get(dayOfWeek).getValue();
             item.setGroupId(entry.getGroupId());
+            item.setCount(item.getCount() + 1);
             item.setText(item.getText() + "\n" + entry.getTimeBegin() + " - " + entry.getTimeEnd() + ". " + entry.getActivityByActivityId().getName());
-            result.get(weekIndex).getDays().put(dayOfWeek, item);
+            result.get(weekIndex).setItem(dayOfWeek, item);
         }
         return result;
     }
 
-    private String getDayOfWeek(int day) {
+    private int getDayOfWeek(int day) {
         switch (day) {
             case 1:
-                return "SUNDAY";
+                return 7;
             case 2:
-                return "MONDAY";
+                return 1;
             case 3:
-                return "TUESDAY";
+                return 2;
             case 4:
-                return "WEDNESDAY";
+                return 3;
             case 5:
-                return "THURSDAY";
+                return 4;
             case 6:
-                return "FRIDAY";
+                return 5;
             case 7:
-                return "SATURDAY";
+                return 6;
             default:
-                return "";
+                return 0;
         }
     }
 }

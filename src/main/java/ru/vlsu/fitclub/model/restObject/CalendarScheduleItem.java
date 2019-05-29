@@ -8,6 +8,8 @@ public class CalendarScheduleItem {
     private int trainingId;
     private int groupId;
     private GregorianCalendar date;
+    private int count;
+
 
     public CalendarScheduleItem() {
     }
@@ -20,6 +22,14 @@ public class CalendarScheduleItem {
         } else if (groupId != 0) {
             this.groupId = groupId;
         }
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public String getText() {

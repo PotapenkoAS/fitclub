@@ -46,8 +46,7 @@ public class TrainingRestController {
     }
 
     @GetMapping("/trainer_schedule/refresh")
-    public ArrayList<CalendarSchedule> refreshTrainerSchedule(@RequestParam(name = "month_offset") int monthOffset
-            , @RequestParam(name = "trainer_id") int trainerId) {
+    public ArrayList<CalendarSchedule> refreshTrainerSchedule(@RequestParam(name = "month_offset") int monthOffset , @RequestParam(name = "trainer_id") int trainerId) {
         return calendarScheduleService.getListCalendarScheduleByTrainerIdForMonth(trainerId,monthOffset);
     }
 }

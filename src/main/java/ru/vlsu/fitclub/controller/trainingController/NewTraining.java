@@ -23,6 +23,7 @@ public class NewTraining {
     public String getNewTrain(int trainerId, Model model) {
         ArrayList<Activity> activityList = activityService.getAllByTrainerId(trainerId);
         model.addAttribute("activityList", activityList);
+        model.addAttribute("trainerId",trainerId);
         return "training/new_train";
     }
 }
