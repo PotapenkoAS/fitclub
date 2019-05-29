@@ -12,10 +12,16 @@
 
 <div class="section">
     <div class="sidebar">
-        <img class="img-circle" th:src="*{'data:image/png;base64,'+avatar}" alt="none">
+        <img class="round" th:src="*{'data:image/png;base64,'+avatar}" alt="none">
         <form method="post" enctype="multipart/form-data">
-            <input type="file" name="file">
-            <input type="submit" value="+">
+            <div class="upload_form">
+                <label>
+                    <input name="file" type="file" class="main_input_file" />
+                    <div>Обзор...</div>
+                    <input class="f_name" type="text" id="f_name" value="Файл не выбран." disabled />
+                </label>
+            </div>
+            <input class="button button1" type="submit" value="Загрузить фото">
         </form>
         <h1 th:text = " 'Рейтинг: '+${trainer.getRating()}"></h1>
         <h1 th:text="${trainer.getSurname()} + ' ' + ${trainer.getName()}"></h1>
@@ -34,7 +40,7 @@
 
         <form method="post" action="/trainer/sub_check" sec:authorize="hasRole('CLIENT')">
             <input name="trainerId" th:value="${trainer.getTrainerId()}" readonly style="display: none">
-            <input type="submit" value="Записаться">
+            <input type="submit" class="button button_trainer_site" value="Записаться">
         </form>
     </div>
 </div>
@@ -42,6 +48,18 @@
 <div class="copyright">
     &copy; 2019 My page. All rights reserved.
 </div>
+
+<script>
+    $(document).ready(function() {
+        $(".main_input_file").change(function() {
+            var f_name = [];
+            for (var i = 0; i < $(this).get(0).files.length; ++i) {
+                f_name.push(" " + $(this).get(0).files[i].name);
+            }
+            $("#f_name").val(f_name.join(", "));
+        });
+    });
+</script>
 </body>
 
 </html>

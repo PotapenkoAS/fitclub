@@ -17,7 +17,7 @@
 
 <div class="section-trainings">
     <div class="sidebar">
-        <img class="img-circle" th:src="*{'data:image/jpg;base64,'+image}" alt="none">
+        <img class="round" th:src="*{'data:image/jpg;base64,'+image}" alt="none">
     </div>
     <div class="contentText">
         <h2> Вид занятий </h2>
@@ -31,7 +31,7 @@
         <p th:text="|За занятие: ${activity.getPriceForTrain()} За неделю: ${activity.getPriceForWeek()} За месяц: ${activity.getPriceForMonth()} За год: ${activity.getPriceForYear()}|"></p>
         <br/>
         <button class="button button3" onclick="goBack()">Назад</button>
-        <a th:href="@{'/new_sub'(activity_id=${activity.activityId})}"><input type="button" class="button button2"
+        <a th:href="@{'/new_sub'(activity_id=${activity.activityId})}"><input type="button" class="button button_trainer_site"
                                                                              value="Записаться"/></a>
     </div>
     <br/>

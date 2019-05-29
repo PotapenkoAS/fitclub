@@ -4,16 +4,24 @@
     <meta charset="UTF-8">
     <title>First page</title>
     <link href="/content/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </head>
 
 <body>
 <div th:insert="header.html :: header-fragment"></div>
 <div class="section">
     <div class="sidebar">
-        <img class="img-circle" th:src="*{'data:image/png;base64,'+avatar}" alt="none">
+        <img class="round" th:src="*{'data:image/png;base64,'+avatar}" alt="none">
+        <br>
         <form method="post" enctype="multipart/form-data">
-            <input type="file" name="file">
-            <input type="submit" value="+">
+            <div class="upload_form">
+                <label>
+                    <input name="file" type="file" class="main_input_file" />
+                    <div>Обзор...</div>
+                    <input class="f_name" type="text" id="f_name" value="Файл не выбран." disabled />
+                </label>
+            </div>
+            <input class="button button1" type="submit" value="Загрузить фото">
         </form>
         <h1 th:text="${client.getSurname()} + ' ' + ${client.getName()}"></h1>
         <h1 th:text="${client.getEmail()}"></h1>
@@ -38,6 +46,19 @@
 <div class="copyright">
     &copy; 2019 My page. All rights reserved.
 </div>
+
+<script>
+    $(document).ready(function() {
+        $(".main_input_file").change(function() {
+            var f_name = [];
+            for (var i = 0; i < $(this).get(0).files.length; ++i) {
+                f_name.push(" " + $(this).get(0).files[i].name);
+            }
+            $("#f_name").val(f_name.join(", "));
+        });
+    });
+</script>
+
 </body>
 
 </html>
