@@ -1,12 +1,10 @@
 package ru.vlsu.fitclub.controller.trainingController;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.vlsu.fitclub.model.entity.GroupTraining;
 import ru.vlsu.fitclub.model.entity.Subscription;
 import ru.vlsu.fitclub.model.restObject.CalendarSchedule;
-import ru.vlsu.fitclub.model.restObject.JsonTraining;
 import ru.vlsu.fitclub.service.*;
 
 import java.sql.Time;
