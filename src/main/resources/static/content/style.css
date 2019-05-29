@@ -198,8 +198,7 @@ p {
 / / margin-left: 6 %;
 }
 
-<!--
--->
+
 .header {
     background-color: #fff;
     padding: 3px;
@@ -228,8 +227,6 @@ p {
     text-align: left;
 }
 
-<!--
--->
 
 .quote {
     font-size: 12pt;
@@ -704,7 +701,6 @@ img.img.zoom:hover {
     width: 100px;
     height: 32px;
     background: #3498db;
-    border-radius: 4px;
     color: #fff;
     text-align: center;
     line-height: 32px;
@@ -732,13 +728,13 @@ img.img.zoom:hover {
 }
 
 .round {
-    width: 300px; height: 300px; /* Ширина и высота */
-    border-radius: 50%; /* Превращаем в круг */
-    background-size: auto 300px; /* Высота фотографии равна высоте элемента */
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background-size: auto 300px;
 }
 
 .round_trainer_list {
-    width: 100px; height: 100px; /* Ширина и высота */
-    border-radius: 50%; /* Превращаем в круг */
-    background-size: auto 100px; /* Высота фотографии равна высоте элемента */
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background-size: auto 100px;
 }

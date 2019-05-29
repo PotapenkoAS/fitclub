@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.vlsu.fitclub.model.entity.Activity;
 import ru.vlsu.fitclub.service.ActivityService;
 
@@ -20,7 +21,7 @@ public class NewTraining {
     }
 
     @GetMapping("/new_train")
-    public String getNewTrain(int trainerId, Model model) {
+    public String getNewTrain(@RequestParam(name = "trainer_id") int trainerId, Model model) {
         ArrayList<Activity> activityList = activityService.getAllByTrainerId(trainerId);
         model.addAttribute("activityList", activityList);
         model.addAttribute("trainerId",trainerId);

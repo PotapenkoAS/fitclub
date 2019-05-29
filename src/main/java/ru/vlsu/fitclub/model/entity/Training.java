@@ -23,6 +23,7 @@ public class Training {
     private Date date;
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "training_id", nullable = false)
     public int getTrainingId() {
         return trainingId;

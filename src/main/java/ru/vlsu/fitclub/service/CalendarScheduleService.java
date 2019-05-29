@@ -57,8 +57,11 @@ public class CalendarScheduleService {
             int dayOfWeek = getDayOfWeek(tmp.get(Calendar.DAY_OF_WEEK)) - 1;
             CalendarScheduleItem item = result.get(weekIndex).getDays().get(dayOfWeek).getValue();
             item.setTrainingId(entry.getTrainingId());
-            item.setCount(item.getCount() + 1);
+            if (item.getCount() == 0) {
+                item.setText("");
+            }
             item.setText(item.getText() + "\n" + entry.getTimeBegin() + " - " + entry.getTimeEnd() + ". " + entry.getActivityByActivityId().getName());
+            item.setCount(item.getCount() + 1);
             result.get(weekIndex).setItem(dayOfWeek, item);
 
         }
@@ -68,8 +71,11 @@ public class CalendarScheduleService {
             int dayOfWeek = getDayOfWeek(tmp.get(Calendar.DAY_OF_WEEK)) - 1;
             CalendarScheduleItem item = result.get(weekIndex).getDays().get(dayOfWeek).getValue();
             item.setGroupId(entry.getGroupId());
-            item.setCount(item.getCount() + 1);
+            if (item.getCount() == 0) {
+                item.setText("");
+            }
             item.setText(item.getText() + "\n" + entry.getTimeBegin() + " - " + entry.getTimeEnd() + ". " + entry.getActivityByActivityId().getName());
+            item.setCount(item.getCount() + 1);
             result.get(weekIndex).setItem(dayOfWeek, item);
         }
         return result;

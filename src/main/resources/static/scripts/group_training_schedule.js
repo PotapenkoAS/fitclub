@@ -1,7 +1,7 @@
 function send(groupId) {
     $.ajax({
         type: 'POST',
-        url: '/training/new',
+        url: '/group_training/new',
         data: {groupId: groupId},
         success: function (data) {
             var parsedData = data.split(',');

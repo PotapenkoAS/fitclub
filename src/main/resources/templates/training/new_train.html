@@ -15,20 +15,20 @@
     trainerId = /*[[${trainerId}]]*/ 0;
     /*]]>*/
 </script>
-
+<select name="activityId" id="activityId" class="timetable_select">
+    <option th:each="item : ${activityList}"
+            th:value="${item.getActivityId()}"
+            th:utext="${item.getName()}">
+    </option>
+</select>
+<input id="timeBegin" type="time">
+<input id="timeEnd" type="time">
+<button onclick="refreshSchedule(--offset)">Назад</button>
+<button onclick="refreshSchedule(++offset)">Вперед</button>
 <div class="section">
-    <table>
-        <tr>
-            <th>Понедельник</th>
-            <th>Вторник</th>
-            <th>Среда</th>
-            <th>Четверг</th>
-            <th>Пятница</th>
-            <th>Суббота</th>
-            <th>Воскресенье</th>
-        </tr>
-
+    <table id="schedule">
     </table>
 </div>
+
 </body>
 </html>
