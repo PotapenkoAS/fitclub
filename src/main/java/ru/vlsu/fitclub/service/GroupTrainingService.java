@@ -6,6 +6,7 @@ import ru.vlsu.fitclub.model.entity.GroupTraining;
 import ru.vlsu.fitclub.repository.GroupTrainingRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 @Service
 public class GroupTrainingService {
@@ -21,7 +22,12 @@ public class GroupTrainingService {
         return gtr.findByGroupId(groupId);
     }
 
-    public ArrayList<GroupTraining> getAllByTrainerId(int trainerId){
+    public ArrayList<GroupTraining> getAllByTrainerId(int trainerId) {
         return gtr.findAllByTrainerId(trainerId);
     }
+
+    public ArrayList<GroupTraining> getAllByTrainerIdAndDate(int trainerId, Date dateFrom, Date dateTo) {
+        return gtr.findAllByTrainerIdAndDateIsLessThanAndDateIsGreaterThanEqual(trainerId, dateTo, dateFrom);
+    }
+
 }

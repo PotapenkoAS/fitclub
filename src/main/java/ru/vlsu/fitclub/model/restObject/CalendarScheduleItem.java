@@ -1,15 +1,18 @@
 package ru.vlsu.fitclub.model.restObject;
 
-import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class CalendarScheduleItem {
 
     private String text;
     private int trainingId;
     private int groupId;
-    private Calendar date;
+    private GregorianCalendar date;
 
-    public CalendarScheduleItem(Calendar date, String text, int trainingId, int groupId) {
+    public CalendarScheduleItem() {
+    }
+
+    public CalendarScheduleItem(GregorianCalendar date, String text, int trainingId, int groupId) {
         this.date = date;
         this.text = text;
         if (trainingId != 0) {
@@ -43,11 +46,11 @@ public class CalendarScheduleItem {
         this.groupId = groupId;
     }
 
-    public Calendar getDate() {
+    public GregorianCalendar getDate() {
         return date;
     }
 
-    public void setDate(Calendar date) {
+    public void setDate(GregorianCalendar date) {
         this.date = date;
     }
 }
