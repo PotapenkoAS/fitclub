@@ -22,7 +22,6 @@
                     <input class="f_name" type="text" id="f_name" value="Файл не выбран." disabled/>
                 </label>
             </div>
-            <img class="round_small" src="/content/settings.png" alt="Редактировать" onclick="editor()">
             <input class="button button1" type="submit" value="Загрузить фото">
         </form>
         <h1 id="nameH" th:text="${client.getSurname()} + ' ' + ${client.getName()}"></h1>
@@ -32,6 +31,7 @@
         <input id="mailI" type="text" style="display: none">
     </div>
     <div class="contentText">
+        <img class="round_small" src="/content/settings.png" alt="Редактировать" onclick="editor()">
         <h2> Рост </h2>
         <p id="heightP" th:text="${client.getHeight()}"> см </p>
         <input id="heightI" type="text" style="display: none">

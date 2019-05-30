@@ -746,6 +746,7 @@ img.img.zoom:hover {
     height: 50px;
     border-radius: 50%;
     background-size: auto;
+    float: right;
 }
 
 .round_trainer_list {
