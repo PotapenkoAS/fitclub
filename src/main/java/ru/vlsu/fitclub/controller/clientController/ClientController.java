@@ -31,7 +31,7 @@ public class ClientController {
 
     @GetMapping("/client")
     public String getClient() {
-        int id = ((CustomUserDetails) (SecurityContextHolder.getContext().getAuthentication().getPrincipal())).getUserId();
+        int id = userService.getCurrentUserId();
         return "redirect:/client/" + id;
     }
 

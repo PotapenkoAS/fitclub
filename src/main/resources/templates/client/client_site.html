@@ -5,6 +5,7 @@
     <title>First page</title>
     <link href="/content/style.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="/scripts/client_site.js"></script>
 </head>
 
 <body>
@@ -16,27 +17,33 @@
         <form method="post" enctype="multipart/form-data">
             <div class="upload_form">
                 <label>
-                    <input name="file" type="file" class="main_input_file" />
+                    <input name="file" type="file" class="main_input_file"/>
                     <div>Обзор...</div>
-                    <input class="f_name" type="text" id="f_name" value="Файл не выбран." disabled />
+                    <input class="f_name" type="text" id="f_name" value="Файл не выбран." disabled/>
                 </label>
             </div>
+            <img class="round_small" src="/content/settings.png" alt="Редактировать" onclick="editor()">
             <input class="button button1" type="submit" value="Загрузить фото">
         </form>
-        <h1 th:text="${client.getSurname()} + ' ' + ${client.getName()}"></h1>
-        <h1 th:text="${client.getEmail()}"></h1>
+        <h1 id="nameH" th:text="${client.getSurname()} + ' ' + ${client.getName()}"></h1>
+        <input id="nameI" type="text" style="display: none">
+        <input id="surnameI" type="text" style="display:none">
+        <h1 id="mailH" th:text="${client.getEmail()}"></h1>
+        <input id="mailI" type="text" style="display: none">
     </div>
     <div class="contentText">
-        <h2>Мои данные</h2>
         <h2> Рост </h2>
-        <p th:text="${client.getHeight()}"> см </p>
+        <p id="heightP" th:text="${client.getHeight()}"> см </p>
+        <input id="heightI" type="text" style="display: none">
         <h2> Вес </h2>
-        <p th:text="${client.getWeight()}"> кг </p>
+        <p id="weightP" th:text="${client.getWeight()}"> кг </p>
+        <input id="weightI" type="text" style="display: none">
         <h2> Достижения </h2>
 
         <div class="elements-gride" data-masonry='{ "itemSelector": ".element-item", "columnWidth": 200 }'>
             <tr th:each="item: ${imageList}">
-                <td><img th:title="${item.getTitle()}" th:src="*{'data:image/png;base64,'+item.getImage()}" alt=""/></td>
+                <td><img th:title="${item.getTitle()}" th:src="*{'data:image/png;base64,'+item.getImage()}" alt=""/>
+                </td>
             </tr>
         </div>
 
@@ -48,8 +55,8 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        $(".main_input_file").change(function() {
+    $(document).ready(function () {
+        $(".main_input_file").change(function () {
             var f_name = [];
             for (var i = 0; i < $(this).get(0).files.length; ++i) {
                 f_name.push(" " + $(this).get(0).files[i].name);
