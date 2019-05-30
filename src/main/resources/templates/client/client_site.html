@@ -41,12 +41,20 @@
         <h2> Достижения </h2>
 
         <div class="elements-gride" data-masonry='{ "itemSelector": ".element-item", "columnWidth": 200 }'>
-            <tr th:each="item: ${imageList}">
+            <tr th:each="item: ${achievementsList}">
                 <td><img th:title="${item.getTitle()}" th:src="*{'data:image/png;base64,'+item.getImage()}" alt=""/>
                 </td>
             </tr>
         </div>
+        <h2> Цели </h2>
 
+        <div class="elements-gride" data-masonry='{ "itemSelector": ".element-item", "columnWidth": 200 }'>
+            <tr th:each="item: ${targetList}">
+                <td><img th:title="${item.getTitle()}" th:src="*{'data:image/png;base64,'+item.getImage()}" alt=""/>
+                </td>
+            </tr>
+        </div>
+        <a href="/client/log_progress">Записать тренировку</a>
     </div>
 </div>
 

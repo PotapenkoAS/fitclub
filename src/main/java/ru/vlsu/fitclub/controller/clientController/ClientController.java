@@ -1,7 +1,6 @@
 package ru.vlsu.fitclub.controller.clientController;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,8 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import ru.vlsu.fitclub.model.CustomUserDetails;
 import ru.vlsu.fitclub.model.entity.Client;
+import ru.vlsu.fitclub.service.AchievementService;
 import ru.vlsu.fitclub.service.ClientService;
 import ru.vlsu.fitclub.service.UserService;
 
@@ -22,11 +21,13 @@ public class ClientController {
 
     private ClientService clientService;
     private UserService userService;
+    private AchievementService achievementService;
 
     @Autowired
-    public ClientController(ClientService clientService, UserService userService) {
+    public ClientController(ClientService clientService, UserService userService, AchievementService achievementService) {
         this.clientService = clientService;
         this.userService = userService;
+        this.achievementService = achievementService;
     }
 
     @GetMapping("/client")
@@ -41,7 +42,8 @@ public class ClientController {
         String avatar = Base64.getEncoder().encodeToString(client.getAvatar());
         model.addAttribute("avatar", avatar);
         model.addAttribute("client", client);
-        model.addAttribute("imageList", clientService.getAchievementImagesAndTitleByClient(client));
+        model.addAttribute("achievementsList", clientService.getAchievementImagesAndTitleByClient(client));
+        model.addAttribute("targetList", clientService.getClientTargets(client));
         return "client/client_site";
     }
 
@@ -54,5 +56,24 @@ public class ClientController {
             clientService.save(client);
         }
         return "redirect:/client/" + userId;
+    }
+
+    @GetMapping("/client/progress")
+    public String getClientProgress(Model model) {
+        int userId = userService.getCurrentUserId();
+        return "client/client_progress";
+    }
+
+    @GetMapping("/client/log_progress")
+    public String getLogProgress(Model model) {
+        model.addAttribute("achList", achievementService.getAll());
+        return "client/client_log_progress";
+    }
+
+    @PostMapping("/client/log_progress")
+    public String postLogProgress(int achievementId, double value) {
+        int clientId = clientService.getClientByUserId(userService.getCurrentUserId()).getClientId();
+        achievementService.saveProgress(clientId, achievementId, value);
+        return "redirect:/client/" + userService.getCurrentUserId();
     }
 }

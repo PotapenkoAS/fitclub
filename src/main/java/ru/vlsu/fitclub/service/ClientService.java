@@ -48,9 +48,14 @@ public class ClientService {
     }
 
     public ArrayList<AchievementImageAndTitle> getAchievementImagesAndTitleByClient(Client client) {
-        ArrayList<Achievement> achievementList = new ArrayList<>();
-        client.getClientAchievesByClientId().forEach(i -> achievementList.add(i.getAchievementByAchievementId()));
+        ArrayList<Achievement> achievementList;
         ArrayList<AchievementImageAndTitle> result = new ArrayList<>();
+        Query query = em.createQuery("select a from Achievement a " +
+                "inner join ClientAchieves ca on ca.achievementId=a.achievementId " +
+                "where ca.clientId=:clientId and " +
+                "ca.done=1")
+                .setParameter("clientId", client.getClientId());
+        achievementList = (ArrayList<Achievement>) query.getResultList();
         for (Achievement entry : achievementList) {
             result.add(new AchievementImageAndTitle(Base64.getEncoder().encodeToString(entry.getImage()), entry.getDescription()));
         }
@@ -81,5 +86,20 @@ public class ClientService {
 
     public void save(Client client) {
         cr.save(client);
+    }
+
+    public ArrayList<AchievementImageAndTitle> getClientTargets(Client client) {
+        ArrayList<Achievement> achievementList;
+        ArrayList<AchievementImageAndTitle> result = new ArrayList<>();
+        Query query = em.createQuery("select a from Achievement a " +
+                "inner join ClientAchieves ca on ca.achievementId = a.achievementId " +
+                "where ca.clientId=:clientId and ca.done=0 " +
+                "group by a.activityId")
+                .setParameter("clientId", client.getClientId());
+        achievementList = (ArrayList<Achievement>) query.getResultList();
+        for (Achievement entry : achievementList) {
+            result.add(new AchievementImageAndTitle(Base64.getEncoder().encodeToString(entry.getImage()), entry.getDescription()));
+        }
+        return result;
     }
 }
