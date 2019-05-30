@@ -10,13 +10,16 @@
 
 <body>
 <div th:insert="header.html :: header-fragment"></div>
+<div class="section">
+    <h1>Запись достижений</h1>
 <form method="post">
-    <select name="achievementId">
+    <select name="achievementId" class="timetable_select">
         <option th:each="item: ${achList}" th:value="${item.getAchievementId()}"
                 th:utext="${item.getActivityByActivityId().getName()}" }></option>
     </select>
-    <input name="value" type="text">
-    <input type="submit" value="Записать">
+    <input name="value" type="text" style="width: 30%"><br>
+    <input type="submit" value="Записать" class="button button2" style="width: 30%">
 </form>
+</div>
 </body>
 </html>

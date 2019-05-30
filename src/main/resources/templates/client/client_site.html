@@ -32,9 +32,10 @@
         <input id="mailI" type="text" style="display: none">
     </div>
     <div class="contentText">
-        <a href="/logout" style="float: right;">Выйти</a>
         <img sec:authorize="hasRole('CLIENT')" class="round_small" src="/content/settings.png" alt="Редактировать"
-             onclick="editor()">
+             onclick="editor()" >
+        <br><br><br>
+        <a href="/logout" style="float: right; text-decoration: none;">Выйти</a>
         <h2> Рост </h2>
         <p id="heightP" th:text="${client.getHeight()}"> см </p>
         <input id="heightI" type="text" style="display: none">
