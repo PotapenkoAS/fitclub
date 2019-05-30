@@ -12,7 +12,7 @@
 <table class="table_trainer_list">
     <tr th:each="item:${trainerList}">
         <td width="200px"><img class="round_trainer_list" th:src="*{'data:image/png;base64,'+item.getEncodedAvatar()}" alt="/content/1.png"></td>
-        <td ><a th:text="${item.getSurname()} + ' ' + ${item.getName()}" th:href="@{'/trainer/' + ${item.getUserId()}}"></a></td>
+        <td ><a th:text="${item.getSurname()} + ' ' + ${item.getName()}+', ' + ${item.getFullDescription()} + ', ' + 'рейтинг: '+${item.getRating()}+ ', ' +  'стаж: '+${item.getExperience()}" th:href="@{'/trainer/' + ${item.getUserId()}}"></a></td>
     </tr>
 </table>
 </div>
