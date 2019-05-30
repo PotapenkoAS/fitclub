@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>First page</title>
+    <link href="/content/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="/scripts/client_site.js"></script>
+</head>
+
+<body>
+<div th:insert="header.html :: header-fragment"></div>
+<form method="post">
+    <select name="achievementId">
+        <option th:each="item: ${achList}" th:value="${item.getAchievementId()}"
+                th:utext="${item.getActivityByActivityId().getName()}" }></option>
+    </select>
+    <input name="value" type="text">
+</form>
+</body>
+</html>
